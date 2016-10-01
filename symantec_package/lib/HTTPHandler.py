@@ -41,28 +41,10 @@ class HTTPSClientCertTransport(HttpTransport):
         else:
             return url.open(u2request, timeout=tm)
 
-
-import logging
-logging.basicConfig(level=logging.INFO)
-logging.getLogger('suds.client').setLevel(logging.DEBUG)
-
-from suds.client import Client
-#from suds.transport.https import
-
-
-# the URLs for now which will have the WSDL files and the XSD file
-url = 'http://webdev.cse.msu.edu/~yehanlin/vip/vipuserservices-query-1.7.wsdl'
-userservices_url = 'http://webdev.cse.msu.edu/~morcoteg/Symantec/WSDL/vipuserservices-auth-1.4.wsdl'
-
-# initializing the Suds clients for each url, with the client certificate youll have in the same dir as this file
-client = Client(url,
-         transport = HTTPSClientCertTransport('vip_certificate.crt','vip_certificate.crt'))
-user_services_client = Client(userservices_url,
-         transport = HTTPSClientCertTransport('vip_certificate.crt','vip_certificate.crt'))
-
-
-get_user_info_result = client.service.getUserInfo(requestId="123123", userId="y1196293")
-
-#send_push_to_phone_result = user_services_client.service.authenticateUserWithPush(requestId="push_123", userId="y1196293")
-
-print(str(get_user_info_result).split('\n'))
+class setClient:
+    def __init__(self, url):
+        self.url = url
+    def setConnection(self):
+        client = Client(self.url,
+                        transport=HTTPSClientCertTransport('vip_certificate.crt', 'vip_certificate.crt'))
+        return client
