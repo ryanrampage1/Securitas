@@ -1,7 +1,7 @@
 import logging
-logging.basicConfig(level=logging.INFO)
-logging.getLogger('suds.client').setLevel(logging.DEBUG)
 
+#logging.basicConfig(level=logging.INFO)
+#logging.getLogger('suds.client').setLevel(logging.DEBUG)
 
 class getUserInfo:
 
@@ -15,14 +15,15 @@ class getUserInfo:
 
 
     def __str__(self):
-        return \
-            str(self.client.service.getUserInfo(requestId=self.requestId, userId=self.userId,
+        res = str(self.client.service.getUserInfo(requestId=self.requestId, userId=self.userId,
                                    onBehalfOfAccountId=self.onBehalfOfAccountId, iaInfo=self.iaInfo,
                                    includePushAttributes=self.includePushAttributes))
+        return res
 
-    def getCredentialId(self):
+    def getFieldContent(self,fieldname):
         info_list = self.__str__().split('\n')
-        for item in info_list:
-            if 'CredentialId' in item:
-                return item.split('=')[1]
 
+        for item in info_list:
+            if fieldname in item:
+
+                return item.split('=')[1][1:]

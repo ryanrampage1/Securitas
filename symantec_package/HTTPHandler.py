@@ -41,10 +41,8 @@ class HTTPSClientCertTransport(HttpTransport):
         else:
             return url.open(u2request, timeout=tm)
 
-class setClient:
-    def __init__(self, url):
-        self.url = url
-    def setConnection(self):
-        client = Client(self.url,
-                        transport=HTTPSClientCertTransport('vip_certificate.crt', 'vip_certificate.crt'))
-        return client
+
+def setConnection(url):
+    client = Client(url,
+                transport=HTTPSClientCertTransport('vip_certificate.crt', 'vip_certificate.crt'))
+    return client
