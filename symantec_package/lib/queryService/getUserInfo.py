@@ -5,7 +5,7 @@ import logging
 
 class getUserInfo:
 
-    def __init__(self,client, requestId, userId, onBehalfOfAccountId=None,iaInfo=True, includePushAttributes=True):
+    def __init__(self,client, requestId, userId, onBehalfOfAccountId=None, iaInfo=True, includePushAttributes=True):
         self.client = client
         self.requestId = requestId
         self.userId = userId
