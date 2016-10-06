@@ -66,8 +66,8 @@ get_user_info_result = client.service.getUserInfo(requestId="123123", userId="y1
 
 # Gabe here, testing pushing to phone with wrapper class SymantecUserServices
 test_user_services_object = SymantecUserServices(user_services_client)
-send_push_to_phone_result = test_user_services_object.authenticateUserWithPush("push_123", "gabe_phone")
-print(test_user_services_object.__str__("push_123", "gabe_phone"))
+send_push_to_phone_result = test_user_services_object.authenticateUserWithPush("push_123", "Arren_phone")
+print(test_user_services_object.__str__("push_123", "Arren_phone"))
 
 
 print(str(get_user_info_result).split('\n'))
