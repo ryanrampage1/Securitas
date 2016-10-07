@@ -62,13 +62,18 @@ user_services_client = Client(userservices_url,
          transport = HTTPSClientCertTransport('vip_certificate.crt','vip_certificate.crt'))
 
 
-#get_user_info_result = client.service.getUserInfo(requestId="123123", userId="y1196293")
-#print(get_user_info_result)
-#get_server_time = client.service.getServerTime(requestId="server123")
-#print(get_server_time)
-get_credential_info = client.service.getCredentialInfo(requestId="credential123", onBehalfOfAccountId=None,
-                                                       credentialId="VSTZ43724471", credentialType="STANDARD_OTP")
-print(get_credential_info)
+# get_user_info_result = client.service.getUserInfo(requestId="123123", userId="y1196293")
+# print(get_user_info_result)
+# get_server_time = client.service.getServerTime(requestId="server123")
+# print(get_server_time)
+# get_credential_info = client.service.getCredentialInfo(requestId="credential123", onBehalfOfAccountId=None,
+#                                                        credentialId="VSTZ43724471", credentialType="STANDARD_OTP")
+# print(get_credential_info)
+
+# get_temp_pass_attributes = client.service.getTemporaryPasswordAttributes(requestId="temp_pass",
+#                                                                          onBehalfOfAccountId=None, userId="Arren_phone")
+# print(get_temp_pass_attributes)
+
 
 # Gabe here, testing pushing to phone with wrapper class SymantecUserServices
 #test_user_services_object = SymantecUserServices(user_services_client)

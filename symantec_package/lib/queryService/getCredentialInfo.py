@@ -1,8 +1,5 @@
 import logging
 
-#logging.basicConfig(level=logging.INFO)
-#logging.getLogger('suds.client').setLevel(logging.DEBUG)
-
 class getCredentialInfo:
 
     def __init__(self,client, requestId, onBehalfOfAccountId,credentialId=-1, credentialType="STANDARD_OTP", includePushAttributes=True):
