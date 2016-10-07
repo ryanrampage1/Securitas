@@ -44,6 +44,8 @@ class HTTPSClientCertTransport(HttpTransport):
 
 import logging
 from symantec_package.lib.userService.SymantecUserServices import SymantecUserServices
+from symantec_package.lib.queryService.SymantecQueryServices import SymantecQueryServices
+
 logging.basicConfig(level=logging.INFO)
 logging.getLogger('suds.client').setLevel(logging.DEBUG)
 
@@ -52,22 +54,27 @@ from suds.client import Client
 
 
 # the URLs for now which will have the WSDL files and the XSD file
-url = 'http://webdev.cse.msu.edu/~yehanlin/vip/vipuserservices-query-1.7.wsdl'
+query_services_url = 'http://webdev.cse.msu.edu/~yehanlin/vip/vipuserservices-query-1.7.wsdl'
 userservices_url = 'http://webdev.cse.msu.edu/~morcoteg/Symantec/WSDL/vipuserservices-auth-1.4.wsdl'
 
 # initializing the Suds clients for each url, with the client certificate youll have in the same dir as this file
-client = Client(url,
+query_services_client = Client(query_services_url,
          transport = HTTPSClientCertTransport('vip_certificate.crt','vip_certificate.crt'))
 user_services_client = Client(userservices_url,
          transport = HTTPSClientCertTransport('vip_certificate.crt','vip_certificate.crt'))
 
 
-get_user_info_result = client.service.getUserInfo(requestId="123123", userId="y1196293")
+#get_user_info_result = query_services_client.service.getUserInfo(requestId="123123", userId="y1196293")
 
-# Gabe here, testing pushing to phone with wrapper class SymantecUserServices
 test_user_services_object = SymantecUserServices(user_services_client)
-send_push_to_phone_result = test_user_services_object.authenticateUserWithPush("push_123", "gabe_phone")
-print(test_user_services_object.__str__("push_123", "gabe_phone"))
+test_query_services_object = SymantecQueryServices(query_services_client)
 
+#send_push_to_phone_result = test_user_services_object.authenticateUserWithPush("push_123", "gabe_phone")
+#print(test_user_services_object.__str__("push_123", "gabe_phone"))
 
-print(str(get_user_info_result).split('\n'))
+authenticate_result = test_user_services_object.authenticateUserWithPush("push_456", "gabe_phone", "12345")
+transaction_id = test_user_services_object.getFieldContent('transactionId')
+polling = test_query_services_object.pollPushStatus("push_456", transaction_id)
+#print(test_user_services_object.__str__("push_456", "gabe_phone"))
+
+#print(str(get_user_info_result).split('\n'))
