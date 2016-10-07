@@ -93,10 +93,8 @@ for item in info_list:
             #print(get_poll_push_status)
             # need to check response for transaction status
             lines = get_poll_push_status.split('\n')
-            success
             for l in lines:
                 if "7000" in l:
-                    success= True
                     print(get_poll_push_status)
                     break
         break
