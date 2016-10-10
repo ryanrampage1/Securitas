@@ -1,10 +1,12 @@
+import string
+import random       #random/string to generate random request IDs
 
 ### A class to represent the functions that Symantec User Services provides
 
 # authenticateUserWithPush -- sends a Push to a user's phone
 class SymantecUserServices:
 
-    #we should have a helper function to randomly generate request ID's in the best fashion
+    # we should have a helper function to randomly generate request ID's
 
     # for now, pass in the client and play with it. pass in other things like requestID and such to
     #      this class's member functions since those aren't static. The client MAY be static, so thats for now
@@ -19,14 +21,18 @@ class SymantecUserServices:
         res = str(self.client.service.authenticateUserWithPush(requestId=requestId, userId=userId))
         return res
 
-    ###  A function to call the client's authenticateUserWithPush function   *********************************
-    def authenticateUserWithPush(self, requestId, userId):
+    ###  Call the client's authenticateUser function
+    def authenticateUser(self, requestId, userId, pin=None, otp=None, authContext=None):
+        self.client.service.authenticateUser(requestId=requestId, userId=userId)
+        pass
+
+    ###  Call the client's authenticateUserWithPush function
+    def authenticateUserWithPush(self, requestId, userId, pin=None, displayParams=None, requestParams=None, authContext=None):
         self.client.service.authenticateUserWithPush(requestId=requestId, userId=userId)
         pass
 
-    def getFieldContent(self,fieldname):
+    def getFieldContent(self, fieldname):
         info_list = self.__str__().split('\n')
-
         for item in info_list:
             if fieldname in item:
                 return item.split('=')[1][1:]
