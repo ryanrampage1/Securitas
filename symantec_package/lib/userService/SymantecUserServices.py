@@ -18,13 +18,20 @@ class SymantecUserServices:
         self.includePushAttributes = includePushAttributes
 
 
-    def __str__(self, requestId, userId):
-        res = str(self.client.service.authenticateUserWithPush(requestId=requestId, userId=userId))
-        return res
+    # def __str__(self, requestId, userId):
+    #     res = str(self.client.service.authenticateUserWithPush(requestId=requestId, userId=userId))
+    #     return res
 
     ###  Call the client's authenticateUser function
     def authenticateUser(self, requestId, userId, pin=None, otp=None, authContext=None):
         self.client.service.authenticateUser(requestId=requestId, userId=userId, pin=pin)
+        pass
+
+
+    def authenticateCredentials(self, requestId, credentials, otpAuthData=None, activate=None):
+        res = self.client.service.authenticateCredentials(requestId=requestId, credentials=credentials, otpAuthData=otpAuthData)
+        self.response = str(res)
+        print(self.response)
         pass
 
     ###  Call the client's authenticateUserWithPush function

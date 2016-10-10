@@ -72,9 +72,14 @@ test_query_services_object = SymantecQueryServices(query_services_client)
 #send_push_to_phone_result = test_user_services_object.authenticateUserWithPush("push_123", "gabe_phone")
 #print(test_user_services_object.__str__("push_123", "gabe_phone"))
 
-authenticate_result = test_user_services_object.authenticateUserWithPush("push_456", "gabe_phone", "12345")
-transaction_id = test_user_services_object.getFieldContent('transactionId')
-polling = test_query_services_object.pollPushStatus("push_456", transaction_id)
+#print(user_services_client)
+authenticate_result = test_user_services_object.authenticateCredentials("push_456", \
+                                                                        {"credentialId": "VSTZ39646177", "credentialType": "STANDARD_OTP"}, \
+                                                                        {"otp": "263881"})
+#transaction_id = test_user_services_object.getFieldContent('transactionId')
+#polling = test_query_services_object.pollPushStatus("push_456", transaction_id)
 #print(test_user_services_object.__str__("push_456", "gabe_phone"))
+
+
 
 #print(str(get_user_info_result).split('\n'))
