@@ -28,8 +28,27 @@ class SymantecUserServices:
         pass
 
 
-    def authenticateCredentials(self, requestId, credentials, otpAuthData=None, activate=None):
+    def authenticateCredentials(self, requestId, credentials, otpAuthData=None, pushAuthData=None, activate=None):
         res = self.client.service.authenticateCredentials(requestId=requestId, credentials=credentials, otpAuthData=otpAuthData)
+        self.response = str(res)
+        print(self.response)
+        pass
+
+    #SMS
+    def authenticateWithSMS(self, requestId, credentialId_phoneNumber, securityCode, activate=None):
+        res = self.client.service.authenticateCredentials(requestId=requestId, activate=activate,
+                                                          credentials={"credentialId": credentialId_phoneNumber,
+                                                                       "credentialType": "SMS_OTP"},
+                                                          otpAuthData={"otp": securityCode})
+        self.response = str(res)
+        print(self.response)
+        pass
+    #Normal 6 digit
+    def authenticateWithStandard_OTP(self, requestId, credentialId, securityCode, activate=None):
+        res = self.client.service.authenticateCredentials(requestId=requestId, activate= activate,
+                                                          credentials={"credentialId": credentialId,
+                                                                       "credentialType": "STANDARD_OTP"},
+                                                          otpAuthData={"otp": securityCode})
         self.response = str(res)
         print(self.response)
         pass

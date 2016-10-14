@@ -42,7 +42,10 @@ class HTTPSClientCertTransport(HttpTransport):
             return url.open(u2request, timeout=tm)
 
 
+
 import logging
+import sys
+sys.path.append("/home/oem/PycharmProjects/Securitas_Dev/Securitas")
 from symantec_package.lib.userService.SymantecUserServices import SymantecUserServices
 from symantec_package.lib.queryService.SymantecQueryServices import SymantecQueryServices
 
@@ -73,9 +76,10 @@ test_query_services_object = SymantecQueryServices(query_services_client)
 #print(test_user_services_object.__str__("push_123", "gabe_phone"))
 
 #print(user_services_client)
-authenticate_result = test_user_services_object.authenticateCredentials("push_456", \
-                                                                        {"credentialId": "VSTZ39646177", "credentialType": "STANDARD_OTP"}, \
-                                                                        {"otp": "263881"})
+# authenticate_result = test_user_services_object.authenticateCredentials("push_456", \
+#                                                                         {"credentialId": "VSTZ39646177", "credentialType": "STANDARD_OTP"}, \
+#                                                                         {"otp": "263881"})
+a_result = test_user_services_object.authenticateWithStandard_OTP("push_123", "VSTZ39646177", input("\nEnter 6-digit security code: "))
 #transaction_id = test_user_services_object.getFieldContent('transactionId')
 #polling = test_query_services_object.pollPushStatus("push_456", transaction_id)
 #print(test_user_services_object.__str__("push_456", "gabe_phone"))
