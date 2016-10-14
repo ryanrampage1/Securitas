@@ -54,14 +54,15 @@ from suds.client import Client
 # the URLs for now which will have the WSDL files and the XSD file
 url = 'http://webdev.cse.msu.edu/~yehanlin/vip/vipuserservices-query-1.7.wsdl'
 userservices_url = 'http://webdev.cse.msu.edu/~morcoteg/Symantec/WSDL/vipuserservices-auth-1.4.wsdl'
+managementservices_url = 'http://webdev.cse.msu.edu/~huynhall/vipuserservices-mgmt-1.7.wsdl'
 
 # initializing the Suds clients for each url, with the client certificate youll have in the same dir as this file
 client = Client(url,
          transport = HTTPSClientCertTransport('vip_certificate.crt','vip_certificate.crt'))
 user_services_client = Client(userservices_url,
          transport = HTTPSClientCertTransport('vip_certificate.crt','vip_certificate.crt'))
-
-
+management_client = Client(managementservices_url,
+         transport = HTTPSClientCertTransport('vip_certificate.crt','vip_certificate.crt'))
 # get_user_info_result = client.service.getUserInfo(requestId="123123", userId="y1196293")
 # print(get_user_info_result)
 
@@ -77,33 +78,34 @@ user_services_client = Client(userservices_url,
 # get_poll_push_status = client.service.pollPushStatus(requestId="poll_test",onBehalfOfAccountId=None, transactionId="123321")
 # print(get_poll_push_status)
 
-test_user_services_object = SymantecUserServices(user_services_client)
-send_push_to_phone_result = test_user_services_object.authenticateUserWithPush("push_123", "Arren_phone")
-print(test_user_services_object.__str__("push_123", "Arren_phone"))
-resp = test_user_services_object.__str__("push_123", "Arren_phone")
-info_list = resp.split('\n')
-import time
-for item in info_list:
-    if "transactionId" in item:
-        ID = item.split('=')[1][1:].strip('"')
-        # JUST FOR TESTING DO NOT use sleep in final code unless on another thread
-        for poll in range(1,6): #polls every 5 seconds up til 30 seconds
-            time.sleep(5)
-            get_poll_push_status = str(client.service.pollPushStatus(requestId="poll_test",onBehalfOfAccountId=None, transactionId=ID))
-            #print(get_poll_push_status)
-            # need to check response for transaction status
-            lines = get_poll_push_status.split('\n')
-            for l in lines:
-                if "7000" in l:
-                    print(get_poll_push_status)
-                    break
-        break
+#test_user_services_object = SymantecUserServices(user_services_client)
+# send_push_to_phone_result = test_user_services_object.authenticateUserWithPush("push_123", "Arren_phone")
+# print(test_user_services_object.__str__("push_123", "Arren_phone"))
+# resp = test_user_services_object.__str__("push_123", "Arren_phone")
+# info_list = resp.split('\n')
+# import time
+# for item in info_list:
+#     if "transactionId" in item:
+#         ID = item.split('=')[1][1:].strip('"')
+#         # JUST FOR TESTING DO NOT use sleep in final code unless on another thread
+#         for poll in range(1,6): #polls every 5 seconds up til 30 seconds
+#             time.sleep(5)
+#             get_poll_push_status = str(client.service.pollPushStatus(requestId="poll_test",onBehalfOfAccountId=None, transactionId=ID))
+#             #print(get_poll_push_status)
+#             # need to check response for transaction status
+#             lines = get_poll_push_status.split('\n')
+#             for l in lines:
+#                 if "7000" in l:
+#                     print(get_poll_push_status)
+#                     break
+#         break
 
 
+### some SMS stuff
+send_SMS = management_client.service.sendOtp(requestId="SMS_Arren", userId="Arren_phone", smsDeliveryInfo={"phoneNumber": "16167803665"})
+print(send_SMS)
 
-
-
-
+##########
 # Gabe here, testing pushing to phone with wrapper class SymantecUserServices
 #test_user_services_object = SymantecUserServices(user_services_client)
 #send_push_to_phone_result = test_user_services_object.authenticateUserWithPush("push_123", "Arren_phone")
