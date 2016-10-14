@@ -24,6 +24,13 @@ class SymantecUserServices:
         self.client.service.authenticateUserWithPush(requestId=requestId, userId=userId)
         pass
 
+    def authenticateCredentials(self, requestId, phoneNumber, credentialType, securityCode=None, pushAuthData=None, activate=None):
+        res =self.client.service.authenticateCredentials(requestId="SMS_Arren_result", activate=None,
+                                                                              credentials={"credentialId": phoneNumber,
+                                                                               "credentialType": credentialType},
+                                                                              otpAuthData={"otp": securityCode})
+        print(str(res))
+
     def getFieldContent(self,fieldname):
         info_list = self.__str__().split('\n')
 
