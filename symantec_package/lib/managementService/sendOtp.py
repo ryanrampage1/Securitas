@@ -7,6 +7,6 @@ class sendOtp:
         self.smsDeliveryInfo = smsDeliveryInfo #phone number goes in here as {}
 
     def __str__(self):
-        res = str(self.client.service.getUserInfo(requestId=self.requestId, userId=self.userId,
+        res = str(self.client.service.sentOtp(requestId=self.requestId, userId=self.userId,
                                    smsDeliveryInfo=self.smsDeliveryInfo))
         return res

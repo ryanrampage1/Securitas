@@ -102,9 +102,17 @@ management_client = Client(managementservices_url,
 
 
 ### some SMS stuff
-send_SMS = management_client.service.sendOtp(requestId="SMS_Arren", userId="Arren_phone", smsDeliveryInfo={"phoneNumber": "16167803665"})
+user_id = input("\nEnter User ID: ")
+phoneNumber = input("Enter phone number: ")
+send_SMS = management_client.service.sendOtp(requestId="SMS_Arren", userId=user_id, smsDeliveryInfo={"phoneNumber": phoneNumber})
 print(send_SMS)
-
+#security_code = input("\nEnter Security Code: ")
+#{"credentialId": "16167803665","credentialType": "SMS_OTP"}
+authentication_results = user_services_client.service.authenticateCredentials(requestId="SMS_Arren_result", activate=None,
+                                                                              credentials={"credentialId": phoneNumber,
+                                                                               "credentialType": "SMS_OTP"},
+                                                                              otpAuthData={"otp": input("\nEnter Security Code: ")})
+print(authentication_results)
 ##########
 # Gabe here, testing pushing to phone with wrapper class SymantecUserServices
 #test_user_services_object = SymantecUserServices(user_services_client)
