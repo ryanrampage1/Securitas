@@ -59,18 +59,21 @@ from suds.client import Client
 # the URLs for now which will have the WSDL files and the XSD file
 query_services_url = 'http://webdev.cse.msu.edu/~yehanlin/vip/vipuserservices-query-1.7.wsdl'
 userservices_url = 'http://webdev.cse.msu.edu/~morcoteg/Symantec/WSDL/vipuserservices-auth-1.4.wsdl'
+managementservices_url = 'http://webdev.cse.msu.edu/~huynhall/vipuserservices-mgmt-1.7.wsdl'
 
 # initializing the Suds clients for each url, with the client certificate youll have in the same dir as this file
 query_services_client = Client(query_services_url,
          transport = HTTPSClientCertTransport('vip_certificate.crt','vip_certificate.crt'))
 user_services_client = Client(userservices_url,
          transport = HTTPSClientCertTransport('vip_certificate.crt','vip_certificate.crt'))
-
+management_client = Client(managementservices_url,
+         transport = HTTPSClientCertTransport('vip_certificate.crt','vip_certificate.crt'))
 
 #get_user_info_result = query_services_client.service.getUserInfo(requestId="123123", userId="y1196293")
 
 test_user_services_object = SymantecUserServices(user_services_client)
 test_query_services_object = SymantecQueryServices(query_services_client)
+test_management_services_object = SymantecManagementServices(management_client)
 
 #send_push_to_phone_result = test_user_services_object.authenticateUserWithPush("push_123", "gabe_phone")
 #print(test_user_services_object.__str__("push_123", "gabe_phone"))
@@ -79,7 +82,7 @@ test_query_services_object = SymantecQueryServices(query_services_client)
 # authenticate_result = test_user_services_object.authenticateCredentials("push_456", \
 #                                                                         {"credentialId": "VSTZ39646177", "credentialType": "STANDARD_OTP"}, \
 #                                                                         {"otp": "263881"})
-a_result = test_user_services_object.authenticateWithStandard_OTP("push_123", "VSTZ39646177", input("\nEnter 6-digit security code: "))
+#a_result = test_user_services_object.authenticateWithStandard_OTP("push_123", "VSTZ39646177", input("\nEnter 6-digit security code: "))
 #transaction_id = test_user_services_object.getFieldContent('transactionId')
 #polling = test_query_services_object.pollPushStatus("push_456", transaction_id)
 #print(test_user_services_object.__str__("push_456", "gabe_phone"))
@@ -87,3 +90,5 @@ a_result = test_user_services_object.authenticateWithStandard_OTP("push_123", "V
 
 
 #print(str(get_user_info_result).split('\n'))
+
+
