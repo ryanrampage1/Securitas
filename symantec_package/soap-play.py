@@ -2,6 +2,7 @@ import urllib.request, http.client, socket
 from suds.client import Client
 from suds.transport.http import HttpTransport, Reply, TransportError
 
+
 class HTTPSClientAuthHandler(urllib.request.HTTPSHandler):
     def __init__(self, key, cert):
         urllib.request.HTTPSHandler.__init__(self)
@@ -48,6 +49,7 @@ import sys
 sys.path.append("/home/oem/PycharmProjects/Securitas_Dev/Securitas")
 from symantec_package.lib.userService.SymantecUserServices import SymantecUserServices
 from symantec_package.lib.queryService.SymantecQueryServices import SymantecQueryServices
+from symantec_package.lib.managementService.SymantecManagementServices import SymantecManagementServices
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger('suds.client').setLevel(logging.DEBUG)
