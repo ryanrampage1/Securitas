@@ -4,7 +4,7 @@ class SymantecManagementServices:
         self.client = client
         self.response = None
 
-    def sendOtpSMS(self,client, requestId, userId, phoneNumber, isGatewayAcctInfo=False, onBehalfOfAccountId=None,
+    def sendOtpSMS(self, requestId, userId, phoneNumber, isGatewayAcctInfo=False, onBehalfOfAccountId=None,
                    smsFrom=None, messageTemplate=None, gatewayId=None, gatewayPassword=None ):
         if isGatewayAcctInfo:
             res = self.client.service.sendOtp(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,userId=userId,

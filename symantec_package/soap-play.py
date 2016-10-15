@@ -93,4 +93,11 @@ test_management_services_object = SymantecManagementServices(management_client)
 
 #print(str(get_user_info_result).split('\n'))
 
+### SMS test
+user_id = input("\nEnter User ID: ")
+phoneNumber = input("Enter phone number: ")
+send_SMS = test_management_services_object.sendOtpSMS("SMS_Test", user_id, phoneNumber)
+print (send_SMS)
 
+results_SMS = test_user_services_object.authenticateWithSMS("SMS_Result_Test", phoneNumber, input("\nEnter Security Code: "))
+print (results_SMS)
