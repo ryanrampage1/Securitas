@@ -18,3 +18,10 @@ class SymantecManagementServices:
         self.response = str(res)
         print(self.response)
         pass
+
+    # simple create user function. check for tests LOOK AND WRITE SOME TOO if you think needed
+    def createUser(self, requestId, userId, onBehalfOfAccountId=None, pin=None, forcePinChange=None):
+        res = self.client.service.createUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId, \
+                                             userId=userId, pin=pin, forcePinChange=forcePinChange)
+        print(str(res))
+        return str(res)
