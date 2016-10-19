@@ -12,15 +12,15 @@ class SymantecQueryServices:
                                         includePushAttributes=includePushAttributes)
         return str(res)
 
-    def pollPushStatus(self, requestId, transactionId):
-        res = self.client.service.pollPushStatus(requestId=requestId, transactionId=transactionId)
+    def pollPushStatus(self, requestId, transactionId, onBehalfOfAccountId=None):
+        res = self.client.service.pollPushStatus(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,transactionId=transactionId)
         self.response = res
         print(self.response)
         return str(res)
 
     def getCredentialInfo(self, requestId, credentialId, credentialType="STANDARD_OTP",
                           includePushAttributes=None, onBehalfOfAccountId=None):
-        res = self.client.service.getCredentialInfo(requestId=requestId, onBehalfOfAccountId=None,credentialId=credentialId,
+        res = self.client.service.getCredentialInfo(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,credentialId=credentialId,
                                                     credentialType=credentialType, includePushAttributes=includePushAttributes)
         self.response = res
         print(self.response)
@@ -32,8 +32,8 @@ class SymantecQueryServices:
         print(self.response)
         return str(res)
 
-    def getTemporaryPasswordAttributesRequest(self, requestId, userId, onBehalfOfAccountId=None):
-        res = self.client.service.getTemporaryPasswordAttributesRequest(requestId=requestId,
+    def getTemporaryPasswordAttributes(self, requestId, userId, onBehalfOfAccountId=None):
+        res = self.client.service.getTemporaryPasswordAttributes(requestId=requestId,
                                                                                   onBehalfOfAccountId=onBehalfOfAccountId,
                                                                                   userId=userId)
         self.response = res

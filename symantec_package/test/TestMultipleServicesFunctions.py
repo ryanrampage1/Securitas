@@ -31,17 +31,18 @@ class TestMultipleServicesFunctions(unittest.TestCase):
         self.test_services = SymantecServices(query_services_client, management_client, user_services_client)
 
 
-    def test_poll(self):
+    def test_poll_in_Push(self):
         authenticate_result = self.test_services.authenticateUserWithPushThenPolling( "Push_Test", "PushPollTest","Arren_phone",10)
-        print(authenticate_result)
-        self.assertTrue("0000" in str(authenticate_result)) #checks if made through poll
-        pass
 
-    def test_push_progress(self):
-        authenticate_result = self.test_services.authenticateUserWithPushThenPolling("Push_Test", "PushPollTest",
-                                                                                     "Arren_phone", 10)
+        self.assertTrue("0000" in str(authenticate_result)) #checks if made through poll
         self.assertTrue("7001" in str(authenticate_result))  # checks if push in progress
         pass
+
+    def test_bad_userId(self):
+        result = self.test_services.authenticateUserWithPushThenPolling("Push_test", "pushPollTest", "123", 10)
+        self.assertTrue("7005" in str(result))
+        pass
+
 
 
 if __name__ == '__main__':

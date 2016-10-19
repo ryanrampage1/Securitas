@@ -101,8 +101,8 @@ class SymantecServices:
         print(self.response)
         return str(res)
 
-    def getTemporaryPasswordAttributesRequest(self, requestId, userId, onBehalfOfAccountId=None):
-        res = self.queryService.getTemporaryPasswordAttributesRequest(requestId, userId, onBehalfOfAccountId)
+    def getTemporaryPasswordAttributes(self, requestId, userId, onBehalfOfAccountId=None):
+        res = self.queryService.getTemporaryPasswordAttributes(requestId, userId, onBehalfOfAccountId)
         self.response = res
         print(self.response)
         return str(res)
