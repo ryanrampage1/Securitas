@@ -40,6 +40,10 @@ class TestQuerying(unittest.TestCase):
     def test_ServerTime(self):
         result = self.test_query_services.getServerTime("TEST")
         self.assertTrue("0000" in str(result))
+        from datetime import  datetime
+        import pytz
+        time = str(datetime.now(pytz.utc).replace(microsecond=0,tzinfo=None))
+        self.assertTrue(time in str(result))
 
         pass
 
