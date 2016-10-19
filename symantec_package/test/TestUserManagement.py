@@ -1,5 +1,8 @@
 import unittest
 from suds.client import Client
+import sys
+sys.path.append("/home/oem/PycharmProjects/Securitas_Dev/Securitas")
+
 from symantec_package.lib.managementService.SymantecManagementServices import SymantecManagementServices
 from symantec_package.HTTPHandler import setConnection, HTTPSClientAuthHandler, HTTPSClientCertTransport
 

@@ -53,7 +53,6 @@ class SymantecUserServices:
         print(self.response)
         pass
 
-
     ###  Call the client's authenticateUserWithPush function
     def authenticateUserWithPush(self, requestId, userId, pin=None, displayParams=None, requestParams=None, authContext=None):
         res = self.client.service.authenticateUserWithPush(requestId=requestId, userId=userId)

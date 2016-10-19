@@ -16,7 +16,7 @@ class SymantecQueryServices:
         res = self.client.service.pollPushStatus(requestId=requestId, transactionId=transactionId)
         self.response = res
         print(self.response)
-        pass
+        return str(res)
 
     def getCredentialInfo(self, requestId, credentialId, credentialType="STANDARD_OTP",
                           includePushAttributes=None, onBehalfOfAccountId=None):
@@ -24,20 +24,21 @@ class SymantecQueryServices:
                                                     credentialType=credentialType, includePushAttributes=includePushAttributes)
         self.response = res
         print(self.response)
-        pass
+        return str(res)
 
     def getServerTime(self, requestId, onBehalfOfAccountId=None):
         res = self.client.service.getServerTime(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId)
         self.response = res
         print(self.response)
-        pass
+        return str(res)
 
     def getTemporaryPasswordAttributesRequest(self, requestId, userId, onBehalfOfAccountId=None):
-        self.response = self.client.service.getTemporaryPasswordAttributesRequest(requestId=requestId,
+        res = self.client.service.getTemporaryPasswordAttributesRequest(requestId=requestId,
                                                                                   onBehalfOfAccountId=onBehalfOfAccountId,
                                                                                   userId=userId)
+        self.response = res
         print(self.response)
-        pass
+        return str(res)
 
     def getFieldContent(self, fieldname):
         info_list = self.__str__().split('\n')

@@ -50,6 +50,7 @@ sys.path.append("/home/oem/PycharmProjects/Securitas_Dev/Securitas")
 from symantec_package.lib.userService.SymantecUserServices import SymantecUserServices
 from symantec_package.lib.queryService.SymantecQueryServices import SymantecQueryServices
 from symantec_package.lib.managementService.SymantecManagementServices import SymantecManagementServices
+from symantec_package.lib.allServices.SymantecServices import SymantecServices
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger('suds.client').setLevel(logging.DEBUG)
@@ -76,6 +77,7 @@ management_client = Client(managementservices_url,
 test_user_services_object = SymantecUserServices(user_services_client)
 test_query_services_object = SymantecQueryServices(query_services_client)
 test_management_services_object = SymantecManagementServices(management_client)
+test_services = SymantecServices(query_services_client, management_client, user_services_client)
 
 #send_push_to_phone_result = test_user_services_object.authenticateUserWithPush("push_123", "gabe_phone")
 #print(test_user_services_object.__str__("push_123", "gabe_phone"))
@@ -94,6 +96,7 @@ test_management_services_object = SymantecManagementServices(management_client)
 #print(str(get_user_info_result).split('\n'))
 
 #*****************************ALLEN TESTS
+
 ### SMS test
 # user_id = input("\nEnter User ID: ")
 # phoneNumber = input("Enter phone number: ")
@@ -103,56 +106,7 @@ test_management_services_object = SymantecManagementServices(management_client)
 # results_SMS = test_user_services_object.authenticateWithSMS("SMS_Result_Test", phoneNumber, input("\nEnter Security Code: "))
 # print (results_SMS)
 
-#authenticateUserWithPushThenPolling(user_services_client, query_services_client, "Push_Test", "PushPollTest","Arren_phone")
 
-# Authenticate with push, and wait for response (NOTE: this should go into a class that handles all the Services
-def authenticateUserWithPushThenPolling(user_client, query_client, requestIdPush, requestIdPoll, userId, queryTimeout=60, queryInterval=5,
-                                        displayParams=None, requestParams=None, authContext=None, onBehalfOfAccountId=None):
-    import time
-    user_service = SymantecUserServices(user_services_client)
-    query_service = SymantecQueryServices(query_client)
-
-    push = user_service.authenticateUserWithPush(requestIdPush, userId)
-    print (push)
-    transaction_id = user_service.getFieldContent('transactionId').strip('"')
-    isExit = False
-    isError = False
-
-    for sec in range(1,queryTimeout // queryInterval):
-        if isExit:
-            break
-        time.sleep(queryInterval) # NEED NEW SOLUTION for querying on interval in python
-
-        #if sec % queryInterval == 0:
-        poll_status = str(query_client.service.pollPushStatus(requestId=requestIdPoll,
-                                                                       onBehalfOfAccountId=onBehalfOfAccountId,
-                                                                       transactionId=transaction_id))
-        #now check response for status
-        lines = poll_status.split('\n')
-        for line in lines:
-            if isError:
-                errorMessage = line.split('=')[1][1:].strip('\n')
-                print("\n\tError: " + errorMessage)
-                isExit = True
-                break
-            if "status " in line:
-                status = line.split('=')[1][1:].strip('\n')
-                if "0000" in status: # ignore this first status for polling connection
-                    continue
-                elif "7000" in status:
-                    print("\nSUCCESS! Push Accepted!")
-                    isExit = True
-                    break
-                elif "7001" in status:
-                    print("\nIN PROGRESS...")
-                    break
-                elif "7002" in status:
-                    print("\nPush Denied!")
-                    isExit = True
-                    break
-                else:
-                    #print("\n\tError status!")  # should later have it print status message
-                    isError = True
-
-
-authenticateUserWithPushThenPolling(user_services_client, query_services_client, "Push_Test", "PushPollTest","Arren_phone")
+# # test new encompassing class
+#services_push = test_services.authenticateUserWithPush("push_123", "Arren_phone")
+test_services.authenticateUserWithPushThenPolling( "Push_Test", "PushPollTest","Arren_phone")
