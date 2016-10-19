@@ -27,6 +27,8 @@ class SymantecServices:
                                             displayParams=None, requestParams=None, authContext=None, onBehalfOfAccountId=None):
         import time
 
+        res = ""
+
         push = self.userService.authenticateUserWithPush(requestIdPush, userId)
         print (push)
         transaction_id = self.userService.getFieldContent('transactionId').strip('"')
@@ -42,6 +44,7 @@ class SymantecServices:
             poll_status = str(self.queryClient.service.pollPushStatus(requestId=requestIdPoll,
                                                                            onBehalfOfAccountId=onBehalfOfAccountId,
                                                                            transactionId=transaction_id))
+            res = poll_status
             #now check response for status
             lines = poll_status.split('\n')
             for line in lines:
@@ -52,6 +55,7 @@ class SymantecServices:
                     break
                 if "status " in line:
                     status = line.split('=')[1][1:].strip('\n')
+                    #res = status
                     if "0000" in status: # ignore this first status for polling connection
                         continue
                     elif "7000" in status:
@@ -68,6 +72,7 @@ class SymantecServices:
                     else:
                         #print("\n\tError status!")  # should later have it print status message
                         isError = True
+        return(str(res))
 
 # ******************** QUERY
     def getUserInfo(self, requestId, userId, onBehalfOfAccountId=None, iaInfo=True, includePushAttributes=True):
