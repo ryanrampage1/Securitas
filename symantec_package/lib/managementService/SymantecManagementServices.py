@@ -25,3 +25,10 @@ class SymantecManagementServices:
                                              userId=userId, pin=pin, forcePinChange=forcePinChange)
         print(str(res))
         return str(res)
+
+    #simple delete user function
+    def deleteUser(self, requestId, userId, onBehalfOfAccountId=None):
+        res = self.client.service.deleteUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId, \
+                                             userId=userId)
+        print(str(res))
+        return str(res)

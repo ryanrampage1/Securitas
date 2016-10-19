@@ -17,11 +17,19 @@ class TestUserManagement(unittest.TestCase):
         self.test_management_services_object = SymantecManagementServices(management_client)
 
     def test_create_user(self):
-        user = self.test_management_services_object.createUser("new_user456", "new_user")
+        user = self.test_management_services_object.createUser("new_user456", "new_user2")
         self.assertTrue("0000" in str(user))
 
-        user2 = self.test_management_services_object.createUser("new_user456", "new_user")
+        user2 = self.test_management_services_object.createUser("new_user456", "new_user2")
         self.assertTrue("6002" in str(user2))
+        pass
+
+    def test_delete_user(self):
+        user = self.test_management_services_object.deleteUser("delete_user123", "new_user2")
+        self.assertTrue("0000" in str(user))
+
+        user2 = self.test_management_services_object.deleteUser("delete_user456", "new_user2")
+        self.assertTrue("6003" in str(user2))
         pass
 
 
