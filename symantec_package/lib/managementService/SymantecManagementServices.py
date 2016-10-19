@@ -16,8 +16,8 @@ class SymantecManagementServices:
                                         smsDeliveryInfo={"phoneNumber": phoneNumber, "smsFrom": smsFrom,
                                                          "messageTemplate": messageTemplate})
         self.response = str(res)
-        print(self.response)
-        pass
+        # print(self.response)
+        return str(res)
 
     # simple create user function. check for tests LOOK AND WRITE SOME TOO if you think needed
     def createUser(self, requestId, userId, onBehalfOfAccountId=None, pin=None, forcePinChange=None):

@@ -40,7 +40,7 @@ class TestMultipleServicesFunctions(unittest.TestCase):
 
     def test_bad_userId(self):
         result = self.test_services.authenticateUserWithPushThenPolling("Push_test", "pushPollTest", "123", 10)
-        self.assertTrue("7005" in str(result))
+        self.assertTrue("6003" in str(result))
         pass
 
 
