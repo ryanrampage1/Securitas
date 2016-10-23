@@ -118,43 +118,59 @@ class SymantecServices:
         res = self.managementService.sendOtp(requestId, userId, phoneNumber, isGatewayAcctInfo, onBehalfOfAccountId,
                    smsFrom , messageTemplate, gatewayId, gatewayPassword )
 
+        self.response = res
+        # print(self.response)
         return str(res)
 
     # simple create user function. check for tests LOOK AND WRITE SOME TOO if you think needed
     def createUser(self, requestId, userId, onBehalfOfAccountId=None, pin=None, forcePinChange=None):
         res = self.managementService.createUser(requestId, userId, onBehalfOfAccountId , pin , forcePinChange )
+        self.response = res
+        # print(self.response)
         return str(res)
 
     #simple delete user function
     def deleteUser(self, requestId, userId, onBehalfOfAccountId=None):
         res = self.managementService.deleteUser(requestId, userId, onBehalfOfAccountId )
+        self.response = res
+        # print(self.response)
         return str(res)
 
 # ********************USER SERVICE
     def authenticateUser(self, requestId, userId, pin=None, otp=None, authContext=None):
         res = self.userService.authenticateUser( requestId,  userId,  pin, otp, authContext)
+        self.response = res
+        # print(self.response)
         return str(res)
 
 
     def authenticateCredentials(self, requestId, credentials, otpAuthData=None, pushAuthData=None, activate=None):
         res = self.userService.authenticateCredentials( requestId,  credentials, otpAuthData, pushAuthData, activate)
+        self.response = res
+        # print(self.response)
         return str(res)
 
     #SMS
     def authenticateWithSMS(self, requestId, credentialId_phoneNumber, securityCode, activate=None):
         res = self.userService.authenticateCredentials(requestId, credentialId_phoneNumber, securityCode, activate )
 
+        self.response = res
+        # print(self.response)
         return str(res)
     #Normal 6 digit
     def authenticateWithStandard_OTP(self, requestId, credentialId, securityCode, activate=None):
         res = self.userService.authenticateCredentials(requestId, credentialId, securityCode, activate)
 
+        self.response = res
+        # print(self.response)
         return str(res)
 
     ###  Call the client's authenticateUserWithPush function
     def authenticateUserWithPush(self, requestId, userId, pin=None, displayParams=None, requestParams=None, authContext=None):
         res = self.userService.authenticateUserWithPush(requestId, userId, pin, displayParams , requestParams , authContext )
         #print(self.response)
+        self.response = res
+        # print(self.response)
         return str(res)
 
 

@@ -77,18 +77,42 @@ class SymantecManagementServices:
         return str(res)
 
     #Add credential to existing user
-    def addCredential(self, requestId, userId, credentialId, credentialType, otp1, otp2=None,friendlyName=None,
-                             trustedCredentialDevice=None, trustedDevice=None,onBehalfOfAccountId=None):
-        if trustedDevice == None:
-            res = self.client.service.addCredential(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId, userId=userId,
-                                                    credentialDetail= {"credentialId":credentialId, "credentialType": credentialType,
-                                                                       "friendlyName":friendlyName, "trustedDevice":trustedCredentialDevice},
-                                                    otpAuthData={"otp":otp1,"otp2":otp2}, trustedDevice=None)
-        else:
-            res = self.client.service.addCredential(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId, userId=userId,
-                                                    credentialDetail= {"credentialId":credentialId, "credentialType": credentialType,
-                                                                       "friendlyName":friendlyName, "trustedDevice":trustedCredentialDevice},
-                                                    otpAuthData=None, trustedDevice=trustedDevice)
+    # def addCredentialOtp(self, requestId, userId, credentialId, credentialType, otp1, otp2=None,friendlyName=None,
+    #                          trustedCredentialDevice=None, trustedDevice=None,onBehalfOfAccountId=None):
+    #     if trustedDevice == None:
+    #         res = self.client.service.addCredential(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId, userId=userId,
+    #                                                 credentialDetail= {"credentialId":credentialId, "credentialType": credentialType,
+    #                                                                    "friendlyName":friendlyName, "trustedDevice":trustedCredentialDevice},
+    #                                                 otpAuthData={"otp":otp1,"otp2":otp2}, trustedDevice=None)
+    #     else:
+    #         res = self.client.service.addCredential(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId, userId=userId,
+    #                                                 credentialDetail= {"credentialId":credentialId, "credentialType": credentialType,
+    #                                                                    "friendlyName":friendlyName, "trustedDevice":trustedCredentialDevice},
+    #                                                 otpAuthData=None, trustedDevice=trustedDevice)
+    #     print(str(res))
+    #     self.response = str(res)
+    #     return str(res)
+
+    def addCredentialOtp(self, requestId, userId, credentialId, credentialType, otp1, otp2=None, friendlyName=None,
+                         trustedCredentialDevice=None, onBehalfOfAccountId=None):
+        res = self.client.service.addCredential(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
+                                                userId=userId,
+                                                credentialDetail= {"credentialId":credentialId, "credentialType": credentialType,
+                                                        "friendlyName":friendlyName, "trustedDevice":trustedCredentialDevice},
+                                                otpAuthData={"otp":otp1,"otp2":otp2}, trustedDevice=None)
+        print(str(res))
+        self.response = str(res)
+        return str(res)
+
+    def addCredentialTrustedDevice(self, requestId, userId, credentialId, credentialType, trustedDevice,
+                                   friendlyName=None, trustedCredentialDevice=None, onBehalfOfAccountId=None):
+        res = self.client.service.addCredential(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
+                                                userId=userId,
+                                                credentialDetail={"credentialId": credentialId,
+                                                                  "credentialType": credentialType,
+                                                                  "friendlyName": friendlyName,
+                                                                  "trustedDevice": trustedCredentialDevice},
+                                                otpAuthData=None, trustedDevice=trustedDevice)
         print(str(res))
         self.response = str(res)
         return str(res)
