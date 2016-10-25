@@ -18,8 +18,8 @@ class TestAuthentication(unittest.TestCase):
         self.test_user_services_object = SymantecUserServices(user_services_client)
 
     def test_OTP(self):
-        authenticate_result = self.test_user_services_object.authenticateUser("push_456", \
-                                                                    "gabe_phone", "123456")
+        authenticate_result = self.test_user_services_object.authenticateUser("test_otp", \
+                                                                    "gabe_phone", "142983")
         self.assertTrue("0000" in str(authenticate_result))
         pass
 

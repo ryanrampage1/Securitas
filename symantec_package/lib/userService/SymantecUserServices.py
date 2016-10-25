@@ -23,9 +23,12 @@ class SymantecUserServices:
     #     return res
 
     ###  Call the client's authenticateUser function
-    def authenticateUser(self, requestId, userId, pin=None, otp=None, authContext=None):
-        res = self.client.service.authenticateUser(requestId=requestId, userId=userId, pin=pin)
-        return res
+    def authenticateUser(self, requestId, userId, securityCode, pin=None, authContext=None):
+        res = self.client.service.authenticateUser(requestId=requestId, userId=userId, otpAuthData={"otp": securityCode},
+                                                   pin=pin, authContext=authContext)
+        self.response = str(res)
+        print(str(res))
+        return str(res)
 
 
     def authenticateCredentials(self, requestId, credentials, otpAuthData=None, pushAuthData=None, activate=None):
