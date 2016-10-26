@@ -1,0 +1,403 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>symantec_package.lib.allServices package &#8212; Symantec VIP Python  documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="symantec-package-lib-allservices-package">
+<h1>symantec_package.lib.allServices package<a class="headerlink" href="#symantec-package-lib-allservices-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-symantec_package.lib.allServices.SymantecServices">
+<span id="symantec-package-lib-allservices-symantecservices-module"></span><h2>symantec_package.lib.allServices.SymantecServices module<a class="headerlink" href="#module-symantec_package.lib.allServices.SymantecServices" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices">
+<em class="property">class </em><code class="descclassname">symantec_package.lib.allServices.SymantecServices.</code><code class="descname">SymantecServices</code><span class="sig-paren">(</span><em>queryClient</em>, <em>managementClient</em>, <em>userClient</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="class">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices">
+<em class="property">class </em><code class="descname">SymantecManagementServices</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.addCredentialOtp">
+<code class="descname">addCredentialOtp</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>credentialId</em>, <em>credentialType</em>, <em>otp1</em>, <em>otp2=None</em>, <em>friendlyName=None</em>, <em>trustedCredentialDevice=None</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.addCredentialOtp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.addCredentialTrustedDevice">
+<code class="descname">addCredentialTrustedDevice</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>credentialId</em>, <em>credentialType</em>, <em>trustedDevice</em>, <em>friendlyName=None</em>, <em>trustedCredentialDevice=None</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.addCredentialTrustedDevice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.clearTemporaryPassword">
+<code class="descname">clearTemporaryPassword</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.clearTemporaryPassword" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.clearUserPin">
+<code class="descname">clearUserPin</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.clearUserPin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.createUser">
+<code class="descname">createUser</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>onBehalfOfAccountId=None</em>, <em>pin=None</em>, <em>forcePinChange=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.createUser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.deleteUser">
+<code class="descname">deleteUser</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.deleteUser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.registerBySMS">
+<code class="descname">registerBySMS</code><span class="sig-paren">(</span><em>requestId</em>, <em>phoneNumber</em>, <em>smsFrom=None</em>, <em>messageTemplate=None</em>, <em>gatewayId=None</em>, <em>gatewayPassword=None</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.registerBySMS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.registerByServiceOtp">
+<code class="descname">registerByServiceOtp</code><span class="sig-paren">(</span><em>requestId</em>, <em>serviceOtpId</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.registerByServiceOtp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.registerByVoice">
+<code class="descname">registerByVoice</code><span class="sig-paren">(</span><em>requestId</em>, <em>phoneNumber</em>, <em>language=None</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.registerByVoice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.removeCredential">
+<code class="descname">removeCredential</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>credentialId</em>, <em>credentialType</em>, <em>trustedDevice=None</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.removeCredential" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.sendOtpSMS">
+<code class="descname">sendOtpSMS</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>phoneNumber</em>, <em>isGatewayAcctInfo=False</em>, <em>onBehalfOfAccountId=None</em>, <em>smsFrom=None</em>, <em>messageTemplate=None</em>, <em>gatewayId=None</em>, <em>gatewayPassword=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.sendOtpSMS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.setTemporaryPasswordAttributes">
+<code class="descname">setTemporaryPasswordAttributes</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>expirationTime=None</em>, <em>oneTimeUseOnly=None</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.setTemporaryPasswordAttributes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.setTemporaryPasswordSMSDelivery">
+<code class="descname">setTemporaryPasswordSMSDelivery</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>phoneNumber</em>, <em>smsFrom=None</em>, <em>messageTemplate=None</em>, <em>gatewayId=None</em>, <em>gatewayPassword=None</em>, <em>temporaryPassword=None</em>, <em>expirationDate=None</em>, <em>oneTimeUseOnly=None</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.setTemporaryPasswordSMSDelivery" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.setTemporaryPasswordVoiceDelivery">
+<code class="descname">setTemporaryPasswordVoiceDelivery</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>phoneNumber</em>, <em>language=None</em>, <em>temporaryPassword=None</em>, <em>expirationDate=None</em>, <em>oneTimeUseOnly=None</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.setTemporaryPasswordVoiceDelivery" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.updateCredential">
+<code class="descname">updateCredential</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>credentialId</em>, <em>credentialType</em>, <em>friendlyName</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.updateCredential" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.updateUser">
+<code class="descname">updateUser</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>newUserId=None</em>, <em>newUserStatus=None</em>, <em>oldPin=None</em>, <em>newPin=None</em>, <em>forcePinChange=None</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.updateUser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices">
+<em class="property">class </em><code class="descclassname">SymantecServices.</code><code class="descname">SymantecQueryServices</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getCredentialInfo">
+<code class="descname">getCredentialInfo</code><span class="sig-paren">(</span><em>requestId</em>, <em>credentialId</em>, <em>credentialType='STANDARD_OTP'</em>, <em>includePushAttributes=None</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getCredentialInfo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getFieldContent">
+<code class="descname">getFieldContent</code><span class="sig-paren">(</span><em>fieldname</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getFieldContent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getServerTime">
+<code class="descname">getServerTime</code><span class="sig-paren">(</span><em>requestId</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getServerTime" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getTemporaryPasswordAttributes">
+<code class="descname">getTemporaryPasswordAttributes</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getTemporaryPasswordAttributes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getUserInfo">
+<code class="descname">getUserInfo</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>onBehalfOfAccountId=None</em>, <em>iaInfo=True</em>, <em>includePushAttributes=True</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getUserInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function does something.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>str.</em>) &#8211; The name to use.</li>
+<li><strong>state</strong> (<em>bool.</em>) &#8211; Current state to be in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">int &#8211; the return code.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">AttributeError, KeyError</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.pollPushStatus">
+<code class="descname">pollPushStatus</code><span class="sig-paren">(</span><em>requestId</em>, <em>transactionId</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.pollPushStatus" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.public_fn_with_sphinxy_docstring">
+<code class="descname">public_fn_with_sphinxy_docstring</code><span class="sig-paren">(</span><em>name</em>, <em>state=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.public_fn_with_sphinxy_docstring" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function does something.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>str.</em>) &#8211; The name to use.</li>
+<li><strong>state</strong> (<em>bool.</em>) &#8211; Current state to be in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">int &#8211; the return code.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">AttributeError, KeyError</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices">
+<em class="property">class </em><code class="descclassname">SymantecServices.</code><code class="descname">SymantecUserServices</code><span class="sig-paren">(</span><em>client</em>, <em>onBehalfOfAccountId=None</em>, <em>iaInfo=True</em>, <em>includePushAttributes=True</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.authenticateCredentials">
+<code class="descname">authenticateCredentials</code><span class="sig-paren">(</span><em>requestId</em>, <em>credentials</em>, <em>otpAuthData=None</em>, <em>pushAuthData=None</em>, <em>activate=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.authenticateCredentials" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.authenticateUser">
+<code class="descname">authenticateUser</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>securityCode</em>, <em>pin=None</em>, <em>authContext=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.authenticateUser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.authenticateUserWithPush">
+<code class="descname">authenticateUserWithPush</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>pin=None</em>, <em>displayParams=None</em>, <em>requestParams=None</em>, <em>authContext=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.authenticateUserWithPush" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.authenticateWithSMS">
+<code class="descname">authenticateWithSMS</code><span class="sig-paren">(</span><em>requestId</em>, <em>credentialId_phoneNumber</em>, <em>securityCode</em>, <em>activate=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.authenticateWithSMS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.authenticateWithStandard_OTP">
+<code class="descname">authenticateWithStandard_OTP</code><span class="sig-paren">(</span><em>requestId</em>, <em>credentialId</em>, <em>securityCode</em>, <em>activate=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.authenticateWithStandard_OTP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.getFieldContent">
+<code class="descname">getFieldContent</code><span class="sig-paren">(</span><em>fieldname</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.getFieldContent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.authenticateCredentials">
+<code class="descclassname">SymantecServices.</code><code class="descname">authenticateCredentials</code><span class="sig-paren">(</span><em>requestId</em>, <em>credentials</em>, <em>otpAuthData=None</em>, <em>pushAuthData=None</em>, <em>activate=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.authenticateCredentials" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.authenticateUser">
+<code class="descclassname">SymantecServices.</code><code class="descname">authenticateUser</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>pin=None</em>, <em>otp=None</em>, <em>authContext=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.authenticateUser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.authenticateUserWithPush">
+<code class="descclassname">SymantecServices.</code><code class="descname">authenticateUserWithPush</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>pin=None</em>, <em>displayParams=None</em>, <em>requestParams=None</em>, <em>authContext=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.authenticateUserWithPush" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.authenticateUserWithPushThenPolling">
+<code class="descclassname">SymantecServices.</code><code class="descname">authenticateUserWithPushThenPolling</code><span class="sig-paren">(</span><em>requestIdPush</em>, <em>requestIdPoll</em>, <em>userId</em>, <em>queryTimeout=60</em>, <em>queryInterval=5</em>, <em>displayParams=None</em>, <em>requestParams=None</em>, <em>authContext=None</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.authenticateUserWithPushThenPolling" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.authenticateWithSMS">
+<code class="descclassname">SymantecServices.</code><code class="descname">authenticateWithSMS</code><span class="sig-paren">(</span><em>requestId</em>, <em>credentialId_phoneNumber</em>, <em>securityCode</em>, <em>activate=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.authenticateWithSMS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.authenticateWithStandard_OTP">
+<code class="descclassname">SymantecServices.</code><code class="descname">authenticateWithStandard_OTP</code><span class="sig-paren">(</span><em>requestId</em>, <em>credentialId</em>, <em>securityCode</em>, <em>activate=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.authenticateWithStandard_OTP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.createUser">
+<code class="descclassname">SymantecServices.</code><code class="descname">createUser</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>onBehalfOfAccountId=None</em>, <em>pin=None</em>, <em>forcePinChange=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.createUser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.deleteUser">
+<code class="descclassname">SymantecServices.</code><code class="descname">deleteUser</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.deleteUser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.getCredentialInfo">
+<code class="descclassname">SymantecServices.</code><code class="descname">getCredentialInfo</code><span class="sig-paren">(</span><em>requestId</em>, <em>credentialId</em>, <em>credentialType='STANDARD_OTP'</em>, <em>includePushAttributes=None</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.getCredentialInfo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.getFieldContent">
+<code class="descclassname">SymantecServices.</code><code class="descname">getFieldContent</code><span class="sig-paren">(</span><em>fieldname</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.getFieldContent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.getServerTime">
+<code class="descclassname">SymantecServices.</code><code class="descname">getServerTime</code><span class="sig-paren">(</span><em>requestId</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.getServerTime" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.getTemporaryPasswordAttributes">
+<code class="descclassname">SymantecServices.</code><code class="descname">getTemporaryPasswordAttributes</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.getTemporaryPasswordAttributes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.getUserInfo">
+<code class="descclassname">SymantecServices.</code><code class="descname">getUserInfo</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>onBehalfOfAccountId=None</em>, <em>iaInfo=True</em>, <em>includePushAttributes=True</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.getUserInfo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.pollPushStatus">
+<code class="descclassname">SymantecServices.</code><code class="descname">pollPushStatus</code><span class="sig-paren">(</span><em>requestId</em>, <em>transactionId</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.pollPushStatus" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.sendOtpSMS">
+<code class="descclassname">SymantecServices.</code><code class="descname">sendOtpSMS</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>phoneNumber</em>, <em>isGatewayAcctInfo=False</em>, <em>onBehalfOfAccountId=None</em>, <em>smsFrom=None</em>, <em>messageTemplate=None</em>, <em>gatewayId=None</em>, <em>gatewayPassword=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.sendOtpSMS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.sys">
+<code class="descclassname">SymantecServices.</code><code class="descname">sys</code><em class="property"> = &lt;module 'sys' (built-in)&gt;</em><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.sys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-symantec_package.lib.allServices">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-symantec_package.lib.allServices" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">symantec_package.lib.allServices package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-symantec_package.lib.allServices.SymantecServices">symantec_package.lib.allServices.SymantecServices module</a></li>
+<li><a class="reference internal" href="#module-symantec_package.lib.allServices">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/VIP_Python/symantec_package.lib.allServices.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Symantec VIP.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5a2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/VIP_Python/symantec_package.lib.allServices.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

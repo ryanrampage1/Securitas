@@ -7,6 +7,17 @@ class SymantecQueryServices:
         self.response = None    #the most recent response
 
     def getUserInfo(self, requestId, userId, onBehalfOfAccountId=None, iaInfo=True, includePushAttributes=True):
+        """This function does something.
+
+            :param name: The name to use.
+            :type name: str.
+            :param state: Current state to be in.
+            :type state: bool.
+            :returns: int -- the return code.
+            :raises: AttributeError, KeyError
+
+        """
+
         res = self.client.service.getUserInfo(requestId=requestId, userId=userId,
                                         onBehalfOfAccountId=onBehalfOfAccountId, iaInfo=iaInfo,
                                         includePushAttributes=includePushAttributes)
