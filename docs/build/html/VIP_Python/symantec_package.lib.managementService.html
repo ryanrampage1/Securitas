@@ -8,7 +8,7 @@
     
     <title>symantec_package.lib.managementService package &#8212; Symantec VIP Python  documentation</title>
     
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -24,17 +24,23 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-   
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
+    <link rel="search" title="Search" href="../search.html" /> 
   </head>
   <body role="document">
-  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Symantec VIP Python  documentation</a> &#187;</li> 
+      </ul>
+    </div>  
 
     <div class="document">
       <div class="documentwrapper">
@@ -52,6 +58,22 @@
 <dt id="symantec_package.lib.managementService.SymantecManagementServices.SymantecManagementServices">
 <em class="property">class </em><code class="descclassname">symantec_package.lib.managementService.SymantecManagementServices.</code><code class="descname">SymantecManagementServices</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.managementService.SymantecManagementServices.SymantecManagementServices" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>This class acts as a layer of abstraction to handling all Symantec VIP SOAP calls in Python.</p>
+<p>You call this class to handle anything that is related to managing users and credentials.</p>
+<dl class="docutils">
+<dt>Example:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="s2">&quot;http://../vipuserservices-mgmt-1.7.wsdl&quot;</span><span class="p">,</span> <span class="n">transport</span> <span class="o">=</span> <span class="n">HTTPSClientCertTransport</span><span class="p">(</span><span class="s1">&#39;vip_certificate.crt&#39;</span><span class="p">,</span><span class="s1">&#39;vip_certificate.crt&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">service</span> <span class="o">=</span> <span class="n">SymantecManagementServices</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">sendOtpSMS</span><span class="p">(</span><span class="o">&lt;</span><span class="n">parameters</span> <span class="n">here</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Reference HTTPHandler for further information on how to setup the client.</p>
+</div>
 <dl class="method">
 <dt id="symantec_package.lib.managementService.SymantecManagementServices.SymantecManagementServices.addCredentialOtp">
 <code class="descname">addCredentialOtp</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>credentialId</em>, <em>credentialType</em>, <em>otp1</em>, <em>otp2=None</em>, <em>friendlyName=None</em>, <em>trustedCredentialDevice=None</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.managementService.SymantecManagementServices.SymantecManagementServices.addCredentialOtp" title="Permalink to this definition">¶</a></dt>
@@ -105,7 +127,34 @@
 <dl class="method">
 <dt id="symantec_package.lib.managementService.SymantecManagementServices.SymantecManagementServices.sendOtpSMS">
 <code class="descname">sendOtpSMS</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>phoneNumber</em>, <em>isGatewayAcctInfo=False</em>, <em>onBehalfOfAccountId=None</em>, <em>smsFrom=None</em>, <em>messageTemplate=None</em>, <em>gatewayId=None</em>, <em>gatewayPassword=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.managementService.SymantecManagementServices.SymantecManagementServices.sendOtpSMS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first"><strong>Sends a one time password to a mobile phone.</strong></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>requestId</strong> (<em>string</em>) &#8211; A unique identifier of the request for the enterprise application. This may be useful for troubleshooting</li>
+<li><strong>userId</strong> (<em>string</em>) &#8211; Unique user ID (i.e.- email address, login name). Accepts 1 - 128 characters. Case-sensitive.</li>
+<li><strong>phoneNumber</strong> (<em>string</em>) &#8211; The mobile number credential tied to user (active).</li>
+<li><strong>isGatewayAcctInfo</strong> (<em>bool</em>) &#8211; Should we use a gateway?</li>
+<li><strong>onBehalfOfAccountId</strong> (<em>string</em>) &#8211; The Id that this request is done on behalf of.</li>
+<li><strong>smsFrom</strong> (<em>string</em>) &#8211; DEPRECATED - Specifies the FROM number that is used to send an SMS message so that the message from receiver can be mapped back.</li>
+<li><strong>messageTemplate</strong> (<em>string ???</em>) &#8211; The text that is sent to the user&#8217;s SMS device along with security code.</li>
+<li><strong>gatewayId</strong> (<em>string</em>) &#8211; The user&#8217;s specified gateway Account Id</li>
+<li><strong>gatewayPassword</strong> (<em>string</em>) &#8211; The user&#8217;s specified gateway Account password</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">string &#8211; the return SOAP response.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="symantec_package.lib.managementService.SymantecManagementServices.SymantecManagementServices.setTemporaryPasswordAttributes">
@@ -137,6 +186,7 @@
 </div>
 <div class="section" id="module-symantec_package.lib.managementService">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-symantec_package.lib.managementService" title="Permalink to this headline">¶</a></h2>
+<p>The Symantec Python class that handles all the Symantec VIP API SOAP calls for management services.</p>
 </div>
 </div>
 
@@ -155,13 +205,7 @@
 </ul>
 </li>
 </ul>
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../index.html">Documentation overview</a><ul>
-  </ul></li>
-</ul>
-</div>
+
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -183,20 +227,21 @@
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="footer">
-      &copy;2016, Symantec VIP.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5a2</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
-      
-      |
-      <a href="../_sources/VIP_Python/symantec_package.lib.managementService.rst.txt"
-          rel="nofollow">Page source</a>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Symantec VIP Python  documentation</a> &#187;</li> 
+      </ul>
     </div>
-
-    
-
-    
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, Symantec VIP.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5a2.
+    </div>
   </body>
 </html>

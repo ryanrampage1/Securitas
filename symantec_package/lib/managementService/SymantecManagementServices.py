@@ -1,11 +1,64 @@
+"""
+.. module:: Symantec Management Service
+    :platform: All platforms that are compatible with Python framework
+    :synopsis: Module handles all VIP management SOAP calls
+
+.. moduleauthor:: Allen Huynh
+"""
 
 class SymantecManagementServices:
+    """This class acts as a layer of abstraction to handling all Symantec VIP SOAP calls in Python.
+
+    You call this class to handle anything that is related to managing users and credentials.
+
+    Example:
+        >>> client = Client("http://../vipuserservices-mgmt-1.7.wsdl", transport = HTTPSClientCertTransport('vip_certificate.crt','vip_certificate.crt'))
+        >>> service = SymantecManagementServices(client)
+        >>> response = service.sendOtpSMS(<parameters here>)
+        >>> print (response)
+
+    .. NOTE::
+        Reference HTTPHandler for further information on how to setup the client.
+
+    """
+
     def __init__(self, client):
+        """TThe class takes in only a SOAP client object.
+
+            Arg:
+                client (suds.client Client): The client to handle the SOAP calls
+
+        """
         self.client = client
         self.response = None
 
     def sendOtpSMS(self, requestId, userId, phoneNumber, isGatewayAcctInfo=False, onBehalfOfAccountId=None,
                    smsFrom=None, messageTemplate=None, gatewayId=None, gatewayPassword=None ):
+        """
+            :description: *Sends a one time password to a mobile phone.*
+            :param requestId: A unique identifier of the request for the enterprise application. This may be useful for troubleshooting
+            :type requestId: string
+            :param userId: Unique user ID (i.e.- email address, login name). Accepts 1 - 128 characters. Case-sensitive.
+            :type userId: string
+            :param phoneNumber: The mobile number credential tied to user (active).
+            :type phoneNumber: string
+            :param isGatewayAcctInfo: Should we use a gateway?
+            :type isGatewayAcctInfo: bool
+            :param onBehalfOfAccountId: The Id that this request is done on behalf of.
+            :type onBehalfOfAccountId: string
+            :param smsFrom: DEPRECATED - Specifies the FROM number that is used to send an SMS message so that the message from receiver can be mapped back.
+            :type smsFrom: string
+            :param messageTemplate: The text that is sent to the user's SMS device along with security code.
+            :type messageTemplate: string ???
+            :param gatewayId: The user's specified gateway Account Id
+            :type gatewayId: string
+            :param gatewayPassword: The user's specified gateway Account password
+            :type gatewayPassword: string
+            :returns: string -- the return SOAP response.
+            :raises:
+
+        """
+
         if isGatewayAcctInfo:
             res = self.client.service.sendOtp(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,userId=userId,
                                         smsDeliveryInfo={"phoneNumber": phoneNumber, "smsFrom": smsFrom,
