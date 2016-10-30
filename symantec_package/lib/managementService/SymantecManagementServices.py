@@ -23,7 +23,7 @@ class SymantecManagementServices:
     def createUser(self, requestId, userId, onBehalfOfAccountId=None, pin=None, forcePinChange=None):
         res = self.client.service.createUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId, \
                                              userId=userId, pin=pin, forcePinChange=forcePinChange)
-        print(str(res))
+        # print(str(res))
         self.response = str(res)
         return str(res)
 
@@ -31,7 +31,7 @@ class SymantecManagementServices:
     def deleteUser(self, requestId, userId, onBehalfOfAccountId=None):
         res = self.client.service.deleteUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId, \
                                              userId=userId)
-        print(str(res))
+        # print(str(res))
         self.response = str(res)
         return str(res)
 
@@ -41,7 +41,7 @@ class SymantecManagementServices:
         res = self.client.service.updateUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                              userId=userId, newUserId=newUserId, newUserStatus=newUserStatus, oldPin=oldPin,
                                              newPin=newPin, forcePinChange=forcePinChange)
-        print(str(res))
+        # print(str(res))
         self.response = str(res)
         return str(res)
 
@@ -57,7 +57,7 @@ class SymantecManagementServices:
                                                ={"phoneNumber":phoneNumber, "smsFrom":smsFrom, "messageTemplate":messageTemplate,
                                                  "gatewayAcctInfo": {"Id": gatewayId,"Password":gatewayPassword}},
                                                voiceDeliveryInfo=None, serviceOtpDeliveryInfo=None)
-        print(str(res))
+        # print(str(res))
         self.response = str(res)
         return str(res)
 
@@ -65,14 +65,14 @@ class SymantecManagementServices:
         res = self.client.service.register(requestId=requestId,onBehalfOfAccountId=onBehalfOfAccountId, smsDeliveryInfo=None,
                                            voiceDeliveryInfo={"phoneNumber":phoneNumber, "Language":language},
                                            serviceOtpDeliveryInfo=None)
-        print(str(res))
+        # print(str(res))
         self.response = str(res)
         return str(res)
 
     def registerByServiceOtp(self, requestId, serviceOtpId, onBehalfOfAccountId=None):
         res = self.client.service.register(requestId=requestId,onBehalfOfAccountId=onBehalfOfAccountId, smsDeliveryInfo=None,
                                            voiceDeliveryInfo=None,serviceOtpDeliveryInfo={"id":serviceOtpId})
-        print(str(res))
+        # print(str(res))
         self.response = str(res)
         return str(res)
 
@@ -100,7 +100,7 @@ class SymantecManagementServices:
                                                 credentialDetail= {"credentialId":credentialId, "credentialType": credentialType,
                                                         "friendlyName":friendlyName, "trustedDevice":trustedCredentialDevice},
                                                 otpAuthData={"otp":otp1,"otp2":otp2}, trustedDevice=None)
-        print(str(res))
+        # print(str(res))
         self.response = str(res)
         return str(res)
 
@@ -113,7 +113,7 @@ class SymantecManagementServices:
                                                                   "friendlyName": friendlyName,
                                                                   "trustedDevice": trustedCredentialDevice},
                                                 otpAuthData=None, trustedDevice=trustedDevice)
-        print(str(res))
+        # print(str(res))
         self.response = str(res)
         return str(res)
 
@@ -122,14 +122,14 @@ class SymantecManagementServices:
         res = self.client.service.removeCredential(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,userId=userId,
                                                    credentialId=credentialId, credentialType=credentialType, trustedDevice=trustedDevice)
         self.response = str(res)
-        print(self.response)
+        # print(self.response)
         return self.response
 
     def updateCredential(self, requestId, userId, credentialId, credentialType, friendlyName, onBehalfOfAccountId=None):
         res = self.client.service.updateCredential(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,userId=userId,
                                                    credentialId=credentialId, credentialType=credentialType, friendlyName=friendlyName)
         self.response = str(res)
-        print(self.response)
+        # print(self.response)
         return self.response
 
 
@@ -179,7 +179,7 @@ class SymantecManagementServices:
                                                                                 "gatewayAcctInfo": {"Id": gatewayId,
                                                                                                     "Password": gatewayPassword}})
         self.response = str(res)
-        print(self.response)
+        # print(self.response)
         return self.response
 
     def setTemporaryPasswordVoiceDelivery(self, requestId, userId, phoneNumber, language=None, temporaryPassword=None,
@@ -197,25 +197,25 @@ class SymantecManagementServices:
                                                            voiceDeliveryInfo={"phoneNumber": phoneNumber,
                                                                               "Language": language})
         self.response = str(res)
-        print(str(res))
+        # print(str(res))
         return self.response
 
     def setTemporaryPasswordAttributes(self, requestId, userId, expirationTime=None, oneTimeUseOnly=None, onBehalfOfAccountId=None):
         res = self.client.service.setTemporaryPasswordAttributes(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                                                  userId=userId, expirationTime=expirationTime, oneTimeUseOnly=oneTimeUseOnly)
         self.response = str(res)
-        print(str(res))
+        # print(str(res))
         return self.response
 
     def clearTemporaryPassword(self, requestId, userId, onBehalfOfAccountId=None):
         res = self.client.service.clearTemporaryPin(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId, userId=userId)
         self.response = str(res)
-        print(str(res))
+        # print(str(res))
         return self.response
 
     def clearUserPin(self, requestId, userId, onBehalfOfAccountId=None):
         res = self.client.service.clearUserPin(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId, userId=userId)
         self.response = str(res)
-        print(str(res))
+        # print(str(res))
         return self.response
 

@@ -116,7 +116,7 @@ class SymantecUserServices:
 
     def denyRisk(self, requestId, UserId, EventId, VerifyMethod=None, IAAuthData=None, isRememberDevice=None,
                  FriendlyName=None, KeyValuePair=None, onBehalfOfAccountId=None):
-        res = self.client.service.confirmRisk(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
+        res = self.client.service.denyRisk(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                               UserId=UserId, EventId=EventId, VerifyMethod=VerifyMethod, IAAuthData=IAAuthData,
                                               RememberDevice=isRememberDevice, FriendlyName=FriendlyName, KeyValuePair=KeyValuePair)
         self.response = str(res)
