@@ -109,4 +109,4 @@ test_services = SymantecServices(query_services_client, management_client, user_
 
 # # test new encompassing class
 #services_push = test_services.authenticateUserWithPush("push_123", "Arren_phone")
-test_services.authenticateUserWithPushThenPolling( "Push_Test", "PushPollTest","Arren_phone")
+# test_services.authenticateUserWithPushThenPolling( "Push_Test", "PushPollTest","Arren_phone")
