@@ -19,11 +19,29 @@ class TestAuthentication(unittest.TestCase):
 
     def test_OTP(self):
         authenticate_result = self.test_user_services_object.authenticateUser("test_otp", \
-                                                                    "gabe_phone", "142983")
+                                                                    "gabe_phone", "991483")
         self.assertTrue("0000" in str(authenticate_result))
         pass
 
+    def test_authenticateCredWithOTP(self):
+        authenticate_result = self.test_user_services_object.authenticateCredentialWithStandard_OTP("test_cred_otp", "VSMT16833399",
+                                                                                                    "374125")
+
+        self.assertTrue("0000" in str(authenticate_result))
+        pass
+
+    def test_authenticateCredWithOTP_activate(self):
+        authenticate_result_activate = self.test_user_services_object.authenticateCredentialWithStandard_OTP(
+            "test_cred_otp", "VSMT16833399",
+            "374125", True)
+        self.assertTrue("0000" in str(authenticate_result_activate))
+        pass
+
     def test_push(self):
+        authenticate_result = self.test_user_services_object.authenticateCredentialWithPush("push_456", "VSMT16833399",
+                                                                                       "Use my Push!")
+        print(str(authenticate_result))
+        self.assertTrue("6040" in str(authenticate_result))
         pass
 
 
