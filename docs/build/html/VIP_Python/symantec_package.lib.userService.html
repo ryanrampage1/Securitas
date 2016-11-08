@@ -54,13 +54,74 @@
 </div>
 <div class="section" id="module-symantec_package.lib.userService.SymantecUserServices">
 <span id="symantec-package-lib-userservice-symantecuserservices-module"></span><h2>symantec_package.lib.userService.SymantecUserServices module<a class="headerlink" href="#module-symantec_package.lib.userService.SymantecUserServices" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
+<span class="target" id="module-SymantecUserServices"></span><dl class="class">
 <dt id="symantec_package.lib.userService.SymantecUserServices.SymantecUserServices">
 <em class="property">class </em><code class="descclassname">symantec_package.lib.userService.SymantecUserServices.</code><code class="descname">SymantecUserServices</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.userService.SymantecUserServices.SymantecUserServices" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>This class acts as a layer of abstraction to handling all user services Symantec VIP SOAP calls in Python.</p>
+<p>You call this class to handle anything that is related to authenticating users and credentials.</p>
+<dl class="docutils">
+<dt>Example:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="s2">&quot;http://../vipuserservices-auth-1.7.wsdl&quot;</span><span class="p">,</span> <span class="n">transport</span> <span class="o">=</span> <span class="n">HTTPSClientCertTransport</span><span class="p">(</span><span class="s1">&#39;vip_certificate.crt&#39;</span><span class="p">,</span><span class="s1">&#39;vip_certificate.crt&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">service</span> <span class="o">=</span> <span class="n">SymantecUserServices</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">authenticateUser</span><span class="p">(</span><span class="o">&lt;</span><span class="n">parameters</span> <span class="n">here</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Reference HTTPHandler for further information on how to setup the client.</p>
+</div>
+<dl class="method">
+<dt id="symantec_package.lib.userService.SymantecUserServices.SymantecUserServices.authenticateCredentialWithPush">
+<code class="descname">authenticateCredentialWithPush</code><span class="sig-paren">(</span><em>requestId</em>, <em>credentialId</em>, <em>pushMessage</em>, <em>displayTitle=None</em>, <em>displayMessage=None</em>, <em>displayProfile=None</em>, <em>activate=None</em>, <em>authContext=None</em>, <em>value=None</em>, <em>timeout=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.userService.SymantecUserServices.SymantecUserServices.authenticateCredentialWithPush" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first"><em>Authenticates a user via a Push notification using their credential ID.</em></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>requestId</strong> (<em>string</em>) &#8211; A unique identifier of the request for the enterprise application. This may be useful for troubleshooting</li>
+<li><strong>userId</strong> (<em>string</em>) &#8211; Unique user ID (i.e.- email address, login name). Accepts 1 - 128 characters. Case-sensitive.</li>
+<li><strong>pushMessage</strong> (<em>string</em>) &#8211; Text of the push notification in Notification Center (iOS) or Notification Drawer (Android). Suggested maximum size 70 characters.</li>
+<li><strong>displayTitle</strong> (<em>string</em>) &#8211; Title of the modal. Suggested maximum size 30 characters.</li>
+<li><strong>displayMessage</strong> (<em>string</em>) &#8211; Text of modal. Suggested maximum size 70 characters.</li>
+<li><strong>displayProfile</strong> (<em>string</em>) &#8211; Indicates the login URL or profile. Suggested maximum size 60 characters.</li>
+<li><strong>activate</strong> (<em>boolean</em>) &#8211; Activates a credential. If otpAuthData is provided, it consumes the OTP to authenticate. If pushAuthData is used, sends a push notification to the credential for authentication.</li>
+<li><strong>authContext</strong> (<em>string</em>) &#8211; A map containing the parameters that control how the authentication is performed. VIP User Services accepts an authentication level for the authContext field. The authentication level defines the credential types that can be validated with this request. This level must match an authentication level configured in VIP Manager. ■ Key: Enter authLevel.level ■ Value: Enter the authentication level value (as an integer from 1 - 10).</li>
+<li><strong>value</strong> (<em>string</em>) &#8211; The user&#8217;s specified gateway Account password</li>
+<li><strong>timeout</strong> (<em>string</em>) &#8211; The user&#8217;s specified gateway Account password</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">string &#8211; the return SOAP response.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.userService.SymantecUserServices.SymantecUserServices.authenticateCredentialWithSMS">
+<code class="descname">authenticateCredentialWithSMS</code><span class="sig-paren">(</span><em>requestId</em>, <em>credentialId_phoneNumber</em>, <em>securityCode</em>, <em>activate=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.userService.SymantecUserServices.SymantecUserServices.authenticateCredentialWithSMS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.userService.SymantecUserServices.SymantecUserServices.authenticateCredentialWithStandard_OTP">
+<code class="descname">authenticateCredentialWithStandard_OTP</code><span class="sig-paren">(</span><em>requestId</em>, <em>credentialId</em>, <em>securityCode</em>, <em>activate=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.userService.SymantecUserServices.SymantecUserServices.authenticateCredentialWithStandard_OTP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="symantec_package.lib.userService.SymantecUserServices.SymantecUserServices.authenticateCredentials">
-<code class="descname">authenticateCredentials</code><span class="sig-paren">(</span><em>requestId</em>, <em>credentials</em>, <em>otpAuthData=None</em>, <em>pushAuthData=None</em>, <em>activate=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.userService.SymantecUserServices.SymantecUserServices.authenticateCredentials" title="Permalink to this definition">¶</a></dt>
+<code class="descname">authenticateCredentials</code><span class="sig-paren">(</span><em>requestId</em>, <em>credentials</em>, <em>otp1=None</em>, <em>pushAuthData=None</em>, <em>activate=None</em>, <em>authContext=None</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.userService.SymantecUserServices.SymantecUserServices.authenticateCredentials" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -71,16 +132,6 @@
 <dl class="method">
 <dt id="symantec_package.lib.userService.SymantecUserServices.SymantecUserServices.authenticateUserWithPush">
 <code class="descname">authenticateUserWithPush</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>pin=None</em>, <em>displayParams=None</em>, <em>requestParams=None</em>, <em>authContext=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.userService.SymantecUserServices.SymantecUserServices.authenticateUserWithPush" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="symantec_package.lib.userService.SymantecUserServices.SymantecUserServices.authenticateWithSMS">
-<code class="descname">authenticateWithSMS</code><span class="sig-paren">(</span><em>requestId</em>, <em>credentialId_phoneNumber</em>, <em>securityCode</em>, <em>activate=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.userService.SymantecUserServices.SymantecUserServices.authenticateWithSMS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="symantec_package.lib.userService.SymantecUserServices.SymantecUserServices.authenticateWithStandard_OTP">
-<code class="descname">authenticateWithStandard_OTP</code><span class="sig-paren">(</span><em>requestId</em>, <em>credentialId</em>, <em>securityCode</em>, <em>activate=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.userService.SymantecUserServices.SymantecUserServices.authenticateWithStandard_OTP" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">

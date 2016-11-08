@@ -49,9 +49,9 @@ class SymantecUserServices:
     #     res = self.client.service.authenticateUser(requestId=requestId,onBehalfOfAccountId=onBehalfOfAccountId,
     #                                                userId=userId, otpAuthData={"otp": securityCode},
     #                                                pin=pin, authContext=authContext)
-    #     self.response = str(res)
-    #     # print(str(res))
-    #     return str(res)
+    #     self.response = res
+    #     # print(res)
+    #     return res
 
 
     # I fixed this one; Someone fix the following ones (low on time) - Allen
@@ -74,9 +74,9 @@ class SymantecUserServices:
                 res = self.client.service.authenticateUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                                    userId=userId, pin=pin, otpAuthData={"otp": otp1, "otp2": otp2},
                                                        authContext=None)
-        self.response = str(res)
-        # print(str(res))
-        return str(res)
+        self.response = res
+        # print(res)
+        return res
 
 
     #Fix this to cover all parameters in SOAP call
@@ -84,9 +84,9 @@ class SymantecUserServices:
         res = self.client.service.authenticateCredentials(requestId=requestId, credentials=credentials, onBehalfOfAccountId=onBehalfOfAccountId,
                                                           otpAuthData={"otp": otp1}, pushAuthData=pushAuthData, activate=activate, authContext=authContext
                                                           )
-        self.response = str(res)
+        self.response = res
         # print(self.response)
-        return str(res)
+        return res
 
 
 
@@ -141,7 +141,7 @@ class SymantecUserServices:
 
             pass
 
-        return str(res)
+        return res
 
 
 
@@ -152,16 +152,16 @@ class SymantecUserServices:
                                                           credentials={"credentialId": credentialId_phoneNumber,
                                                                        "credentialType": "SMS_OTP"},
                                                           otpAuthData={"otp": securityCode})
-            self.response = str(res)
+            self.response = res
             # print(self.response)
-            return str(res)
+            return res
         res = self.client.service.authenticateCredentials(requestId=requestId,
                                                           credentials={"credentialId": credentialId_phoneNumber,
                                                                        "credentialType": "SMS_OTP"},
                                                           otpAuthData={"otp": securityCode})
-        self.response = str(res)
+        self.response = res
         # print(self.response)
-        return str(res)
+        return res
 
     #Fix this as well!
     def authenticateCredentialWithStandard_OTP(self, requestId, credentialId, securityCode, activate=None):
@@ -170,24 +170,24 @@ class SymantecUserServices:
                                                               credentials={"credentialId": credentialId,
                                                                            "credentialType": "STANDARD_OTP"},
                                                               otpAuthData={"otp": securityCode})
-            self.response = str(res)
-            return str(res)
+            self.response = res
+            return res
 
         res = self.client.service.authenticateCredentials(requestId=requestId,
                                                           credentials={"credentialId": credentialId,
                                                                        "credentialType": "STANDARD_OTP"},
                                                           otpAuthData={"otp": securityCode})
-        self.response = str(res)
+        self.response = res
         # print(self.response)
-        return str(res)
+        return res
 
 
     # FIX...Missing a ton of parameters and structured wrong with authContext --> key and value!
     def authenticateUserWithPush(self, requestId, userId, pin=None, displayParams=None, requestParams=None, authContext=None):
         res = self.client.service.authenticateUserWithPush(requestId=requestId, userId=userId)
-        self.response = str(res)
+        self.response = res
         # print(self.response)
-        return str(res)
+        return res
 
 
     def checkOtp(self, requestId, userId, otp1, otp2=None, value=None, key="authLevel.level", onBehalfOfAccountId=None):
@@ -209,33 +209,33 @@ class SymantecUserServices:
                 res = self.client.service.authenticateUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                                    userId=userId, otpAuthData={"otp": otp1, "otp2": otp2},
                                                        authContext=None)
-        self.response = str(res)
-        # print(str(res))
-        return str(res)
+        self.response = res
+        # print(res)
+        return res
 
     def confirmRisk(self, requestId, UserId, EventId, VerifyMethod=None, KeyValuePair=None, onBehalfOfAccountId=None):
         # note: keyValuePair is a list containing key + value
         res = self.client.service.confirmRisk(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId, UserId=UserId,
                                               EventId=EventId, VerifyMethod=VerifyMethod, KeyValuePair=KeyValuePair)
-        self.response = str(res)
-        # print(str(res))
-        return str(res)
+        self.response = res
+        # print(res)
+        return res
 
     def denyRisk(self, requestId, UserId, EventId, VerifyMethod=None, IAAuthData=None, isRememberDevice=None,
                  FriendlyName=None, KeyValuePair=None, onBehalfOfAccountId=None):
         res = self.client.service.denyRisk(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                               UserId=UserId, EventId=EventId, VerifyMethod=VerifyMethod, IAAuthData=IAAuthData,
                                               RememberDevice=isRememberDevice, FriendlyName=FriendlyName, KeyValuePair=KeyValuePair)
-        self.response = str(res)
-        # print(str(res))
-        return str(res)
+        self.response = res
+        # print(res)
+        return res
 
     def evaluateRisk(self, requestId, UserId, IpAddress, UserAgent, IAAuthData=None, KeyValuePair=None, onBehalfOfAccountId=None):
         res = self.client.service.evaluateRisk(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId, UserId=UserId,
                                                Ip=IpAddress, UserAgent=UserAgent, IAAuthData=IAAuthData, KeyValuePair=KeyValuePair)
-        self.response = str(res)
-        # print (str(res))
-        return str(res)
+        self.response = res
+        # print (res)
+        return res
 
     def getFieldContent(self, fieldname):
         info_list = self.response.split('\n')

@@ -107,6 +107,18 @@ test_services = SymantecServices(query_services_client, management_client, user_
 # print (results_SMS)
 
 
+testy = test_query_services_object.getUserInfo("Test12", "Arren_phone")
+# print((testy))
+# print(testy['credentialBindingDetail'])
+# print(testy['credentialBindingDetail'][1]['credentialId'])
+# for key in testy:
+#     print(key)
+#     for value in key:
+#         print(value)
+
+testTime = test_query_services_object.getServerTime("timers")
+print(testTime.index("requestId"))
+
 # # test new encompassing class
 #services_push = test_services.authenticateUserWithPush("push_123", "Arren_phone")
 # test_services.authenticateUserWithPushThenPolling( "Push_Test", "PushPollTest","Arren_phone")

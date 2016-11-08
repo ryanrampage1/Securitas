@@ -58,10 +58,54 @@
 <dt id="symantec_package.lib.queryService.SymantecQueryServices.SymantecQueryServices">
 <em class="property">class </em><code class="descclassname">symantec_package.lib.queryService.SymantecQueryServices.</code><code class="descname">SymantecQueryServices</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.queryService.SymantecQueryServices.SymantecQueryServices" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>This class acts as a layer of abstraction to handling all query Symantec VIP SOAP calls in Python.</p>
+<p>You call this class to handle anything that is related to user info and transaction status</p>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="s2">&quot;http://../vipuserservices-query-1.7.wsdl&quot;</span><span class="p">,</span> <span class="n">transport</span> <span class="o">=</span> <span class="n">HTTPSClientCertTransport</span><span class="p">(</span><span class="s1">&#39;vip_certificate.crt&#39;</span><span class="p">,</span><span class="s1">&#39;vip_certificate.crt&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">service</span> <span class="o">=</span> <span class="n">SymantecQueryServices</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">getUserInfo</span><span class="p">(</span><span class="o">&lt;</span><span class="n">parameters</span> <span class="n">here</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Reference HTTPHandler for further information on how to setup the client.</p>
+</div>
 <dl class="method">
 <dt id="symantec_package.lib.queryService.SymantecQueryServices.SymantecQueryServices.getCredentialInfo">
 <code class="descname">getCredentialInfo</code><span class="sig-paren">(</span><em>requestId</em>, <em>credentialId</em>, <em>credentialType='STANDARD_OTP'</em>, <em>includePushAttributes=None</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.queryService.SymantecQueryServices.SymantecQueryServices.getCredentialInfo" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first"><em>Get detail info of a registered credential</em></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>requestId</strong> (<em>string</em>) &#8211; A identifier ID of a call, may be useful for troubleshooting</li>
+<li><strong>credentialType</strong> (<em>string</em>) &#8211; Type of this credential</li>
+<li><strong>includePushAttributes</strong> (<em>string</em>) &#8211; Include push attributes in response message</li>
+<li><strong>onBehalfOfAccountId</strong> (<em>string</em>) &#8211; The parent account that this request is done on behalf of a child account. The parent account uses its own certificate to authenticate the request to VIP User Services.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">CredentialId:</th><td class="field-body"><p class="first">A unique identifier for every credential</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the return SOAP response.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="symantec_package.lib.queryService.SymantecQueryServices.SymantecQueryServices.getFieldContent">
@@ -69,33 +113,92 @@
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="symantec_package.lib.queryService.SymantecQueryServices.SymantecQueryServices.getPreviousResponseFirstPairs">
+<code class="descname">getPreviousResponseFirstPairs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.queryService.SymantecQueryServices.SymantecQueryServices.getPreviousResponseFirstPairs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.queryService.SymantecQueryServices.SymantecQueryServices.getResponseFirstPairs">
+<code class="descname">getResponseFirstPairs</code><span class="sig-paren">(</span><em>response</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.queryService.SymantecQueryServices.SymantecQueryServices.getResponseFirstPairs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="symantec_package.lib.queryService.SymantecQueryServices.SymantecQueryServices.getServerTime">
 <code class="descname">getServerTime</code><span class="sig-paren">(</span><em>requestId</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.queryService.SymantecQueryServices.SymantecQueryServices.getServerTime" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first"><em>Get server time</em></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>requestId</strong> (<em>string</em>) &#8211; A identifier ID of a call, may be useful for troubleshooting</li>
+<li><strong>onBehalfOfAccountId</strong> (<em>string</em>) &#8211; The parent account that this request is done on behalf of a child account. The parent account uses its own certificate to authenticate the request to VIP User Services.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the return SOAP response.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="symantec_package.lib.queryService.SymantecQueryServices.SymantecQueryServices.getTemporaryPasswordAttributes">
 <code class="descname">getTemporaryPasswordAttributes</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.queryService.SymantecQueryServices.SymantecQueryServices.getTemporaryPasswordAttributes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first"><em>Get associated attributes of a temporary password</em></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>requestId</strong> (<em>string</em>) &#8211; A identifier ID of a call, may be useful for troubleshooting</li>
+<li><strong>onBehalfOfAccountId</strong> (<em>string</em>) &#8211; The parent account that this request is done on behalf of a child account. The parent account uses its own certificate to authenticate the request to VIP User Services.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">UserId:</th><td class="field-body"><p class="first">Unique userid registered in VIP</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the return SOAP response.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="symantec_package.lib.queryService.SymantecQueryServices.SymantecQueryServices.getUserInfo">
 <code class="descname">getUserInfo</code><span class="sig-paren">(</span><em>requestId</em>, <em>userId</em>, <em>onBehalfOfAccountId=None</em>, <em>iaInfo=True</em>, <em>includePushAttributes=True</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.queryService.SymantecQueryServices.SymantecQueryServices.getUserInfo" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function does something.</p>
-<table class="docutils field-list" frame="void" rules="none">
+<dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first"><em>Get the account info of a VIP user</em></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body"></td>
+</tr>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>name</strong> (<em>str.</em>) &#8211; The name to use.</li>
-<li><strong>state</strong> (<em>bool.</em>) &#8211; Current state to be in.</li>
+<li><strong>requestId</strong> (<em>string</em>) &#8211; A identifier ID of a call, may be useful for troubleshooting</li>
+<li><strong>onBehalfOfAccountId</strong> (<em>string</em>) &#8211; The parent account that this request is done on behalf of a child account. The parent account uses its own certificate to authenticate the request to VIP User Services.</li>
+<li><strong>iaInfo</strong> (<em>boolean</em>) &#8211; Includes iaInfo in response message</li>
+<li><strong>includesPushAttributes</strong> (<em>bollean</em>) &#8211; Includes push attributes in response message</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">int &#8211; the return code.</p>
+<tr class="field-even field"><th class="field-name">UserId:</th><td class="field-body"><p class="first">Unique user id regisered on VIP</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">AttributeError, KeyError</p>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the return SOAP response.</p>
 </td>
 </tr>
 </tbody>
@@ -105,7 +208,31 @@
 <dl class="method">
 <dt id="symantec_package.lib.queryService.SymantecQueryServices.SymantecQueryServices.pollPushStatus">
 <code class="descname">pollPushStatus</code><span class="sig-paren">(</span><em>requestId</em>, <em>transactionId</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.queryService.SymantecQueryServices.SymantecQueryServices.pollPushStatus" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first"><em>Poll status of a sent push notification</em></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body"><p class="first">It is associate with a unique transaction ID</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>requestId</strong> (<em>string</em>) &#8211; A identifier ID of a call, may be useful for troubleshooting</li>
+<li><strong>onBehalfOfAccountId</strong> (<em>string</em>) &#8211; The parent account that this request is done on behalf of a child account. The parent account uses its own certificate to authenticate the request to VIP User Services.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">TransactionId:</th><td class="field-body"><p class="first">A unique identifier for a push transaction</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the return SOAP response.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 

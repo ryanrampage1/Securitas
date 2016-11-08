@@ -60,7 +60,7 @@ class SymantecManagementServices:
             :type gatewayId: string
             :param gatewayPassword: The user's specified gateway Account password
             :type gatewayPassword: string
-            :returns: string -- the return SOAP response.
+            :returns:  the return SOAP response.
             :raises:
 
         """
@@ -74,9 +74,9 @@ class SymantecManagementServices:
             res = self.client.service.sendOtp(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId, userId=userId,
                                         smsDeliveryInfo={"phoneNumber": phoneNumber, "smsFrom": smsFrom,
                                                          "messageTemplate": messageTemplate})
-        self.response = str(res)
+        self.response = res
         # print(self.response)
-        return str(res)
+        return res
 
     # simple create user function. check for tests LOOK AND WRITE SOME TOO if you think needed
     def createUser(self, requestId, userId, onBehalfOfAccountId=None, pin=None, forcePinChange=None):
@@ -93,15 +93,15 @@ class SymantecManagementServices:
             :type pin: string
             :param forcePinChange: Force the PIN to expire after first use.
             :type forcePinChange: boolean
-            :returns: string -- the return SOAP response.
+            :returns:  the return SOAP response.
             :raises:
 
         """
         res = self.client.service.createUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                              userId=userId, pin=pin, forcePinChange=forcePinChange)
-        # print(str(res))
-        self.response = str(res)
-        return str(res)
+        # print(res)
+        self.response = res
+        return res
 
     #simple delete user function
     def deleteUser(self, requestId, userId, onBehalfOfAccountId=None):
@@ -114,14 +114,14 @@ class SymantecManagementServices:
             :type userId: string
             :param onBehalfOfAccountId: The parent account that this request is done on behalf of a child account. The parent account uses its own certificate to authenticate the request to VIP User Services.
             :type onBehalfOfAccountId: string
-            :returns: string -- the return SOAP response.
+            :returns:  the return SOAP response.
             :raises:
 
         """
         res = self.client.service.deleteUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,userId=userId)
-        # print(str(res))
-        self.response = str(res)
-        return str(res)
+        # print(res)
+        self.response = res
+        return res
 
 
     def updateUser(self, requestId, userId, newUserId=None, newUserStatus=None, oldPin=None,
@@ -145,16 +145,16 @@ class SymantecManagementServices:
             :type onBehalfOfAccountId: string
             :param forcePinChange: Force the PIN to expire after first use.
             :type forcePinChange: boolean
-            :returns: string -- the return SOAP response.
+            :returns:  the return SOAP response.
             :raises:
 
         """
         res = self.client.service.updateUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                              userId=userId, newUserId=newUserId, newUserStatus=newUserStatus, oldPin=oldPin,
                                              newPin=newPin, forcePinChange=forcePinChange)
-        # print(str(res))
-        self.response = str(res)
-        return str(res)
+        # print(res)
+        self.response = res
+        return res
 
     def registerBySMS(self, requestId, phoneNumber,smsFrom=None, messageTemplate=None, gatewayId=None, gatewayPassword=None
                       ,onBehalfOfAccountId=None):
@@ -175,7 +175,7 @@ class SymantecManagementServices:
             :type gatewayPassword: string
             :param onBehalfOfAccountId: The parent account that this request is done on behalf of a child account. The parent account uses its own certificate to authenticate the request to VIP User Services.
             :type onBehalfOfAccountId: string
-            :returns: string -- the return SOAP response.
+            :returns:  the return SOAP response.
             :raises:
 
         """
@@ -189,9 +189,9 @@ class SymantecManagementServices:
                                                ={"phoneNumber":phoneNumber, "smsFrom":smsFrom, "messageTemplate":messageTemplate,
                                                  "gatewayAcctInfo": {"Id": gatewayId,"Password":gatewayPassword}},
                                                voiceDeliveryInfo=None, serviceOtpDeliveryInfo=None)
-        # print(str(res))
-        self.response = str(res)
-        return str(res)
+        # print(res)
+        self.response = res
+        return res
 
     def registerByVoice(self, requestId, phoneNumber, language=None, onBehalfOfAccountId=None):
         """
@@ -205,7 +205,7 @@ class SymantecManagementServices:
             :type language: string
             :param onBehalfOfAccountId: The parent account that this request is done on behalf of a child account. The parent account uses its own certificate to authenticate the request to VIP User Services.
             :type onBehalfOfAccountId: string
-            :returns: string -- the return SOAP response.
+            :returns:  the return SOAP response.
             :raises:
 
         """
@@ -213,9 +213,9 @@ class SymantecManagementServices:
                                            voiceDeliveryInfo={"phoneNumber":phoneNumber, "Language":language},
                                            serviceOtpDeliveryInfo=None)
 
-        # print(str(res))
-        self.response = str(res)
-        return str(res)
+        # print(res)
+        self.response = res
+        return res
 
     def registerByServiceOtp(self, requestId, serviceOtpId, onBehalfOfAccountId=None):
         """
@@ -227,15 +227,15 @@ class SymantecManagementServices:
             :type serviceOtpId: string
             :param onBehalfOfAccountId: The parent account that this request is done on behalf of a child account. The parent account uses its own certificate to authenticate the request to VIP User Services.
             :type onBehalfOfAccountId: string
-            :returns: string -- the return SOAP response.
+            :returns:  the return SOAP response.
             :raises:
 
         """
         res = self.client.service.register(requestId=requestId,onBehalfOfAccountId=onBehalfOfAccountId, smsDeliveryInfo=None,
                                            voiceDeliveryInfo=None,serviceOtpDeliveryInfo={"id":serviceOtpId})
-        # print(str(res))
-        self.response = str(res)
-        return str(res)
+        # print(res)
+        self.response = res
+        return res
 
     #Add credential to existing user
     # def addCredentialOtp(self, requestId, userId, credentialId, credentialType, otp1, otp2=None,friendlyName=None,
@@ -250,9 +250,9 @@ class SymantecManagementServices:
     #                                                 credentialDetail= {"credentialId":credentialId, "credentialType": credentialType,
     #                                                                    "friendlyName":friendlyName, "trustedDevice":trustedCredentialDevice},
     #                                                 otpAuthData=None, trustedDevice=trustedDevice)
-    #     print(str(res))
-    #     self.response = str(res)
-    #     return str(res)
+    #     print(res)
+    #     self.response = res
+    #     return res
 
     def addCredentialOtp(self, requestId, userId, credentialId, credentialType, otp1, otp2=None, friendlyName=None,
                          trustedCredentialDevice=None, onBehalfOfAccountId=None):
@@ -277,6 +277,8 @@ class SymantecManagementServices:
             :type trustedCredentialDevice: boolean
             :param onBehalfOfAccountId: The parent account that this request is done on behalf of a child account. The parent account uses its own certificate to authenticate the request to VIP User Services.
             :type onBehalfOfAccountId: string
+            :returns:  the return SOAP response.
+            :raises:
 
         """
         res = self.client.service.addCredential(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
@@ -284,9 +286,9 @@ class SymantecManagementServices:
                                                 credentialDetail= {"credentialId":credentialId, "credentialType": credentialType,
                                                         "friendlyName":friendlyName, "trustedDevice":trustedCredentialDevice},
                                                 otpAuthData={"otp":otp1,"otp2":otp2}, trustedDevice=None)
-        # print(str(res))
-        self.response = str(res)
-        return str(res)
+        # print(res)
+        self.response = res
+        return res
 
     def addCredentialTrustedDevice(self, requestId, userId, credentialId, credentialType, trustedDevice,
                                    friendlyName=None, trustedCredentialDevice=None, onBehalfOfAccountId=None):
@@ -309,6 +311,8 @@ class SymantecManagementServices:
             :type trustedCredentialDevice: boolean
             :param onBehalfOfAccountId: The parent account that this request is done on behalf of a child account. The parent account uses its own certificate to authenticate the request to VIP User Services.
             :type onBehalfOfAccountId: string
+            :returns:  the return SOAP response.
+            :raises:
 
         """
         res = self.client.service.addCredential(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
@@ -318,9 +322,9 @@ class SymantecManagementServices:
                                                                   "friendlyName": friendlyName,
                                                                   "trustedDevice": trustedCredentialDevice},
                                                 otpAuthData=None, trustedDevice=trustedDevice)
-        # print(str(res))
-        self.response = str(res)
-        return str(res)
+        # print(res)
+        self.response = res
+        return res
 
     #Remove a user's credential
     def removeCredential(self, requestId, userId, credentialId, credentialType, trustedDevice=None, onBehalfOfAccountId=None):
@@ -343,7 +347,7 @@ class SymantecManagementServices:
         """
         res = self.client.service.removeCredential(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,userId=userId,
                                                    credentialId=credentialId, credentialType=credentialType, trustedDevice=trustedDevice)
-        self.response = str(res)
+        self.response = res
         # print(self.response)
         return self.response
 
@@ -363,11 +367,13 @@ class SymantecManagementServices:
             :type friendlyName: string
             :param onBehalfOfAccountId: The parent account that this request is done on behalf of a child account. The parent account uses its own certificate to authenticate the request to VIP User Services.
             :type onBehalfOfAccountId: string
+            :returns:  the return SOAP response.
+            :raises:
 
         """
         res = self.client.service.updateCredential(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,userId=userId,
                                                    credentialId=credentialId, credentialType=credentialType, friendlyName=friendlyName)
-        self.response = str(res)
+        self.response = res
         # print(self.response)
         return self.response
 
@@ -401,7 +407,7 @@ class SymantecManagementServices:
             :type oneTimeUseOnly: boolean
             :param onBehalfOfAccountId: The parent account that this request is done on behalf of a child account. The parent account uses its own certificate to authenticate the request to VIP User Services.
             :type onBehalfOfAccountId: string
-            :returns: string -- the return SOAP response.
+            :returns:  the return SOAP response.
             :raises:
 
         """
@@ -447,7 +453,7 @@ class SymantecManagementServices:
                                                                                 "messageTemplate": messageTemplate,
                                                                                 "gatewayAcctInfo": {"Id": gatewayId,
                                                                                                     "Password": gatewayPassword}})
-        self.response = str(res)
+        self.response = res
         # print(self.response)
         return self.response
 
@@ -473,7 +479,7 @@ class SymantecManagementServices:
             :type oneTimeUseOnly: boolean
             :param onBehalfOfAccountId: The parent account that this request is done on behalf of a child account. The parent account uses its own certificate to authenticate the request to VIP User Services.
             :type onBehalfOfAccountId: string
-            :returns: string -- the return SOAP response.
+            :returns:  the return SOAP response.
             :raises:
 
         """
@@ -489,8 +495,8 @@ class SymantecManagementServices:
                                                                                         "oneTimeUseOnly":oneTimeUseOnly},
                                                            voiceDeliveryInfo={"phoneNumber": phoneNumber,
                                                                               "Language": language})
-        self.response = str(res)
-        # print(str(res))
+        self.response = res
+        # print(res)
         return self.response
 
     def setTemporaryPasswordAttributes(self, requestId, userId, expirationTime=None, oneTimeUseOnly=None, onBehalfOfAccountId=None):
@@ -507,14 +513,14 @@ class SymantecManagementServices:
             :type oneTimeUseOnly: boolean
             :param onBehalfOfAccountId: The parent account that this request is done on behalf of a child account. The parent account uses its own certificate to authenticate the request to VIP User Services.
             :type onBehalfOfAccountId: string
-            :returns: string -- the return SOAP response.
+            :returns:  the return SOAP response.
             :raises:
 
         """
         res = self.client.service.setTemporaryPasswordAttributes(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                                                  userId=userId, expirationTime=expirationTime, oneTimeUseOnly=oneTimeUseOnly)
-        self.response = str(res)
-        # print(str(res))
+        self.response = res
+        # print(res)
         return self.response
 
     def clearTemporaryPassword(self, requestId, userId, onBehalfOfAccountId=None):
@@ -527,13 +533,13 @@ class SymantecManagementServices:
             :type userId: string
             :param onBehalfOfAccountId: The parent account that this request is done on behalf of a child account. The parent account uses its own certificate to authenticate the request to VIP User Services.
             :type onBehalfOfAccountId: string
-            :returns: string -- the return SOAP response.
+            :returns:  the return SOAP response.
             :raises:
 
         """
         res = self.client.service.clearTemporaryPin(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId, userId=userId)
-        self.response = str(res)
-        # print(str(res))
+        self.response = res
+        # print(res)
         return self.response
 
     def clearUserPin(self, requestId, userId, onBehalfOfAccountId=None):
@@ -546,12 +552,12 @@ class SymantecManagementServices:
             :type userId: string
             :param onBehalfOfAccountId: The parent account that this request is done on behalf of a child account. The parent account uses its own certificate to authenticate the request to VIP User Services.
             :type onBehalfOfAccountId: string
-            :returns: string -- the return SOAP response.
+            :returns:  the return SOAP response.
             :raises:
 
         """
         res = self.client.service.clearUserPin(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId, userId=userId)
-        self.response = str(res)
-        # print(str(res))
+        self.response = res
+        # print(res)
         return self.response
 
