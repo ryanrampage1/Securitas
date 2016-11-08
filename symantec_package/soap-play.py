@@ -108,16 +108,23 @@ test_services = SymantecServices(query_services_client, management_client, user_
 
 
 testy = test_query_services_object.getUserInfo("Test12", "Arren_phone")
+tupleFirsts = test_query_services_object.getPreviousResponseFirstPairs()
+for value in tupleFirsts:
+    txt = "[1st Pair: " + value + ", \n\t2nd Pair: " + str(test_query_services_object.getPreviousResponseValue(value)) + "]"
+    if (value == "credentialBindingDetail"):
+        break
+    print (txt)
+
 # print((testy))
 # print(testy['credentialBindingDetail'])
 # print(testy['credentialBindingDetail'][1]['credentialId'])
-# for key in testy:
-#     print(key)
-#     for value in key:
-#         print(value)
+# for tup in testy:
+#     print(tup)
+#     print(tup[0])
+#     print(tup[1])
+#     print(type(tup[1]))
 
-testTime = test_query_services_object.getServerTime("timers")
-print(testTime.index("requestId"))
+# testTime = test_query_services_object.getServerTime("timers")
 
 # # test new encompassing class
 #services_push = test_services.authenticateUserWithPush("push_123", "Arren_phone")

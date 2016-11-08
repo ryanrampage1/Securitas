@@ -266,6 +266,106 @@
 </dd></dl>
 
 <dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.getFieldContent">
+<code class="descname">getFieldContent</code><span class="sig-paren">(</span><em>fieldname</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.getFieldContent" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><em>Get content of items in response message</em></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">Works only for one line item</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fieldname</strong> (<em>string</em>) &#8211; Item name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The content of input fieldname</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.getPreviousResponseFirstPairs">
+<code class="descname">getPreviousResponseFirstPairs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.getPreviousResponseFirstPairs" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><em>Gets the 1st level of important main response fields from previous VIP SOAP call and tells what fields are accessible</em></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">This will not work if there was no previous call in the client.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list &#8211; Containing all the first pair values of each tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.getPreviousResponseValue">
+<code class="descname">getPreviousResponseValue</code><span class="sig-paren">(</span><em>firstPair</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.getPreviousResponseValue" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><em>Gets the 1st level of important main response fields from the VIP SOAP call and tells what fields are accessible</em></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">This will not work if there was no previous call in the client.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>firstPair</strong> (<em>string</em>) &#8211; The first pair in the tuple field</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The field value at the pair key</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.getResponseFirstPairs">
+<code class="descname">getResponseFirstPairs</code><span class="sig-paren">(</span><em>response</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.getResponseFirstPairs" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><em>Gets the 1st level of important main response fields from the VIP SOAP call and tells what fields are accessible</em></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">This requires the SOAP response as a parameter.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>response</strong> (<em>list of tuples</em>) &#8211; The SOAP response</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list &#8211; Containing all the first pair values of each tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.getResponseValue">
+<code class="descname">getResponseValue</code><span class="sig-paren">(</span><em>response</em>, <em>firstPair</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.getResponseValue" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first"><em>Gets the 1st level of important main response fields from the VIP SOAP call and tells what fields are accessible</em></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body"><p class="first">This requires the SOAP response as a parameter.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>response</strong> (<em>list of tuples</em>) &#8211; The SOAP response</li>
+<li><strong>firstPair</strong> (<em>string</em>) &#8211; The first pair in the tuple field</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The field value at the pair key</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.registerBySMS">
 <code class="descname">registerBySMS</code><span class="sig-paren">(</span><em>requestId</em>, <em>phoneNumber</em>, <em>smsFrom=None</em>, <em>messageTemplate=None</em>, <em>gatewayId=None</em>, <em>gatewayPassword=None</em>, <em>onBehalfOfAccountId=None</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecManagementServices.registerBySMS" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
@@ -649,17 +749,102 @@
 <dl class="method">
 <dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getFieldContent">
 <code class="descname">getFieldContent</code><span class="sig-paren">(</span><em>fieldname</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getFieldContent" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><em>Get content of items in response message</em></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">Works only for one line item</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fieldname</strong> (<em>string</em>) &#8211; Item name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The content of input fieldname</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getPreviousResponseFirstPairs">
 <code class="descname">getPreviousResponseFirstPairs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getPreviousResponseFirstPairs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><em>Gets the 1st level of important main response fields from previous VIP SOAP call and tells what fields are accessible</em></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">This will not work if there was no previous call in the client.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list &#8211; Containing all the first pair values of each tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getPreviousResponseValue">
+<code class="descname">getPreviousResponseValue</code><span class="sig-paren">(</span><em>firstPair</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getPreviousResponseValue" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><em>Gets the 1st level of important main response fields from the VIP SOAP call and tells what fields are accessible</em></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">This will not work if there was no previous call in the client.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>firstPair</strong> (<em>string</em>) &#8211; The first pair in the tuple field</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The field value at the pair key</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getResponseFirstPairs">
 <code class="descname">getResponseFirstPairs</code><span class="sig-paren">(</span><em>response</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getResponseFirstPairs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><em>Gets the 1st level of important main response fields from the VIP SOAP call and tells what fields are accessible</em></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">This requires the SOAP response as a parameter.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>response</strong> (<em>list of tuples</em>) &#8211; The SOAP response</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list &#8211; Containing all the first pair values of each tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getResponseValue">
+<code class="descname">getResponseValue</code><span class="sig-paren">(</span><em>response</em>, <em>firstPair</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getResponseValue" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first"><em>Gets the 1st level of important main response fields from the VIP SOAP call and tells what fields are accessible</em></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body"><p class="first">This requires the SOAP response as a parameter.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>response</strong> (<em>list of tuples</em>) &#8211; The SOAP response</li>
+<li><strong>firstPair</strong> (<em>string</em>) &#8211; The first pair in the tuple field</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The field value at the pair key</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecQueryServices.getServerTime">
@@ -878,7 +1063,102 @@
 <dl class="method">
 <dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.getFieldContent">
 <code class="descname">getFieldContent</code><span class="sig-paren">(</span><em>fieldname</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.getFieldContent" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><em>Get content of items in response message</em></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">Works only for one line item</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fieldname</strong> (<em>string</em>) &#8211; Item name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The content of input fieldname</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.getPreviousResponseFirstPairs">
+<code class="descname">getPreviousResponseFirstPairs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.getPreviousResponseFirstPairs" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><em>Gets the 1st level of important main response fields from previous VIP SOAP call and tells what fields are accessible</em></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">This will not work if there was no previous call in the client.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list &#8211; Containing all the first pair values of each tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.getPreviousResponseValue">
+<code class="descname">getPreviousResponseValue</code><span class="sig-paren">(</span><em>firstPair</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.getPreviousResponseValue" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><em>Gets the 1st level of important main response fields from the VIP SOAP call and tells what fields are accessible</em></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">This will not work if there was no previous call in the client.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>firstPair</strong> (<em>string</em>) &#8211; The first pair in the tuple field</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The field value at the pair key</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.getResponseFirstPairs">
+<code class="descname">getResponseFirstPairs</code><span class="sig-paren">(</span><em>response</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.getResponseFirstPairs" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><em>Gets the 1st level of important main response fields from the VIP SOAP call and tells what fields are accessible</em></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">This requires the SOAP response as a parameter.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>response</strong> (<em>list of tuples</em>) &#8211; The SOAP response</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list &#8211; Containing all the first pair values of each tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.getResponseValue">
+<code class="descname">getResponseValue</code><span class="sig-paren">(</span><em>response</em>, <em>firstPair</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.SymantecUserServices.getResponseValue" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first"><em>Gets the 1st level of important main response fields from the VIP SOAP call and tells what fields are accessible</em></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body"><p class="first">This requires the SOAP response as a parameter.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>response</strong> (<em>list of tuples</em>) &#8211; The SOAP response</li>
+<li><strong>firstPair</strong> (<em>string</em>) &#8211; The first pair in the tuple field</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The field value at the pair key</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
@@ -970,7 +1250,102 @@
 <dl class="method">
 <dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.getFieldContent">
 <code class="descclassname">SymantecServices.</code><code class="descname">getFieldContent</code><span class="sig-paren">(</span><em>fieldname</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.getFieldContent" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><em>Get content of items in response message</em></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">Works only for one line item</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fieldname</strong> (<em>string</em>) &#8211; Item name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The content of input fieldname</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.getPreviousResponseFirstPairs">
+<code class="descclassname">SymantecServices.</code><code class="descname">getPreviousResponseFirstPairs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.getPreviousResponseFirstPairs" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><em>Gets the 1st level of important main response fields from previous VIP SOAP call and tells what fields are accessible</em></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">This will not work if there was no previous call in the client.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list &#8211; Containing all the first pair values of each tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.getPreviousResponseValue">
+<code class="descclassname">SymantecServices.</code><code class="descname">getPreviousResponseValue</code><span class="sig-paren">(</span><em>firstPair</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.getPreviousResponseValue" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><em>Gets the 1st level of important main response fields from the VIP SOAP call and tells what fields are accessible</em></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">This will not work if there was no previous call in the client.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>firstPair</strong> (<em>string</em>) &#8211; The first pair in the tuple field</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The field value at the pair key</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.getResponseFirstPairs">
+<code class="descclassname">SymantecServices.</code><code class="descname">getResponseFirstPairs</code><span class="sig-paren">(</span><em>response</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.getResponseFirstPairs" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><em>Gets the 1st level of important main response fields from the VIP SOAP call and tells what fields are accessible</em></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">This requires the SOAP response as a parameter.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>response</strong> (<em>list of tuples</em>) &#8211; The SOAP response</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list &#8211; Containing all the first pair values of each tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.getResponseValue">
+<code class="descclassname">SymantecServices.</code><code class="descname">getResponseValue</code><span class="sig-paren">(</span><em>response</em>, <em>firstPair</em><span class="sig-paren">)</span><a class="headerlink" href="#symantec_package.lib.allServices.SymantecServices.SymantecServices.getResponseValue" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first"><em>Gets the 1st level of important main response fields from the VIP SOAP call and tells what fields are accessible</em></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body"><p class="first">This requires the SOAP response as a parameter.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>response</strong> (<em>list of tuples</em>) &#8211; The SOAP response</li>
+<li><strong>firstPair</strong> (<em>string</em>) &#8211; The first pair in the tuple field</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The field value at the pair key</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="symantec_package.lib.allServices.SymantecServices.SymantecServices.getServerTime">

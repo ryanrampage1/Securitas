@@ -561,3 +561,106 @@ class SymantecManagementServices:
         # print(res)
         return self.response
 
+    def getFieldContent(self, fieldname):
+        """
+
+            :description: *Get content of items in response message*
+            :note: Works only for one line item
+            :param fieldname: Item name
+            :type fieldname: string
+            :returns: The content of input fieldname
+
+        """
+        info_list = self.__str__().split('\n')
+
+        for item in info_list:
+            if fieldname in item:
+                return item.split('=')[1][1:]
+
+        pass
+
+    # iterates through first level of main response fields from previous SOAP call and tells what fields are accessible
+    # gives warning if that field is a list containing more sub-fields
+    def getPreviousResponseFirstPairs(self):
+        """
+
+            :description: *Gets the 1st level of important main response fields from previous VIP SOAP call and tells what fields are accessible*
+            :note: This will not work if there was no previous call in the client.
+            :returns: list -- Containing all the first pair values of each tuple
+
+        """
+        # list to hold first pair value in tuples
+        firstPairs = []
+        warnings = []
+        index = 0
+        # NOTE: SOAP response is similar to tuples and dictionaries but are not of those types.
+        for tup in self.response:
+            # tup[0] #first of pair (key)
+            # tup[1] #second of pair (value)
+
+            # WE check for list
+            if type(tup[1]) is list:
+                warning = "WARNING: '" + str(tup[0]) + "' at " + "index(" + str(index) + ") is a list!!!"
+                print(warning)
+                warnings.append(warning)
+            firstPairs.append(str(tup[0]))
+            index += 1
+        return firstPairs
+
+    # iterates through first level of main response fields and tells what fields are accessible
+    # gives warning if that field is a list containing more sub-fields
+    def getResponseFirstPairs(self, response):
+        """
+
+            :description: *Gets the 1st level of important main response fields from the VIP SOAP call and tells what fields are accessible*
+            :note: This requires the SOAP response as a parameter.
+            :param response: The SOAP response
+            :type response: list of tuples
+            :returns: list -- Containing all the first pair values of each tuple
+
+        """
+        # list to hold first pair value in tuples
+        firstPairs = []
+        warnings = []
+        index = 0
+        # NOTE: SOAP response is similar to tuples and dictionaries but are not of those types.
+        for tup in response:
+            # tup[0] #first of pair (key)
+            # tup[1] #second of pair (value)
+
+            # WE check for list
+            if type(tup[1]) is list:
+                warning = "WARNING: '" + str(tup[0]) + "' at " + "index(" + str(index) + ") is a list!!!"
+                print (warning)
+                warnings.append(warning)
+            firstPairs.append(str(tup[0]))
+            index += 1
+        return firstPairs
+
+    # Returns the field value at that key of the pair; this uses the previous response
+    def getPreviousResponseValue(self, firstPair):
+        """
+
+            :description: *Gets the 1st level of important main response fields from the VIP SOAP call and tells what fields are accessible*
+            :note: This will not work if there was no previous call in the client.
+            :param firstPair: The first pair in the tuple field
+            :type firstPair: string
+            :returns: The field value at the pair key
+
+        """
+        return self.response[firstPair]
+
+    # Returns the field value at that key of the pair
+    def getResponseValue(self, response, firstPair):
+        """
+
+            :description: *Gets the 1st level of important main response fields from the VIP SOAP call and tells what fields are accessible*
+            :note: This requires the SOAP response as a parameter.
+            :param response: The SOAP response
+            :type response: list of tuples
+            :param firstPair: The first pair in the tuple field
+            :type firstPair: string
+            :returns: The field value at the pair key
+
+        """
+        return response[firstPair]
