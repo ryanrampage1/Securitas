@@ -98,7 +98,7 @@ class SymantecUserServices:
         return res
 
     # Missing some parameters in Documentation!!!!!
-    def authenticateCredentialWithPush(self, requestId, credentialId_phone, activate=None,pushAuthData=None,
+    def authenticateCredentialWithPush(self, requestId, credentialId,activate=None, pushAuthData=None,
                                         key="authLevel.level", value=None, authContext=None, onBehalfOfAccountId=None):
         """
             :description: *Authenticates a user via a Push notification using their credential ID.*
@@ -115,21 +115,23 @@ class SymantecUserServices:
             :raises:
 
         """
+        if pushAuthData is None: # make sure we do not miss the tags for it as it is required
+            pushAuthData={}
         if value is not None:
-            res = self.client.service.authenticateCredentials(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
-                                                              credentials={"credentialId": credentialId_phone,
-                                                                           "credentialType": "SMS_OTP"},
+            res = self.client.service.authenticateCredentials(requestId=requestId,
+                                                              onBehalfOfAccountId=onBehalfOfAccountId,
+                                                              credentials={"credentialId": credentialId,
+                                                                           "credentialType": "STANDARD_OTP"},
                                                               activate=activate, otpAuthData=None,
                                                               pushAuthData=pushAuthData,
                                                               authContext={"params": {"Key": key, "Value": value}})
         else:
             res = self.client.service.authenticateCredentials(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
-                                                              credentials={"credentialId": credentialId_phone,
-                                                                           "credentialType": "SMS_OTP"},
+                                                              credentials={"credentialId": credentialId,
+                                                                           "credentialType": "STANDARD_OTP"},
                                                               activate=activate, otpAuthData=None,
                                                               pushAuthData=pushAuthData,
                                                               authContext=authContext)
-
 
         self.response = res
 

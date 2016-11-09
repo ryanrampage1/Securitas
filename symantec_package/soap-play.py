@@ -129,3 +129,6 @@ for value in tupleFirsts:
 # # test new encompassing class
 #services_push = test_services.authenticateUserWithPush("push_123", "Arren_phone")
 # test_services.authenticateUserWithPushThenPolling( "Push_Test", "PushPollTest","Arren_phone")
+
+# credentialPush = test_user_services_object.authenticateCredentialWithPush("pushy123", "VSTZ43724471")
+# print (credentialPush)
