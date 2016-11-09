@@ -14,8 +14,6 @@ from symantec_package.HTTPHandler import setConnection, HTTPSClientAuthHandler, 
 class TestUserManagement(unittest.TestCase):
     def setUp(self):
         # the URLs for now which will have the WSDL files and the XSD file
-        query_services_url = 'http://webdev.cse.msu.edu/~yehanlin/vip/vipuserservices-query-1.7.wsdl'
-        userservices_url = 'http://webdev.cse.msu.edu/~morcoteg/Symantec/WSDL/vipuserservices-auth-1.7.wsdl'
         managementservices_url = 'http://webdev.cse.msu.edu/~huynhall/vipuserservices-mgmt-1.7.wsdl'
 
         # initializing the Suds clients for each url, with the client certificate youll have in the same dir as this file
@@ -51,7 +49,7 @@ class TestUserManagement(unittest.TestCase):
 
         print(response.json())
         # If the request is sent successfully, then I expect a response to be returned.
-        self.assertTrue(str(response.json()) == reply)
+        self.assertTrue((response.json()) == reply)
         pass
 
     @patch('symantec_package.lib.managementService.SymantecManagementServices')
@@ -78,29 +76,59 @@ class TestUserManagement(unittest.TestCase):
 
         print(response.json())
         # If the request is sent successfully, then I expect a response to be returned.
-        self.assertTrue(str(response.json()) == reply)
+        self.assertTrue((response.json()) == reply)
         pass
 
-        @patch('symantec_package.lib.managementService.SymantecManagementServices')
-        def test_mock_add_STANDARDOTP_credential(self, mock_managementservices):
+    @patch('symantec_package.lib.managementService.SymantecManagementServices')
+    def test_mock_add_STANDARDOTP_credential(self, mock_managementservices):
+        reply = \
+        """<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+           <S:Body>
+              <AddCredentialResponse xmlns="https://schemas.symantec.com/vip/2011/04/vipuserservices">
+                 <requestId>add_otp_cred</requestId>
+                 <status>0000</status>
+                 <statusMessage>Success</statusMessage>
+              </AddCredentialResponse>
+           </S:Body>
+        </S:Envelope>
+        """
+        # Configure the mock to return a response with an OK status code. Also, the mock should have
+        # a `json()` method that returns a list of todos.
+        mock_managementservices.addCredentialOtp.return_value = Mock()
+        mock_managementservices.addCredentialOtp.return_value.json.return_value = reply
 
-            pass
+        response = symantec_package.lib.managementService.SymantecManagementServices.addCredentialOtp("add_otp_cred", "new_user3",
+                                                                               "VSMT16833399", "STANDARD_OTP", \
+                                                                               "678066")  # change with what's on your device
+        print(response.json())
+        # If the request is sent successfully, then I expect a response to be returned.
+        self.assertTrue((response.json()) == reply)
+        pass
 
-        # def test_add_and_delete_STANDARD_OTP_credential(self):
-        #     user = self.test_management_services_object.createUser("new_user456", "new_user3")
-        #     self.assertTrue("0000" in str(user))
-        #
-        #     otp_credential = self.test_management_services_object.addCredential("new_otp_cred", "new_user3", "VSTZ39646177", "STANDARD_OTP",\
-        #                                                                         "672192")       #change with what's on your device
-        #     self.assertTrue("0000" in str(otp_credential))
-        #
-        #     deleted = self.test_management_services_object.removeCredential("remove_123", "new_user3", "VSTZ39646177",
-        #                                                                     "STANDARD_OTP")
-        #     self.assertTrue("0000" in str(deleted))
-        #
-        #     user = self.test_management_services_object.deleteUser("delete_user123", "new_user3")
-        #     self.assertTrue("0000" in str(user))
-        #     pass
+    @patch('symantec_package.lib.managementService.SymantecManagementServices')
+    def test_mock_delete_STANDARDOTP_credential(self, mock_managementservices):
+        reply = \
+            """<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+               <S:Body>
+                  <RemoveCredentialResponse xmlns="https://schemas.symantec.com/vip/2011/04/vipuserservices">
+                     <requestId>remove_cred123</requestId>
+                     <status>0000</status>
+                     <statusMessage>Success</statusMessage>
+                  </RemoveCredentialResponse>
+               </S:Body>
+            </S:Envelope>
+            """
+        # Configure the mock to return a response with an OK status code. Also, the mock should have
+        # a `json()` method that returns a list of todos.
+        mock_managementservices.removeCredential.return_value = Mock()
+        mock_managementservices.removeCredential.return_value.json.return_value = reply
+
+        response = symantec_package.lib.managementService.SymantecManagementServices.removeCredential("remove_123", "new_user3",
+                                                                                                      "VSMT16833399", "STANDARD_OTP")
+        print(response.json())
+        # If the request is sent successfully, then I expect a response to be returned.
+        self.assertTrue((response.json()) == reply)
+        pass
 
 
 if __name__ == '__main__':
