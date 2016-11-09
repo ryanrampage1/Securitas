@@ -220,7 +220,7 @@ class SymantecManagementServices:
     def registerByServiceOtp(self, requestId, serviceOtpId, onBehalfOfAccountId=None):
         """
             :description: *Registers the phone credential for usage through a service one time password*
-            :note: SMS, voice, and system-generated credentials need to be registered first
+            :note: DEPRECATED!! SMS, voice, and system-generated credentials need to be registered first
             :param requestId: A unique identifier of the request for the enterprise application. This may be useful for troubleshooting
             :type requestId: string
             :param serviceOtpId: The id of the service's Otp
