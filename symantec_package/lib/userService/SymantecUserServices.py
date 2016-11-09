@@ -54,8 +54,9 @@ class SymantecUserServices:
     #     return res
 
 
-    # I fixed this one; Someone fix the following ones (low on time) - Allen
-    def authenticateUser(self, requestId, userId, otp1, otp2=None, value=None, key="authLevel.level", pin=None, onBehalfOfAccountId=None):
+    # I fixed this one; Someone fix the following ones
+    def authenticateUser(self, requestId, userId, otp1, otp2=None, value=None, key="authLevel.level", authContext=None,
+                         pin=None, onBehalfOfAccountId=None):
         if otp2 == None:
             if value != None:
                 res = self.client.service.authenticateUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
@@ -64,7 +65,7 @@ class SymantecUserServices:
             else:
                 res = self.client.service.authenticateUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                                    userId=userId, pin=pin, otpAuthData={"otp": otp1},
-                                                       authContext=None)
+                                                       authContext=authContext)
         else:
             if value != None:
                 res = self.client.service.authenticateUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
@@ -73,142 +74,139 @@ class SymantecUserServices:
             else:
                 res = self.client.service.authenticateUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                                    userId=userId, pin=pin, otpAuthData={"otp": otp1, "otp2": otp2},
-                                                       authContext=None)
+                                                       authContext=authContext)
         self.response = res
         # print(res)
         return res
 
 
-    #Fix this to cover all parameters in SOAP call
-    def authenticateCredentials(self, requestId, credentials, otp1=None, pushAuthData=None, activate=None, authContext=None, onBehalfOfAccountId=None):
-        res = self.client.service.authenticateCredentials(requestId=requestId, credentials=credentials, onBehalfOfAccountId=onBehalfOfAccountId,
-                                                          otpAuthData={"otp": otp1}, pushAuthData=pushAuthData, activate=activate, authContext=authContext
-                                                          )
+    def authenticateCredentials(self, requestId, credentials, otp1=None, otp2=None, pushAuthData=None, activate=None, authContext=None, onBehalfOfAccountId=None):
+        # NOTE: otp or pushAuthData is required!
+        if otp1 is None:
+            res = self.client.service.authenticateCredentials(requestId=requestId, credentials=credentials, onBehalfOfAccountId=onBehalfOfAccountId,
+                                                              otpAuthData=None, pushAuthData=pushAuthData, activate=activate, authContext=authContext)
+        elif otp2 is not None:
+            res = self.client.service.authenticateCredentials(requestId=requestId, credentials=credentials,
+                                                              onBehalfOfAccountId=onBehalfOfAccountId,
+                                                              otpAuthData={"otp": otp1, "otp2": otp2}, pushAuthData=None,
+                                                              activate=activate, authContext=authContext)
+        else:
+            res = self.client.service.authenticateCredentials(requestId=requestId, credentials=credentials, onBehalfOfAccountId=onBehalfOfAccountId,
+                                                          otpAuthData={"otp": otp1}, pushAuthData=pushAuthData, activate=activate, authContext=authContext)
         self.response = res
         # print(self.response)
         return res
 
-
-
-    ## KLJSDHFLKSJDHFLSKDJFHLSKDJFHSLKDJFHSLKDJFHSDLKFJHSDLKFJDHFS ***************!!!!!
-
-    def authenticateCredentialWithPush(self, requestId, credentialId, pushMessage,
-                                       displayTitle=None, displayMessage=None, displayProfile=None, activate=None,
-                                                authContext=None, value=None, timeout=None):
+    # Missing some parameters in Documentation!!!!!
+    def authenticateCredentialWithPush(self, requestId, credentialId_phone, activate=None,pushAuthData=None,
+                                        key="authLevel.level", value=None, authContext=None, onBehalfOfAccountId=None):
         """
-                    :description: *Authenticates a user via a Push notification using their credential ID.*
-                    :note:
-                    :param requestId: A unique identifier of the request for the enterprise application. This may be useful for troubleshooting
-                    :type requestId: string
-                    :param userId: Unique user ID (i.e.- email address, login name). Accepts 1 - 128 characters. Case-sensitive.
-                    :type userId: string
-                    :param pushMessage: Text of the push notification in Notification Center (iOS) or Notification Drawer (Android). Suggested maximum size 70 characters.
-                    :type pushMessage: string
-                    :param displayTitle: Title of the modal. Suggested maximum size 30 characters.
-                    :type displayTitle: string
-                    :param displayMessage: Text of modal. Suggested maximum size 70 characters.
-                    :type displayMessage: string
-                    :param displayProfile: Indicates the login URL or profile. Suggested maximum size 60 characters.
-                    :type displayProfile: string
-                    :param activate: Activates a credential. If otpAuthData is provided, it consumes the OTP to authenticate. If pushAuthData is used, sends a push notification to the credential for authentication.
-                    :type activate: boolean
-                    :param authContext: A map containing the parameters that control how the authentication is performed. VIP User Services accepts an authentication level for the authContext field. The authentication level defines the credential types that can be validated with this request. This level must match an authentication level configured in VIP Manager. ■ Key: Enter authLevel.level ■ Value: Enter the authentication level value (as an integer from 1 - 10).
-                    :type authContext: string
-                    :param value: The user's specified gateway Account password
-                    :type value: string
-                    :param timeout: The user's specified gateway Account password
-                    :type timeout: string
-                    :returns: string -- the return SOAP response.
-                    :raises:
+            :description: *Authenticates a user via a Push notification using their credential ID.*
+            :note:
+            :param requestId: A unique identifier of the request for the enterprise application. This may be useful for troubleshooting
+            :type requestId: string
+            :param activate: Activates a credential. If otpAuthData is provided, it consumes the OTP to authenticate. If pushAuthData is used, sends a push notification to the credential for authentication.
+            :type activate: boolean
+            :param authContext: A map containing the parameters that control how the authentication is performed. VIP User Services accepts an authentication level for the authContext field. The authentication level defines the credential types that can be validated with this request. This level must match an authentication level configured in VIP Manager. ■ Key: Enter authLevel.level ■ Value: Enter the authentication level value (as an integer from 1 - 10).
+            :type authContext: string
+            :param value: The user's specified gateway Account password
+            :type value: string
+            :returns: the return SOAP response.
+            :raises:
 
-                """
-        if pushMessage is not None:
-            res = self.client.service.authenticateCredentials(requestId=requestId,
-                                                              credentials={"credentialId": credentialId,
-                                                                           "credentialType": "STANDARD_OTP"},
+        """
+        if value is not None:
+            res = self.client.service.authenticateCredentials(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
+                                                              credentials={"credentialId": credentialId_phone,
+                                                                           "credentialType": "SMS_OTP"},
                                                               activate=activate, otpAuthData=None,
-                                                              pushAuthData={"displayParameters":
-                                                                                {"Key": "push.message.text",
-                                                                                 "Value": pushMessage}
-                                                                            # {"Key":"display.message.text", "Value":displayMessage}
-                                                                            })
+                                                              pushAuthData=pushAuthData,
+                                                              authContext={"params": {"Key": key, "Value": value}})
+        else:
+            res = self.client.service.authenticateCredentials(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
+                                                              credentials={"credentialId": credentialId_phone,
+                                                                           "credentialType": "SMS_OTP"},
+                                                              activate=activate, otpAuthData=None,
+                                                              pushAuthData=pushAuthData,
+                                                              authContext=authContext)
 
 
-        if displayTitle is not None:
-
-            if displayProfile is not None:
-                pass
-
-            pass
+        self.response = res
 
         return res
 
 
 
-    #Fix this as well!
-    def authenticateCredentialWithSMS(self, requestId, credentialId_phoneNumber, securityCode, activate=None):
-        if activate is not None:
-            res = self.client.service.authenticateCredentials(requestId=requestId, activate=activate,
-                                                          credentials={"credentialId": credentialId_phoneNumber,
-                                                                       "credentialType": "SMS_OTP"},
-                                                          otpAuthData={"otp": securityCode})
-            self.response = res
-            # print(self.response)
-            return res
-        res = self.client.service.authenticateCredentials(requestId=requestId,
-                                                          credentials={"credentialId": credentialId_phoneNumber,
-                                                                       "credentialType": "SMS_OTP"},
-                                                          otpAuthData={"otp": securityCode})
+
+    def authenticateCredentialWithSMS(self, requestId, credentialId_phoneNumber, otp1,otp2=None, activate=None, onBehalfOfAccountId=None):
+        if otp2 is None:
+            res = self.client.service.authenticateCredentials(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
+                                                              credentials={"credentialId": credentialId_phoneNumber,
+                                                                           "credentialType": "SMS_OTP"},
+                                                              activate=activate, otpAuthData={"otp": otp1})
+        else:
+            res = self.client.service.authenticateCredentials(requestId=requestId,
+                                                              onBehalfOfAccountId=onBehalfOfAccountId,
+                                                              credentials={"credentialId": credentialId_phoneNumber,
+                                                                           "credentialType": "SMS_OTP"},
+                                                              activate=activate, otpAuthData={"otp": otp1, "otp2": otp2})
         self.response = res
         # print(self.response)
         return res
 
-    #Fix this as well!
-    def authenticateCredentialWithStandard_OTP(self, requestId, credentialId, securityCode, activate=None):
-        if activate is not None:
-            res = self.client.service.authenticateCredentials(requestId=requestId, activate=activate,
+
+    def authenticateCredentialWithStandard_OTP(self, requestId, credentialId,otp1,otp2=None, activate=None, onBehalfOfAccountId=None):
+        if otp2 is None:
+            res = self.client.service.authenticateCredentials(requestId=requestId,
+                                                              onBehalfOfAccountId=onBehalfOfAccountId,
                                                               credentials={"credentialId": credentialId,
                                                                            "credentialType": "STANDARD_OTP"},
-                                                              otpAuthData={"otp": securityCode})
-            self.response = res
-            return res
-
-        res = self.client.service.authenticateCredentials(requestId=requestId,
-                                                          credentials={"credentialId": credentialId,
-                                                                       "credentialType": "STANDARD_OTP"},
-                                                          otpAuthData={"otp": securityCode})
+                                                              activate=activate, otpAuthData={"otp": otp1})
+        else:
+            res = self.client.service.authenticateCredentials(requestId=requestId,
+                                                              onBehalfOfAccountId=onBehalfOfAccountId,
+                                                              credentials={"credentialId": credentialId,
+                                                                           "credentialType": "SMS_OTP"},
+                                                              activate=activate, otpAuthData={"otp": otp1, "otp2": otp2})
         self.response = res
         # print(self.response)
         return res
 
 
-    # FIX...Missing a ton of parameters and structured wrong with authContext --> key and value!
-    def authenticateUserWithPush(self, requestId, userId, pin=None, displayParams=None, requestParams=None, authContext=None):
-        res = self.client.service.authenticateUserWithPush(requestId=requestId, userId=userId)
+    def authenticateUserWithPush(self, requestId, userId, pin=None, pushAuthData=None,
+                                 key="authLevel.level", value=None, authContext=None, onBehalfOfAccountId=None):
+        if value is None:
+            res = self.client.service.authenticateUserWithPush(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
+                                                               userId=userId, pin=pin, pushAuthData=pushAuthData,
+                                                               authContext=authContext)
+        else:
+            res = self.client.service.authenticateUserWithPush(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
+                                                         userId=userId, pin=pin, pushAuthData=pushAuthData,
+                                                         authContext={"params":{"Key":key, "Value":value}})
         self.response = res
         # print(self.response)
         return res
 
 
-    def checkOtp(self, requestId, userId, otp1, otp2=None, value=None, key="authLevel.level", onBehalfOfAccountId=None):
-        if otp2 == None:
-            if value != None:
+    def checkOtp(self, requestId, userId, otp1, otp2=None, value=None, key="authLevel.level", authContext=None, onBehalfOfAccountId=None):
+        if otp2 is None:
+            if value is not None:
                 res = self.client.service.authenticateUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                                    userId=userId, otpAuthData={"otp": otp1},
                                                        authContext={"params":{"Key":key, "Value":value}})
             else:
                 res = self.client.service.authenticateUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                                    userId=userId, otpAuthData={"otp": otp1},
-                                                       authContext=None)
+                                                       authContext=authContext)
         else:
-            if value != None:
+            if value is not None:
                 res = self.client.service.authenticateUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                                    userId=userId,  otpAuthData={"otp": otp1, "otp2": otp2},
                                                        authContext={"params": {"Key": key, "Value": value}})
             else:
                 res = self.client.service.authenticateUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                                    userId=userId, otpAuthData={"otp": otp1, "otp2": otp2},
-                                                       authContext=None)
+                                                       authContext=authContext)
         self.response = res
         # print(res)
         return res

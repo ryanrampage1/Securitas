@@ -216,37 +216,49 @@ class SymantecServices:
 
 
 # ********************USER SERVICE
-    def authenticateUser(self, requestId, userId, otp1, otp2=None, value=None, key="authLevel.level", pin=None, onBehalfOfAccountId=None):
-        res = self.userService.authenticateUser(requestId,  userId, otp1, otp2, value, key, pin, onBehalfOfAccountId)
+    def authenticateUser(self, requestId, userId, otp1, otp2=None, value=None, key="authLevel.level", authContext=None,
+                         pin=None, onBehalfOfAccountId=None):
+        res = self.userService.authenticateUser(requestId,  userId, otp1, otp2, value, key, authContext,pin, onBehalfOfAccountId)
+        self.response = res
+        # print(self.response)
+        return res
+
+    def authenticateCredentials(self, requestId, credentials, otp1=None, otp2=None, pushAuthData=None,
+                                activate=None, authContext=None, onBehalfOfAccountId=None):
+        res = self.userService.authenticateCredentials(requestId,  credentials, otp1, otp2, pushAuthData, activate,
+                                                       authContext, onBehalfOfAccountId)
+        self.response = res
+        # print(self.response)
+        return res
+
+    def authenticateCredentialWithPush(self, requestId, credentialId_phone, activate=None, pushAuthData=None,
+                                       key="authLevel.level", value=None, authContext=None, onBehalfOfAccountId=None):
+        res = self.userService.authenticateCredentialWithPush(requestId, credentialId_phone, activate, pushAuthData,
+                                                              key,value, authContext, onBehalfOfAccountId)
+        self.response = res
+        return res
+
+
+    def authenticateCredentialWithSMS(self, requestId, credentialId_phoneNumber, otp1, otp2=None, activate=None,
+                                      onBehalfOfAccountId=None):
+        res = self.userService.authenticateCredentials(requestId, credentialId_phoneNumber, otp1, otp2, activate, onBehalfOfAccountId)
+
         self.response = res
         # print(self.response)
         return res
 
     # FIX when user service is updated
-    def authenticateCredentials(self, requestId, credentials, otpAuthData=None, pushAuthData=None, activate=None):
-        res = self.userService.authenticateCredentials( requestId,  credentials, otpAuthData, pushAuthData, activate)
-        self.response = res
-        # print(self.response)
-        return res
-
-    ## FIX when user service is updated
-    def authenticateWithSMS(self, requestId, credentialId_phoneNumber, securityCode, activate=None):
-        res = self.userService.authenticateCredentials(requestId, credentialId_phoneNumber, securityCode, activate )
-
-        self.response = res
-        # print(self.response)
-        return res
-        # FIX when user service is updated
-    def authenticateWithStandard_OTP(self, requestId, credentialId, securityCode, activate=None):
-        res = self.userService.authenticateCredentials(requestId, credentialId, securityCode, activate)
+    def authenticateCredentialWithStandard_OTP(self, requestId, credentialId, otp1, otp2=None, activate=None,
+                                               onBehalfOfAccountId=None):
+        res = self.userService.authenticateCredentials(requestId, credentialId, otp1, otp2, activate, onBehalfOfAccountId)
 
         self.response = res
         # print(self.response)
         return res
 
-    # FIX when user service is updated
-    def authenticateUserWithPush(self, requestId, userId, pin=None, displayParams=None, requestParams=None, authContext=None):
-        res = self.userService.authenticateUserWithPush(requestId, userId, pin, displayParams , requestParams , authContext )
+    def authenticateUserWithPush(self, requestId, userId, pin=None, pushAuthData=None,
+                                 key="authLevel.level", value=None, authContext=None, onBehalfOfAccountId=None):
+        res = self.userService.authenticateUserWithPush(requestId, userId, pin, pushAuthData , key, value, authContext,onBehalfOfAccountId)
 
         self.response = res
         # print(self.response)
