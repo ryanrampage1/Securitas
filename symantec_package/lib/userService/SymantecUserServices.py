@@ -168,7 +168,7 @@ class SymantecUserServices:
             res = self.client.service.authenticateCredentials(requestId=requestId,
                                                               onBehalfOfAccountId=onBehalfOfAccountId,
                                                               credentials={"credentialId": credentialId,
-                                                                           "credentialType": "SMS_OTP"},
+                                                                           "credentialType": "STANDARD_OTP"},
                                                               activate=activate, otpAuthData={"otp": otp1, "otp2": otp2})
         self.response = res
         # print(self.response)
