@@ -1,7 +1,33 @@
 import urllib.request, http.client, socket
 from suds.client import Client
 from suds.transport.http import HttpTransport, Reply, TransportError
+import suds
+from suds.sudsobject import asdict
 
+from suds.sudsobject import asdict
+import json
+from datetime import datetime
+def recursive_asdict(d):
+    """Convert Suds object into serializable format."""
+    out = {}
+    for k, v in asdict(d).items():
+        if type(v) is datetime:
+            v = str(v)
+        if hasattr(v, '__keylist__'):
+            out[k] = recursive_asdict(v)
+        elif isinstance(v, list):
+            out[k] = []
+            for item in v:
+                if hasattr(item, '__keylist__'):
+                    out[k].append(recursive_asdict(item))
+                else:
+                    out[k].append(item)
+        else:
+            out[k] = v
+    return out
+
+def suds_to_json(data):
+    return json.dumps(recursive_asdict(data))
 
 class HTTPSClientAuthHandler(urllib.request.HTTPSHandler):
     def __init__(self, key, cert):
@@ -107,13 +133,13 @@ test_services = SymantecServices(query_services_client, management_client, user_
 # print (results_SMS)
 
 
-testy = test_query_services_object.getUserInfo("Test12", "Arren_phone")
-tupleFirsts = test_query_services_object.getPreviousResponseFirstPairs()
-for value in tupleFirsts:
-    txt = "[1st Pair: " + value + ", \n\t2nd Pair: " + str(test_query_services_object.getPreviousResponseValue(value)) + "]"
-    if (value == "credentialBindingDetail"):
-        break
-    print (txt)
+# testy = test_query_services_object.getUserInfo("Test12", "Arren_phone")
+# tupleFirsts = test_query_services_object.getPreviousResponseFirstPairs()
+# for value in tupleFirsts:
+#     txt = "[1st Pair: " + value + ", \n\t2nd Pair: " + str(test_query_services_object.getPreviousResponseValue(value)) + "]"
+#     if (value == "credentialBindingDetail"):
+#         break
+#     print (txt)
 
 # print((testy))
 # print(testy['credentialBindingDetail'])
@@ -125,6 +151,10 @@ for value in tupleFirsts:
 #     print(type(tup[1]))
 
 # testTime = test_query_services_object.getServerTime("timers")
+# print (testTime)
+# print(suds_to_json(testTime))
+
+# print (type(testTime))
 
 # # test new encompassing class
 #services_push = test_services.authenticateUserWithPush("push_123", "Arren_phone")
@@ -132,3 +162,72 @@ for value in tupleFirsts:
 
 # credentialPush = test_user_services_object.authenticateCredentialWithPush("pushy123", "VSTZ43724471")
 # print (credentialPush)
+
+# d = dict(http='127.0.0.1:8080')
+# query_services_client.set_options(proxy=d)
+# queryClient = suds.client.Client(query_services_url)
+# d = dict(http='127.0.0.1:8080')
+# queryClient.set_options(proxy=d)
+# print(queryClient)
+# print (query_services_client)
+# testObject = query_services_client.factory.create('ns0:RequestIdType')
+# print(testObject)
+# testObject['requestId']
+# testObject="testy123"
+# print(testObject)
+# testy = query_services_client.service.getServerTime(testObject)
+# print(testy)
+#
+# print(type(testy))
+
+# t = test_query_services_object.getCredentialInfo("getCredit123","VSTZ43724471")
+# print(t)
+# test = [{"requestId":"getCredit123"}, {"credentialId":"VSTZ"}]
+# for i in test:
+#     print(i)
+#     print(i["requestId"])
+#     break
+
+reply = \
+"""
+          <GetCredentialInfoResponse xmlns="https://schemas.symantec.com/vip/2011/04/vipuserservices">
+             <requestId>getCredentialInfo123</requestId>
+             <status>0000</status>
+             <statusMessage>Success</statusMessage>
+             <credentialId>VSTZ00001337</credentialId>
+             <credentialType>STANDARD_OTP</credentialType>
+             <credentialStatus>ENABLED</credentialStatus>
+             <numBindings>1</numBindings>
+             <userBindingDetail>
+                <userId>test_phone</userId>
+                <userStatus>ACTIVE</userStatus>
+                <bindingDetail>
+                   <bindStatus>ENABLED</bindStatus>
+                   <lastBindTime>2016-09-28T00:42:54.489Z</lastBindTime>
+                   <lastAuthnTime>2016-10-30T06:46:25.236Z</lastAuthnTime>
+                   <lastAuthnId>38A333E53F17B1D6</lastAuthnId>
+                </bindingDetail>
+             </userBindingDetail>
+          </GetCredentialInfoResponse>
+
+"""
+# import xmltodict
+# s = xmltodict.parse(reply)
+# print (s.keys())
+# print(s['GetCredentialInfoResponse'])
+
+from xml.dom.minidom import parseString
+# dom = parseString(reply)
+# nodes = dom.getElementsByTagName('status')
+# print (nodes[0].firstChild.nodeValue)
+
+def getElementFromTagName(xml, tag, selected=1):
+    nodes = parseString(xml).getElementsByTagName(tag)
+    if len(nodes) <= 0:
+        return ("FAILED to retrieve any elements of the tag: " + str(tag))
+
+    if selected < 1: # make sure no lower then first tag that appears
+        selected = 1
+    return nodes[selected - 1].firstChild.nodeValue
+
+print(getElementFromTagName(reply,"st"))

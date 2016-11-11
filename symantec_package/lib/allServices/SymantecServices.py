@@ -1,4 +1,11 @@
+"""
+.. module:: SymantecManagementService
+    :platform: All platforms that are compatible with Python framework
+    :synopsis: Module handles all VIP SOAP calls and functions that uses more than one client
 
+.. moduleauthor:: Allen Huynh
+
+"""
 class SymantecServices:
 
     import sys
