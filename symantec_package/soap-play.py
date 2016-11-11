@@ -152,9 +152,37 @@ test_services = SymantecServices(query_services_client, management_client, user_
 
 # testTime = test_query_services_object.getServerTime("timers")
 # print (testTime)
-# print(suds_to_json(testTime))
+# response_json = recursive_asdict(testTime)
+# print(response_json)
+# print(response_json["status"])
 
+# response = test_user_services_object.authenticateCredentialWithPush("push_123", "VSMT16833399", True)
+# response_push = recursive_asdict(response)
+# print(response_push)
+# print(response_push["status"])
 # print (type(testTime))
+
+# response = test_management_services_object.createUser("create_123", "new_user3")
+# response_create = recursive_asdict(response)
+# print(response_create)
+# print(response_create["status"])
+
+# response = test_management_services_object.deleteUser("delete_123", "test_user1")
+# response_delete = recursive_asdict(response)
+# print(response_delete)
+# print(response_delete["status"])
+
+# response = test_management_services_object.addCredentialOtp("add_otp_cred", "new_user3", "VSMT16833399", "STANDARD_OTP", \
+#                                                                             "203472")
+# response_add = recursive_asdict(response)
+# print(response_add)
+# print(response_add["status"])
+
+response = test_management_services_object.removeCredential("remove_123", "new_user3", "VSMT16833399", "STANDARD_OTP")
+response_del = recursive_asdict(response)
+print(response_del)
+print(response_del["status"])
+
 
 # # test new encompassing class
 #services_push = test_services.authenticateUserWithPush("push_123", "Arren_phone")
@@ -230,4 +258,4 @@ def getElementFromTagName(xml, tag, selected=1):
         selected = 1
     return nodes[selected - 1].firstChild.nodeValue
 
-print(getElementFromTagName(reply,"st"))
+# print(getElementFromTagName(reply,"st"))

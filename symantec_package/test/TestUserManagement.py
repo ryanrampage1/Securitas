@@ -28,15 +28,8 @@ class TestUserManagement(unittest.TestCase):
     @patch('symantec_package.lib.managementService.SymantecManagementServices')
     def test_mock_create_user(self, mock_managementservices):
         reply = \
-        """<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
-           <S:Body>
-              <CreateUserResponse xmlns="https://schemas.symantec.com/vip/2011/04/vipuserservices">
-                 <requestId>create_123</requestId>
-                 <status>0000</status>
-                 <statusMessage>Success</statusMessage>
-              </CreateUserResponse>
-           </S:Body>
-        </S:Envelope>
+        """
+        {'requestId': create_123, 'status': 0000, 'statusMessage': Success}
         """
         # Configure the mock to return a response with an OK status code. Also, the mock should have
         # a `json()` method that returns a list of todos.
@@ -55,15 +48,8 @@ class TestUserManagement(unittest.TestCase):
     @patch('symantec_package.lib.managementService.SymantecManagementServices')
     def test_mock_delete_user(self, mock_managementservices):
         reply = \
-        """<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
-           <S:Body>
-              <DeleteUserResponse xmlns="https://schemas.symantec.com/vip/2011/04/vipuserservices">
-                 <requestId>delete_123</requestId>
-                 <status>0000</status>
-                 <statusMessage>Success</statusMessage>
-              </DeleteUserResponse>
-           </S:Body>
-        </S:Envelope>
+        """
+        {'requestId': delete_123, 'status': 0000, 'statusMessage': Success}
         """
         # Configure the mock to return a response with an OK status code. Also, the mock should have
         # a `json()` method that returns a list of todos.
@@ -82,15 +68,8 @@ class TestUserManagement(unittest.TestCase):
     @patch('symantec_package.lib.managementService.SymantecManagementServices')
     def test_mock_add_STANDARDOTP_credential(self, mock_managementservices):
         reply = \
-        """<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
-           <S:Body>
-              <AddCredentialResponse xmlns="https://schemas.symantec.com/vip/2011/04/vipuserservices">
-                 <requestId>add_otp_cred</requestId>
-                 <status>0000</status>
-                 <statusMessage>Success</statusMessage>
-              </AddCredentialResponse>
-           </S:Body>
-        </S:Envelope>
+        """
+        {'statusMessage': Success, 'requestId': add_otp_cred, 'status': 0000}
         """
         # Configure the mock to return a response with an OK status code. Also, the mock should have
         # a `json()` method that returns a list of todos.
@@ -108,15 +87,8 @@ class TestUserManagement(unittest.TestCase):
     @patch('symantec_package.lib.managementService.SymantecManagementServices')
     def test_mock_delete_STANDARDOTP_credential(self, mock_managementservices):
         reply = \
-            """<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
-               <S:Body>
-                  <RemoveCredentialResponse xmlns="https://schemas.symantec.com/vip/2011/04/vipuserservices">
-                     <requestId>remove_cred123</requestId>
-                     <status>0000</status>
-                     <statusMessage>Success</statusMessage>
-                  </RemoveCredentialResponse>
-               </S:Body>
-            </S:Envelope>
+            """
+            {'status': 0000, 'requestId': remove_123, 'statusMessage': Success}
             """
         # Configure the mock to return a response with an OK status code. Also, the mock should have
         # a `json()` method that returns a list of todos.
