@@ -27,10 +27,7 @@ class TestUserManagement(unittest.TestCase):
 
     @patch('symantec_package.lib.managementService.SymantecManagementServices')
     def test_mock_create_user(self, mock_managementservices):
-        reply = \
-        """
-        {'requestId': create_123, 'status': 0000, 'statusMessage': Success}
-        """
+        reply = {'requestId': 'create_123', 'status': '0000', 'statusMessage': 'Success'}
         # Configure the mock to return a response with an OK status code. Also, the mock should have
         # a `json()` method that returns a list of todos.
         mock_managementservices.createUser.return_value = Mock()
@@ -43,14 +40,13 @@ class TestUserManagement(unittest.TestCase):
         print(response.json())
         # If the request is sent successfully, then I expect a response to be returned.
         self.assertTrue((response.json()) == reply)
+        self.assertTrue((response.json()["status"] == "0000"))
         pass
 
     @patch('symantec_package.lib.managementService.SymantecManagementServices')
     def test_mock_delete_user(self, mock_managementservices):
-        reply = \
-        """
-        {'requestId': delete_123, 'status': 0000, 'statusMessage': Success}
-        """
+        reply = {'requestId': 'delete_123', 'status': '0000', 'statusMessage': 'Success'}
+
         # Configure the mock to return a response with an OK status code. Also, the mock should have
         # a `json()` method that returns a list of todos.
         mock_managementservices.deleteUser.return_value = Mock()
@@ -63,14 +59,13 @@ class TestUserManagement(unittest.TestCase):
         print(response.json())
         # If the request is sent successfully, then I expect a response to be returned.
         self.assertTrue((response.json()) == reply)
+        self.assertTrue((response.json()["status"] == "0000"))
         pass
 
     @patch('symantec_package.lib.managementService.SymantecManagementServices')
     def test_mock_add_STANDARDOTP_credential(self, mock_managementservices):
-        reply = \
-        """
-        {'statusMessage': Success, 'requestId': add_otp_cred, 'status': 0000}
-        """
+        reply = {'statusMessage': "Success", 'requestId': 'add_otp_cred', 'status': '0000'}
+
         # Configure the mock to return a response with an OK status code. Also, the mock should have
         # a `json()` method that returns a list of todos.
         mock_managementservices.addCredentialOtp.return_value = Mock()
@@ -82,14 +77,13 @@ class TestUserManagement(unittest.TestCase):
         print(response.json())
         # If the request is sent successfully, then I expect a response to be returned.
         self.assertTrue((response.json()) == reply)
+        self.assertTrue((response.json()["status"] == "0000"))
         pass
 
     @patch('symantec_package.lib.managementService.SymantecManagementServices')
     def test_mock_delete_STANDARDOTP_credential(self, mock_managementservices):
-        reply = \
-            """
-            {'status': 0000, 'requestId': remove_123, 'statusMessage': Success}
-            """
+        reply = {'status': '0000', 'requestId': 'remove_123', 'statusMessage': 'Success'}
+
         # Configure the mock to return a response with an OK status code. Also, the mock should have
         # a `json()` method that returns a list of todos.
         mock_managementservices.removeCredential.return_value = Mock()
@@ -100,6 +94,61 @@ class TestUserManagement(unittest.TestCase):
         print(response.json())
         # If the request is sent successfully, then I expect a response to be returned.
         self.assertTrue((response.json()) == reply)
+        self.assertTrue((response.json()["status"] == "0000"))
+        pass
+
+    @patch('symantec_package.lib.managementService.SymantecManagementServices')
+    def test_mock_update_STANDARDOTP_credential(self, mock_managementservices):
+        reply = {'statusMessage': 'Success', 'requestId': 'update_123', 'status': '0000'}
+
+        # Configure the mock to return a response with an OK status code. Also, the mock should have
+        # a `json()` method that returns a list of todos.
+        mock_managementservices.updateCredential.return_value = Mock()
+        mock_managementservices.updateCredential.return_value.json.return_value = reply
+
+        response = symantec_package.lib.managementService.SymantecManagementServices.updateCredential("update_123", "gabe_phone",
+                                                                                                      "VSMT16833399", "STANDARD_OTP",
+                                                                                                      "My personal cell phone")
+        print(response.json())
+        # If the request is sent successfully, then I expect a response to be returned.
+        self.assertTrue((response.json()) == reply)
+        self.assertTrue((response.json()["status"] == "0000"))
+        pass
+
+    @patch('symantec_package.lib.managementService.SymantecManagementServices')
+    def test_mock_setTemporaryPasswordSMSDelivery(self, mock_managementservices):
+        reply = {'status': '0000', 'requestId': 'setTempPWD', 'statusMessage': 'Success', 'temporaryPassword': '998241'}
+
+        # Configure the mock to return a response with an OK status code. Also, the mock should have
+        # a `json()` method that returns a list of todos.
+        mock_managementservices.setTemporaryPasswordSMSDelivery.return_value = Mock()
+        mock_managementservices.setTemporaryPasswordSMSDelivery.return_value.json.return_value = reply
+
+        response = symantec_package.lib.managementService.SymantecManagementServices.setTemporaryPasswordSMSDelivery("setTempPWD",
+                                                                                                      "gabe_phone",
+                                                                                                      "12313608781",
+                                                                                                      "17879481605")
+        print(response.json())
+        # If the request is sent successfully, then I expect a response to be returned.
+        self.assertTrue((response.json()) == reply)
+        self.assertTrue((response.json()["status"] == "0000"))
+        pass
+
+    @patch('symantec_package.lib.managementService.SymantecManagementServices')
+    def test_mock_clearTemporaryPassword(self, mock_managementservices):
+        reply = {'statusMessage': 'Success', 'requestId': 'clear_temp123', 'status': '0000'}
+
+        # Configure the mock to return a response with an OK status code. Also, the mock should have
+        # a `json()` method that returns a list of todos.
+        mock_managementservices.clearTemporaryPassword.return_value = Mock()
+        mock_managementservices.clearTemporaryPassword.return_value.json.return_value = reply
+
+        response = symantec_package.lib.managementService.SymantecManagementServices.clearTemporaryPassword("clear_temp123",
+                                                                                                            "gabe_phone")
+        print(response.json())
+        # If the request is sent successfully, then I expect a response to be returned.
+        self.assertTrue((response.json()) == reply)
+        self.assertTrue((response.json()["status"] == "0000"))
         pass
 
 
