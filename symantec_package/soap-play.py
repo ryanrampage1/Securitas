@@ -77,6 +77,7 @@ from symantec_package.lib.userService.SymantecUserServices import SymantecUserSe
 from symantec_package.lib.queryService.SymantecQueryServices import SymantecQueryServices
 from symantec_package.lib.managementService.SymantecManagementServices import SymantecManagementServices
 from symantec_package.lib.allServices.SymantecServices import SymantecServices
+from symantec_package.lib.legacyService.SymantecLegacyServices import SymantecLegacyServices
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger('suds.client').setLevel(logging.DEBUG)
@@ -89,6 +90,7 @@ from suds.client import Client
 query_services_url = 'http://webdev.cse.msu.edu/~yehanlin/vip/vipuserservices-query-1.7.wsdl'
 userservices_url = 'http://webdev.cse.msu.edu/~morcoteg/Symantec/WSDL/vipuserservices-auth-1.4.wsdl'
 managementservices_url = 'http://webdev.cse.msu.edu/~huynhall/vipuserservices-mgmt-1.7.wsdl'
+legacyservices_url = 'http://webdev.cse.msu.edu/~huynhall/vip_auth.wsdl'
 
 # initializing the Suds clients for each url, with the client certificate youll have in the same dir as this file
 query_services_client = Client(query_services_url,
@@ -97,6 +99,8 @@ user_services_client = Client(userservices_url,
          transport = HTTPSClientCertTransport('vip_certificate.crt','vip_certificate.crt'))
 management_client = Client(managementservices_url,
          transport = HTTPSClientCertTransport('vip_certificate.crt','vip_certificate.crt'))
+legacy_client = Client(legacyservices_url,
+         transport = HTTPSClientCertTransport('vip_certificate.crt','vip_certificate.crt'))
 
 #get_user_info_result = query_services_client.service.getUserInfo(requestId="123123", userId="y1196293")
 
@@ -104,6 +108,7 @@ test_user_services_object = SymantecUserServices(user_services_client)
 test_query_services_object = SymantecQueryServices(query_services_client)
 test_management_services_object = SymantecManagementServices(management_client)
 test_services = SymantecServices(query_services_client, management_client, user_services_client)
+test_legacy_services = SymantecLegacyServices(legacy_client)
 
 #send_push_to_phone_result = test_user_services_object.authenticateUserWithPush("push_123", "gabe_phone")
 #print(test_user_services_object.__str__("push_123", "gabe_phone"))
@@ -178,10 +183,10 @@ test_services = SymantecServices(query_services_client, management_client, user_
 # print(response_add)
 # print(response_add["status"])
 
-response = test_management_services_object.removeCredential("remove_123", "new_user3", "VSMT16833399", "STANDARD_OTP")
-response_del = recursive_asdict(response)
-print(response_del)
-print(response_del["status"])
+# response = test_management_services_object.removeCredential("remove_123", "new_user3", "VSMT16833399", "STANDARD_OTP")
+# response_del = recursive_asdict(response)
+# print(response_del)
+# print(response_del["status"])
 
 
 # # test new encompassing class
@@ -259,3 +264,7 @@ def getElementFromTagName(xml, tag, selected=1):
     return nodes[selected - 1].firstChild.nodeValue
 
 # print(getElementFromTagName(reply,"st"))
+
+
+# test_management_services_object.addCredentialOtp("TestAddCredit", "detersjo11@msu.edu", "VSTZ43724471", "STANDARD_OTP",
+#                                                  "942551")
