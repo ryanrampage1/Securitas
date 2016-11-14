@@ -268,3 +268,13 @@ def getElementFromTagName(xml, tag, selected=1):
 
 # test_management_services_object.addCredentialOtp("TestAddCredit", "detersjo11@msu.edu", "VSTZ43724471", "STANDARD_OTP",
 #                                                  "942551")
+
+# print(legacy_client)
+token = legacy_client.factory.create("ns0:TokenIdType")
+token.value = "TEST"
+token._type = "SMS"
+print (token)
+authId = legacy_client.factory.create("ns0:AccountIdType")
+print(authId)
+reason = legacy_client.factory.create("ns0:ReasonType")
+print(reason)

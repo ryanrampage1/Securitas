@@ -36,43 +36,66 @@ class SymantecLegacyServices:
         self.client = client
         self.response = None
 
-    # NOTE: NEED TO FIX SO THAT <TokenId type="SMS">
     def setTemporaryPassword(self, credentialId, password, expirationDate=None, oneTimeUseOnly=None):
-        res = self.client.service.setTemporaryPassword(TokenId=credentialId, TemporaryPassword=password, ExpirationDate=
+        id = self.client.factory.create("ns0:TokenIdType")
+        id.value = credentialId
+        id._type = "SMS"
+        res = self.client.service.setTemporaryPassword(TokenId=id, TemporaryPassword=password, ExpirationDate=
                                                        expirationDate, OneTimeUseOnly=oneTimeUseOnly)
         self.response = res
         return res
 
-    # NOTE: NEED TO FIX SO THAT <TokenId type="SMS">
+
     def sendOtpSmsUsingCredentialId(self, credentialId, authorizerAccountId=None,SMSFrom=None, message=None):
+        id = self.client.factory.create("ns0:TokenIdType")
+        id.value = credentialId
+        id._type = "SMS"
         if SMSFrom is None and message is None:
-            res = self.client.service.SendOtp(AuthorizerAccountId=authorizerAccountId, TokenId=credentialId,
+            res = self.client.service.SendOtp(AuthorizerAccountId=authorizerAccountId, TokenId=id,
                                               SMSDeliveryInfo=None, VoiceDeliveryInfo=None)
         elif SMSFrom is None and message is not None:
-            res = self.client.service.SendOtp(AuthorizerAccountId=authorizerAccountId, TokenId=credentialId,
+            res = self.client.service.SendOtp(AuthorizerAccountId=authorizerAccountId, TokenId=id,
                                               SMSDeliveryInfo={"Message": message}, VoiceDeliveryInfo=None)
         elif SMSFrom is not None and message is None:
-            res = self.client.service.SendOtp(AuthorizerAccountId=authorizerAccountId, TokenId=credentialId,
+            res = self.client.service.SendOtp(AuthorizerAccountId=authorizerAccountId, TokenId=id,
                                               SMSDeliveryInfo={"SMSFrom": SMSFrom}, VoiceDeliveryInfo=None)
         else:
-            res = self.client.service.SendOtp(AuthorizerAccountId=authorizerAccountId, TokenId=credentialId,
+            res = self.client.service.SendOtp(AuthorizerAccountId=authorizerAccountId, TokenId=id,
                                               SMSDeliveryInfo={"SMSFrom": SMSFrom, "Message":message}, VoiceDeliveryInfo=None)
         self.response = res
         return res
 
-    # NOTE: NEED TO FIX SO THAT <TokenId type="SMS">
-    def enableCredentialSMS(self, credentialId, authorizerAccountId=None):
-        res = self.client.service.EnableToken(AuthorizerAccountId=authorizerAccountId, TokenId=credentialId)
+
+    def enableCredentialSMS(self, credentialId, otp1=None, otp2=None, authorizerAccountId=None):
+        id = self.client.factory.create("ns0:TokenIdType")
+        id.value = credentialId
+        id._type = "SMS"
+        res = self.client.service.EnableToken(AuthorizerAccountId=authorizerAccountId, TokenId=id, OTP1=otp1, OTP2=otp2)
         self.response = res
         return res
-    # same here
-    def activateCredentialSMS(self):
+
+    def activateCredentialSMS(self, credentialId, otp1=None, otp2=None, authorizerAccountId=None):
+        id = self.client.factory.create("ns0:TokenIdType")
+        id.value = credentialId
+        id._type = "SMS"
+        res = self.client.service.ActivateToken(AuthorizerAccountId=authorizerAccountId, TokenId=id, OTP1=otp1,OTP2=otp2)
+        self.response = res
         return self.response
-    # NOTE: NEED TO FIX SO THAT <TokenId type="SMS">
-    def disableCredentialSMS(self):
+
+    def disableCredentialSMS(self, credentialId, reason=None, authorizerAccountId=None):
+        id = self.client.factory.create("ns0:TokenIdType")
+        id.value = credentialId
+        id._type = "SMS"
+        res = self.client.service.DisableToken(AuthorizerAccountId=authorizerAccountId, TokenId=id, Reason=reason)
+        self.response = res
         return self.response
-    # same here
-    def deactivateCredentialSMS(self):
+
+    def deactivateCredentialSMS(self, credentialId, reason=None, authorizerAccountId=None):
+        id = self.client.factory.create("ns0:TokenIdType")
+        id.value = credentialId
+        id._type = "SMS"
+        res = self.client.service.DeactivateToken(AuthorizerAccountId=authorizerAccountId, TokenId=id, Reason=reason)
+        self.response = res
         return self.response
 
     def getFieldContent(self, fieldname):
@@ -182,3 +205,176 @@ class SymantecLegacyServices:
 
         """
         return response[firstPair]
+## CLIENT VARIABLES
+# Prefixes (1)
+#       ns0 = "https://schemas.vip.symantec.com/2006/08/vipservice"
+#    Ports (1):
+#       (vipServiceAPI)
+#          Methods (28):
+#             ActivateToken(AccountIdType AuthorizerAccountId, TokenIdType TokenId, OTPType OTP1, OTPType OTP2)
+#             CheckOTP(AccountIdType AuthorizerAccountId, TokenIdType TokenId, OTPType OTP1, OTPType OTP2, xs:boolean acceptTemporaryPassword)
+#             DeactivateToken(AccountIdType AuthorizerAccountId, TokenIdType TokenId, ReasonType Reason)
+#             DeliverSMS(AccountIdType AuthorizerAccountId, TokenIdType TokenId, SMSOperationType SMSOperation, SMSDeliveryInfoType SMSDeliveryInfo, GatewayAcctInfoType GatewayAcctInfo)
+#             DeliverTxnOTP(AccountIdType AuthorizerAccountId, TxnOTPType TxnOTP, DestinationType Destination, SMSDeliveryInfoType SMSDeliveryInfo, VoiceDeliveryInfoType VoiceDeliveryInfo)
+#             DisableToken(AccountIdType AuthorizerAccountId, TokenIdType TokenId, ReasonType Reason)
+#             EnableToken(AccountIdType AuthorizerAccountId, TokenIdType TokenId)
+#             GenerateTemporaryPassword(AccountIdType AuthorizerAccountId, TokenIdType TokenId, xs:dateTime ExpirationDate, xs:boolean OneTimeUseOnly)
+#             GetAdapterConfiguration(AccountIdType AuthorizerAccountId, AdapterType Adapter)
+#             GetAdminCode(AccountIdType AuthorizerAccountId, TokenIdType TokenId, RequestCodeType RequestCode)
+#             GetServerTime()
+#             GetTemporaryPwdExpiration(AccountIdType AuthorizerAccountId, TokenIdType TokenId)
+#             GetTokenInformation(AccountIdType AuthorizerAccountId, TokenIdType TokenId)
+#             PollTxnVerification(AccountIdType AuthorizerAccountId, TxnIdType TxnId)
+#             Register(AccountIdType AuthorizerAccountId, TokenIdType TokenId, xs:boolean DeliverOTP, SMSDeliveryInfoType SMSDeliveryInfo, VoiceDeliveryInfoType VoiceDeliveryInfo)
+#             SendOTP(AccountIdType AuthorizerAccountId, TokenIdType TokenId, SMSDeliveryInfoType SMSDeliveryInfo, VoiceDeliveryInfoType VoiceDeliveryInfo)
+#             SendTemporaryPassword(AccountIdType AuthorizerAccountId, TokenIdType TokenId, PhoneNumberType PhoneNumber, DestinationType Destination, GatewayAcctInfoType GatewayAcctInfo, xs:dateTime ExpirationDate, SMSDeliveryInfoType SMSDeliveryInfo, VoiceDeliveryInfoType VoiceDeliveryInfo)
+#             SetAdapterConfiguration(AccountIdType AuthorizerAccountId, AdapterType Adapter, AdapterInfoServerOTPType AdapterInfoServerOTP, AdapterInfoEventBasedType AdapterInfoEventBased, AdapterInfoTimeBasedType AdapterInfoTimeBased, AdapterInfoHOTPTimeBasedType AdapterInfoHOTPTimeBased, AdapterInfoSMSOTPType AdapterInfoSMSOTP, AdapterInfoVoiceOTPType AdapterInfoVoiceOTP, AdapterInfoChallengeResponseBasedType AdapterInfoChallengeResponseBased)
+#             SetTemporaryPassword(AccountIdType AuthorizerAccountId, TokenIdType TokenId, TempPwdType TemporaryPassword, xs:dateTime ExpirationDate, xs:boolean OneTimeUseOnly)
+#             SetTemporaryPwdExpiration(AccountIdType AuthorizerAccountId, TokenIdType TokenId, xs:dateTime ExpirationDate)
+#             SetTokenAttributes(AccountIdType AuthorizerAccountId, TokenIdType TokenId, DigestType ProofOfPossession, NameValuePairType[] Attribute)
+#             SubmitTxnVerification(AccountIdType AuthorizerAccountId, PhoneNumberType PhoneNumber, TxnOTPType TxnOTP, LanguageType Language, TemplateNameType VoiceTemplateName, NameValuePairType[] NamedParam)
+#             Synchronize(AccountIdType AuthorizerAccountId, TokenIdType TokenId, OTPType OTP1, OTPType OTP2)
+#             UnlockToken(AccountIdType AuthorizerAccountId, TokenIdType TokenId)
+#             Validate(AccountIdType AuthorizerAccountId, TokenIdType TokenId, OTPType OTP)
+#             ValidateCR(AccountIdType AuthorizerAccountId, TokenIdType[] TokenIds, NumericChallengeType NumericChallenge, HexChallengeType HexChallenge, OTPType Response, xs:boolean CheckOnly, OCRAUsageType Usage)
+#             ValidateMultiple(AccountIdType AuthorizerAccountId, TokenIdType[] TokenIds, OTPType OTP, xs:boolean SendSuccessfulTokenId)
+#             VerifyTxnOTP(AccountIdType AuthorizerAccountId, TxnIdType TxnId, TxnOTPType TxnOTP)
+#          Types (138):
+#             ACProfileType
+#             AbstractExtensionType
+#             AccountIdType
+#             AccountInformationType
+#             AccountRequestAbstractType
+#             AccountType
+#             ActivateTokenResponseType
+#             ActivateTokenType
+#             ActivationCodeStatusType
+#             ActivationCodeType
+#             AdapterInfoChallengeResponseBasedType
+#             AdapterInfoEventBasedType
+#             AdapterInfoHOTPTimeBasedType
+#             AdapterInfoSMSOTPType
+#             AdapterInfoServerOTPType
+#             AdapterInfoTimeBasedType
+#             AdapterInfoVoiceOTPType
+#             AdapterType
+#             AuthentifyVoiceDeliveryInfoType
+#             BrandInfoType
+#             ChallengeFormatType
+#             ChallengeResponseFormatType
+#             CheckOTPResponseType
+#             CheckOTPType
+#             DataType
+#             DeactivateTokenResponseType
+#             DeactivateTokenType
+#             DeliverSMSResponseType
+#             DeliverSMSType
+#             DeliverTxnOTPResponseType
+#             DeliverTxnOTPType
+#             DeliveryInfoForVendorType
+#             DestinationType
+#             DeviceIdType
+#             DeviceType
+#             DigestType
+#             DisableTokenResponseType
+#             DisableTokenType
+#             EnableTokenResponseType
+#             EnableTokenType
+#             EncryptionAlgorithmType
+#             EncryptionMethodType
+#             FeatureListType
+#             FormFactorType
+#             GatewayAcctInfoType
+#             GatewayIdType
+#             GatewayResponseType
+#             GenerateTemporaryPasswordResponseType
+#             GenerateTemporaryPasswordType
+#             GetAdapterConfigurationResponseType
+#             GetAdapterConfigurationType
+#             GetAdminCodeResponseType
+#             GetAdminCodeType
+#             GetServerTimeResponseType
+#             GetServerTimeType
+#             GetTemporaryPwdExpirationResponseType
+#             GetTemporaryPwdExpirationType
+#             GetTokenInformationResponseType
+#             GetTokenInformationType
+#             HexChallengeType
+#             IdType
+#             KeyType
+#             LanguageType
+#             LogoType
+#             MessageAbstractType
+#             MessageType
+#             MimeTypeType
+#             MovingFactorType
+#             MultipleTokensRequestType
+#             NameValuePairType
+#             NetworkIntelligenceType
+#             NumericChallengeType
+#             OCRASuiteType
+#             OCRAUsageType
+#             OTPIndexType
+#             OTPType
+#             OtpAlgorithmIdentifierType
+#             OtpGeneratedByType
+#             PhoneNumberType
+#             PollTxnVerificationResponseType
+#             PollTxnVerificationType
+#             ReasonType
+#             RegisterResponseType
+#             RegisterType
+#             RequestAbstractType
+#             RequestCodeType
+#             ResponseAbstractType
+#             ResponseWithStatusType
+#             SMSDeliveryInfoType
+#             SMSFromType
+#             SMSOperationType
+#             SecretContainerType
+#             SecretType
+#             SendOTPResponseType
+#             SendOTPType
+#             SendTemporaryPasswordResponseType
+#             SendTemporaryPasswordType
+#             ServerInfoType
+#             SetAdapterConfigurationResponseType
+#             SetAdapterConfigurationType
+#             SetTemporaryPasswordResponseType
+#             SetTemporaryPasswordType
+#             SetTemporaryPwdExpirationResponseType
+#             SetTemporaryPwdExpirationType
+#             SetTokenAttributesResponseType
+#             SetTokenAttributesType
+#             SharedSecretDeliveryMethodType
+#             StatusType
+#             SubmitTxnVerificationResponseType
+#             SubmitTxnVerificationType
+#             SynchronizeResponseType
+#             SynchronizeType
+#             TempPwdType
+#             TemplateNameType
+#             TokenCategoryDetailsType
+#             TokenCategoryType
+#             TokenIdType
+#             TokenInformationType
+#             TokenModelType
+#             TokenRequestType
+#             TokenStatusCountType
+#             TokenStatusType
+#             TokenType
+#             TxnIdType
+#             TxnOTPType
+#             UnlockTokenResponseType
+#             UnlockTokenType
+#             UsageType
+#             ValidateCRResponseType
+#             ValidateCRType
+#             ValidateMultipleResponseType
+#             ValidateMultipleType
+#             ValidateResponseType
+#             ValidateType
+#             VerifyTxnOTPResponseType
+#             VerifyTxnOTPType
+#             VersionType
+#             VoiceDeliveryInfoType
