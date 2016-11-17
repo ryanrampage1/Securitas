@@ -7,8 +7,10 @@
 
 """
 
-import string
-import random       #random/string to generate random request IDs
+
+from suds.sudsobject import asdict
+import json
+from datetime import datetime
 
 ### A class to represent the functions that Symantec User Services provides
 class SymantecUserServices:
@@ -44,17 +46,7 @@ class SymantecUserServices:
         # self.includePushAttributes = includePushAttributes
 
 
-    ###  Call the client's authenticateUser function
-    # def authenticateUser(self, requestId, userId, securityCode, pin=None, authContext=None, onBehalfOfAccountId=None):
-    #     res = self.client.service.authenticateUser(requestId=requestId,onBehalfOfAccountId=onBehalfOfAccountId,
-    #                                                userId=userId, otpAuthData={"otp": securityCode},
-    #                                                pin=pin, authContext=authContext)
-    #     self.response = res
-    #     # print(res)
-    #     return res
 
-
-    # I fixed this one; Someone fix the following ones
     def authenticateUser(self, requestId, userId, otp1, otp2=None, value=None, key="authLevel.level", authContext=None,
                          pin=None, onBehalfOfAccountId=None):
         if otp2 == None:
@@ -75,8 +67,8 @@ class SymantecUserServices:
                 res = self.client.service.authenticateUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                                    userId=userId, pin=pin, otpAuthData={"otp": otp1, "otp2": otp2},
                                                        authContext=authContext)
+        res = self.convert_to_hash(res)
         self.response = res
-        # print(res)
         return res
 
 
@@ -93,12 +85,13 @@ class SymantecUserServices:
         else:
             res = self.client.service.authenticateCredentials(requestId=requestId, credentials=credentials, onBehalfOfAccountId=onBehalfOfAccountId,
                                                           otpAuthData={"otp": otp1}, pushAuthData=pushAuthData, activate=activate, authContext=authContext)
+
+        res = self.convert_to_hash(res)
         self.response = res
-        # print(self.response)
         return res
 
     # Missing some parameters in Documentation!!!!!
-    def authenticateCredentialWithPush(self, requestId, credentialId,activate=None, pushAuthData=None,
+    def authenticateCredentialWithPush(self, requestId, credentialId, activate=None, pushAuthData=None,
                                         key="authLevel.level", value=None, authContext=None, onBehalfOfAccountId=None):
         """
             :description: *Authenticates a user via a Push notification using their credential ID.*
@@ -133,14 +126,12 @@ class SymantecUserServices:
                                                               pushAuthData=pushAuthData,
                                                               authContext=authContext)
 
+        res = self.convert_to_hash(res)
         self.response = res
-
         return res
 
 
-
-
-    def authenticateCredentialWithSMS(self, requestId, credentialId_phoneNumber, otp1,otp2=None, activate=None, onBehalfOfAccountId=None):
+    def authenticateCredentialWithSMS(self, requestId, credentialId_phoneNumber, otp1, otp2=None, activate=None, onBehalfOfAccountId=None):
         if otp2 is None:
             res = self.client.service.authenticateCredentials(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                                               credentials={"credentialId": credentialId_phoneNumber,
@@ -152,12 +143,12 @@ class SymantecUserServices:
                                                               credentials={"credentialId": credentialId_phoneNumber,
                                                                            "credentialType": "SMS_OTP"},
                                                               activate=activate, otpAuthData={"otp": otp1, "otp2": otp2})
+        res = self.convert_to_hash(res)
         self.response = res
-        # print(self.response)
         return res
 
 
-    def authenticateCredentialWithStandard_OTP(self, requestId, credentialId,otp1,otp2=None, activate=None, onBehalfOfAccountId=None):
+    def authenticateCredentialWithStandard_OTP(self, requestId, credentialId, otp1, otp2=None, activate=None, onBehalfOfAccountId=None):
         if otp2 is None:
             res = self.client.service.authenticateCredentials(requestId=requestId,
                                                               onBehalfOfAccountId=onBehalfOfAccountId,
@@ -170,8 +161,8 @@ class SymantecUserServices:
                                                               credentials={"credentialId": credentialId,
                                                                            "credentialType": "STANDARD_OTP"},
                                                               activate=activate, otpAuthData={"otp": otp1, "otp2": otp2})
+        res = self.convert_to_hash(res)
         self.response = res
-        # print(self.response)
         return res
 
 
@@ -185,8 +176,8 @@ class SymantecUserServices:
             res = self.client.service.authenticateUserWithPush(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                                          userId=userId, pin=pin, pushAuthData=pushAuthData,
                                                          authContext={"params":{"Key":key, "Value":value}})
+        res = self.convert_to_hash(res)
         self.response = res
-        # print(self.response)
         return res
 
 
@@ -209,16 +200,16 @@ class SymantecUserServices:
                 res = self.client.service.authenticateUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                                    userId=userId, otpAuthData={"otp": otp1, "otp2": otp2},
                                                        authContext=authContext)
+        res = self.convert_to_hash(res)
         self.response = res
-        # print(res)
         return res
 
     def confirmRisk(self, requestId, UserId, EventId, VerifyMethod=None, KeyValuePair=None, onBehalfOfAccountId=None):
         # note: keyValuePair is a list containing key + value
         res = self.client.service.confirmRisk(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId, UserId=UserId,
                                               EventId=EventId, VerifyMethod=VerifyMethod, KeyValuePair=KeyValuePair)
+        res = self.convert_to_hash(res)
         self.response = res
-        # print(res)
         return res
 
     def denyRisk(self, requestId, UserId, EventId, VerifyMethod=None, IAAuthData=None, isRememberDevice=None,
@@ -226,15 +217,15 @@ class SymantecUserServices:
         res = self.client.service.denyRisk(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                               UserId=UserId, EventId=EventId, VerifyMethod=VerifyMethod, IAAuthData=IAAuthData,
                                               RememberDevice=isRememberDevice, FriendlyName=FriendlyName, KeyValuePair=KeyValuePair)
+        res = self.convert_to_hash(res)
         self.response = res
-        # print(res)
         return res
 
     def evaluateRisk(self, requestId, UserId, IpAddress, UserAgent, IAAuthData=None, KeyValuePair=None, onBehalfOfAccountId=None):
         res = self.client.service.evaluateRisk(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId, UserId=UserId,
                                                Ip=IpAddress, UserAgent=UserAgent, IAAuthData=IAAuthData, KeyValuePair=KeyValuePair)
+        res = self.convert_to_hash(res)
         self.response = res
-        # print (res)
         return res
 
     def getFieldContent(self, fieldname):
@@ -340,3 +331,22 @@ class SymantecUserServices:
 
         """
         return response[firstPair]
+
+    def convert_to_hash(self, d):
+        """Convert Suds object into serializable format."""
+        out = {}
+        for k, v in asdict(d).items():
+            if type(v) is datetime:
+                v = str(v)
+            if hasattr(v, '__keylist__'):
+                out[k] = self.convert_to_hash(v)
+            elif isinstance(v, list):
+                out[k] = []
+                for item in v:
+                    if hasattr(item, '__keylist__'):
+                        out[k].append(self.convert_to_hash(item))
+                    else:
+                        out[k].append(item)
+            else:
+                out[k] = v
+        return out

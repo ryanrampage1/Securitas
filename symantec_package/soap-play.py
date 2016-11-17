@@ -161,11 +161,16 @@ test_legacy_services = SymantecLegacyServices(legacy_client)
 # print(response_json)
 # print(response_json["status"])
 
-# response = test_user_services_object.authenticateCredentialWithPush("push_123", "VSMT16833399", True)
-# response_push = recursive_asdict(response)
-# print(response_push)
-# print(response_push["status"])
-# print (type(testTime))
+response = test_user_services_object.authenticateUserWithPush("push_123", "gabe_phone")
+#response_push = recursive_asdict(response)
+print(response)
+print(response["status"])
+
+
+
+
+
+
 
 # response = test_management_services_object.createUser("create_123", "new_user3")
 # response_create = recursive_asdict(response)
@@ -270,11 +275,12 @@ def getElementFromTagName(xml, tag, selected=1):
 #                                                  "942551")
 
 # print(legacy_client)
-token = legacy_client.factory.create("ns0:TokenIdType")
-token.value = "TEST"
-token._type = "SMS"
-print (token)
-authId = legacy_client.factory.create("ns0:AccountIdType")
-print(authId)
-reason = legacy_client.factory.create("ns0:ReasonType")
-print(reason)
+# token = legacy_client.factory.create("ns0:TokenIdType")
+# token.value = "TEST"
+# token._type = "SMS"
+# print (token)
+# authId = legacy_client.factory.create("ns0:AccountIdType")
+# print(authId)
+# reason = legacy_client.factory.create("ns0:ReasonType")
+# print(reason)
+# response = test_legacy_services.sendOtpSmsUsingCredentialId("VSMT16833399")
