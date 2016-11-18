@@ -67,7 +67,7 @@ class SymantecUserServices:
                 res = self.client.service.authenticateUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                                    userId=userId, pin=pin, otpAuthData={"otp": otp1, "otp2": otp2},
                                                        authContext=authContext)
-        res = self.convert_to_hash(res)
+        # res = self.convert_to_hash(res)
         self.response = res
         return res
 
@@ -86,7 +86,7 @@ class SymantecUserServices:
             res = self.client.service.authenticateCredentials(requestId=requestId, credentials=credentials, onBehalfOfAccountId=onBehalfOfAccountId,
                                                           otpAuthData={"otp": otp1}, pushAuthData=pushAuthData, activate=activate, authContext=authContext)
 
-        res = self.convert_to_hash(res)
+        # res = self.convert_to_hash(res)
         self.response = res
         return res
 
@@ -126,7 +126,7 @@ class SymantecUserServices:
                                                               pushAuthData=pushAuthData,
                                                               authContext=authContext)
 
-        res = self.convert_to_hash(res)
+        # res = self.convert_to_hash(res)
         self.response = res
         return res
 
@@ -143,7 +143,7 @@ class SymantecUserServices:
                                                               credentials={"credentialId": credentialId_phoneNumber,
                                                                            "credentialType": "SMS_OTP"},
                                                               activate=activate, otpAuthData={"otp": otp1, "otp2": otp2})
-        res = self.convert_to_hash(res)
+        # res = self.convert_to_hash(res)
         self.response = res
         return res
 
@@ -161,7 +161,7 @@ class SymantecUserServices:
                                                               credentials={"credentialId": credentialId,
                                                                            "credentialType": "STANDARD_OTP"},
                                                               activate=activate, otpAuthData={"otp": otp1, "otp2": otp2})
-        res = self.convert_to_hash(res)
+        # res = self.convert_to_hash(res)
         self.response = res
         return res
 
@@ -176,7 +176,7 @@ class SymantecUserServices:
             res = self.client.service.authenticateUserWithPush(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                                          userId=userId, pin=pin, pushAuthData=pushAuthData,
                                                          authContext={"params":{"Key":key, "Value":value}})
-        res = self.convert_to_hash(res)
+        # res = self.convert_to_hash(res)
         self.response = res
         return res
 
@@ -200,7 +200,7 @@ class SymantecUserServices:
                 res = self.client.service.authenticateUser(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                                    userId=userId, otpAuthData={"otp": otp1, "otp2": otp2},
                                                        authContext=authContext)
-        res = self.convert_to_hash(res)
+        # res = self.convert_to_hash(res)
         self.response = res
         return res
 
@@ -208,7 +208,7 @@ class SymantecUserServices:
         # note: keyValuePair is a list containing key + value
         res = self.client.service.confirmRisk(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId, UserId=UserId,
                                               EventId=EventId, VerifyMethod=VerifyMethod, KeyValuePair=KeyValuePair)
-        res = self.convert_to_hash(res)
+        # res = self.convert_to_hash(res)
         self.response = res
         return res
 
@@ -217,14 +217,14 @@ class SymantecUserServices:
         res = self.client.service.denyRisk(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId,
                                               UserId=UserId, EventId=EventId, VerifyMethod=VerifyMethod, IAAuthData=IAAuthData,
                                               RememberDevice=isRememberDevice, FriendlyName=FriendlyName, KeyValuePair=KeyValuePair)
-        res = self.convert_to_hash(res)
+        # res = self.convert_to_hash(res)
         self.response = res
         return res
 
     def evaluateRisk(self, requestId, UserId, IpAddress, UserAgent, IAAuthData=None, KeyValuePair=None, onBehalfOfAccountId=None):
         res = self.client.service.evaluateRisk(requestId=requestId, onBehalfOfAccountId=onBehalfOfAccountId, UserId=UserId,
                                                Ip=IpAddress, UserAgent=UserAgent, IAAuthData=IAAuthData, KeyValuePair=KeyValuePair)
-        res = self.convert_to_hash(res)
+        # res = self.convert_to_hash(res)
         self.response = res
         return res
 
