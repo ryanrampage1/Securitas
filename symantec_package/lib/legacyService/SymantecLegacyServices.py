@@ -36,6 +36,7 @@ class SymantecLegacyServices:
         self.client = client
         self.response = None
 
+    # DEPRECATED and NOT SUPPORTED with xlmns envelope
     def setTemporaryPassword(self, credentialId, password, expirationDate=None, oneTimeUseOnly=None):
         id = self.client.factory.create("ns0:TokenIdType")
         id.value = credentialId
@@ -45,19 +46,19 @@ class SymantecLegacyServices:
         self.response = res
         return res
 
-
+    #DEPRECATED and NOT SUPPORTED with xlmns envelope
     def sendOtpSmsUsingCredentialId(self, credentialId, authorizerAccountId=None,SMSFrom=None, message=None):
         id = self.client.factory.create("ns0:TokenIdType")
         id.value = credentialId
         id._type = "SMS"
         if SMSFrom is None and message is None:
-            res = self.client.service.SendOtp(AuthorizerAccountId=authorizerAccountId, TokenId=id,
+            res = self.client.service.SendOTP(AuthorizerAccountId=authorizerAccountId, TokenId=id,
                                               SMSDeliveryInfo=None, VoiceDeliveryInfo=None)
         elif SMSFrom is None and message is not None:
-            res = self.client.service.SendOtp(AuthorizerAccountId=authorizerAccountId, TokenId=id,
+            res = self.client.service.SendOTP(AuthorizerAccountId=authorizerAccountId, TokenId=id,
                                               SMSDeliveryInfo={"Message": message}, VoiceDeliveryInfo=None)
         elif SMSFrom is not None and message is None:
-            res = self.client.service.SendOtp(AuthorizerAccountId=authorizerAccountId, TokenId=id,
+            res = self.client.service.SendOTP(AuthorizerAccountId=authorizerAccountId, TokenId=id,
                                               SMSDeliveryInfo={"SMSFrom": SMSFrom}, VoiceDeliveryInfo=None)
         else:
             res = self.client.service.SendOtp(AuthorizerAccountId=authorizerAccountId, TokenId=id,
@@ -65,7 +66,7 @@ class SymantecLegacyServices:
         self.response = res
         return res
 
-
+    # DEPRECATED and NOT SUPPORTED with xlmns envelope
     def enableCredentialSMS(self, credentialId, otp1=None, otp2=None, authorizerAccountId=None):
         id = self.client.factory.create("ns0:TokenIdType")
         id.value = credentialId
@@ -74,6 +75,7 @@ class SymantecLegacyServices:
         self.response = res
         return res
 
+    # DEPRECATED and NOT SUPPORTED with xlmns envelope
     def activateCredentialSMS(self, credentialId, otp1=None, otp2=None, authorizerAccountId=None):
         id = self.client.factory.create("ns0:TokenIdType")
         id.value = credentialId
@@ -82,6 +84,7 @@ class SymantecLegacyServices:
         self.response = res
         return self.response
 
+    # DEPRECATED and NOT SUPPORTED with xlmns envelope
     def disableCredentialSMS(self, credentialId, reason=None, authorizerAccountId=None):
         id = self.client.factory.create("ns0:TokenIdType")
         id.value = credentialId
@@ -90,6 +93,7 @@ class SymantecLegacyServices:
         self.response = res
         return self.response
 
+    # DEPRECATED and NOT SUPPORTED with xlmns envelope
     def deactivateCredentialSMS(self, credentialId, reason=None, authorizerAccountId=None):
         id = self.client.factory.create("ns0:TokenIdType")
         id.value = credentialId

@@ -161,10 +161,10 @@ test_legacy_services = SymantecLegacyServices(legacy_client)
 # print(response_json)
 # print(response_json["status"])
 
-response = test_user_services_object.authenticateUserWithPush("push_123", "gabe_phone")
+# response = test_user_services_object.authenticateUserWithPush("push_123", "gabe_phone")
 #response_push = recursive_asdict(response)
-print(response)
-print(response["status"])
+# print(response)
+# print(response["status"])
 
 
 
@@ -275,12 +275,18 @@ def getElementFromTagName(xml, tag, selected=1):
 #                                                  "942551")
 
 # print(legacy_client)
-# token = legacy_client.factory.create("ns0:TokenIdType")
-# token.value = "TEST"
-# token._type = "SMS"
+token = legacy_client.factory.create("ns0:TokenIdType")
+token.value = "16167803665"
+token._type = "SMS"
 # print (token)
 # authId = legacy_client.factory.create("ns0:AccountIdType")
 # print(authId)
 # reason = legacy_client.factory.create("ns0:ReasonType")
 # print(reason)
-# response = test_legacy_services.sendOtpSmsUsingCredentialId("VSMT16833399")
+# response = test_legacy_services.sendOtpSmsUsingCredentialId("VSTZ43724471")
+
+# response = legacy_client.service.SendOTP(TokenId=token)
+# print(response)
+
+r = test_query_services_object.pollPushStatus("testing123", "0fdgdf34a")
+print (r)
