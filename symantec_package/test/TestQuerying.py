@@ -1,7 +1,6 @@
 import unittest
 from unittest.mock import Mock, patch
 from suds.client import Client
-import sys
 import symantec_package
 
 # from symantec_package.lib.userService.SymantecUserServices import SymantecUserServices
@@ -9,7 +8,6 @@ from symantec_package.lib.queryService.SymantecQueryServices import SymantecQuer
 # from symantec_package.lib.managementService.SymantecManagementServices import SymantecManagementServices
 # from symantec_package.lib.allServices.SymantecServices import SymantecServices
 from symantec_package.HTTPHandler import setConnection, HTTPSClientAuthHandler, HTTPSClientCertTransport
-import json
 
 class TestQuerying(unittest.TestCase):
     def setUp(self):
@@ -36,23 +34,23 @@ class TestQuerying(unittest.TestCase):
 
     @patch('symantec_package.lib.queryService.SymantecQueryServices')
     def test_getUserInfo(self, mock_query):
-        reply = {"requestId":"testy", "status": "0000", "statusMessage": "Success", "userId": "Allen",
+        reply = {"requestId": "testy", "status": "0000", "statusMessage": "Success", "userId": "Allen",
                  "userCreationTime": "1337-00-15T16:01:01.687Z", "userStatus": "ACTIVE", "numBindings": 9001}
 
         mock_query.SymantecQueryServices.getUserInfo.return_value = Mock()
-        mock_query.getUserInfo.return_value.json.return_value = reply
+        mock_query.getUserInfo.return_value.hash.return_value = reply
 
         response = symantec_package.lib.queryService.SymantecQueryServices.getUserInfo("testy", "Allen")
 
-        self.assertTrue((response.json()) == reply)
+        self.assertTrue((response.hash()) == reply)
 
-        self.assertTrue(response.json()["status"] == "0000")
-        self.assertTrue(response.json()['requestId'] == "testy")
-        self.assertTrue(response.json()['statusMessage'] == "Success")
-        self.assertTrue(response.json()['userId'] == "Allen")
-        self.assertTrue(response.json()['userCreationTime'] == "1337-00-15T16:01:01.687Z")
-        self.assertTrue(response.json()['userStatus'] == "ACTIVE")
-        self.assertTrue(response.json()['numBindings'] == 9001)
+        self.assertTrue(response.hash()["status"] == "0000")
+        self.assertTrue(response.hash()['requestId'] == "testy")
+        self.assertTrue(response.hash()['statusMessage'] == "Success")
+        self.assertTrue(response.hash()['userId'] == "Allen")
+        self.assertTrue(response.hash()['userCreationTime'] == "1337-00-15T16:01:01.687Z")
+        self.assertTrue(response.hash()['userStatus'] == "ACTIVE")
+        self.assertTrue(response.hash()['numBindings'] == 9001)
         # result = self.test_query_services.getUserInfo("TEST", "Arren_phone")
         # self.assertTrue("0000" in str(result))  # check if success status
         # self.assertTrue('userId = "Arren_phone"')
@@ -71,13 +69,13 @@ class TestQuerying(unittest.TestCase):
         reply = {"requestId": "TEST", "status": "0000", "timestamp": "2010-07-26T00:54:47.390-07:00"}
 
         mock_query.SymantecQueryServices.getServerTime.return_value = Mock()
-        mock_query.getServerTime.return_value.json.return_value = reply
+        mock_query.getServerTime.return_value.hash.return_value = reply
 
         response = symantec_package.lib.queryService.SymantecQueryServices.getServerTime("TEST")
 
-        self.assertTrue((response.json()) == reply)
-        self.assertTrue(response.json()["status"] == "0000")
-        self.assertTrue(response.json()["timestamp"] == "2010-07-26T00:54:47.390-07:00")
+        self.assertTrue((response.hash()) == reply)
+        self.assertTrue(response.hash()["status"] == "0000")
+        self.assertTrue(response.hash()["timestamp"] == "2010-07-26T00:54:47.390-07:00")
 
         pass
 
@@ -98,14 +96,14 @@ class TestQuerying(unittest.TestCase):
                                                                             "oneTimeUseOnly": True}}
 
         mock_query.SymantecQueryServices.getTemporaryPasswordAttributes.return_value = Mock()
-        mock_query.getTemporaryPasswordAttributes.return_value.json.return_value = reply
+        mock_query.getTemporaryPasswordAttributes.return_value.hash.return_value = reply
 
         response = symantec_package.lib.queryService.SymantecQueryServices.getTemporaryPasswordAttributes("123","Arren")
 
-        self.assertTrue((response.json()) == reply)
-        self.assertTrue(response.json()["status"] == "0000")
-        self.assertTrue(response.json()["tempPwdAttributes"]["expirationTime"] == "2011-04-08T08:17:50.000Z")
-        self.assertTrue(response.json()["tempPwdAttributes"]["oneTimeUseOnly"] == True)
+        self.assertTrue((response.hash()) == reply)
+        self.assertTrue(response.hash()["status"] == "0000")
+        self.assertTrue(response.hash()["tempPwdAttributes"]["expirationTime"] == "2011-04-08T08:17:50.000Z")
+        self.assertTrue(response.hash()["tempPwdAttributes"]["oneTimeUseOnly"] == True)
 
         pass
 
@@ -120,14 +118,14 @@ class TestQuerying(unittest.TestCase):
         reply = {"requestId": "TEST_POLL", "status": "0000", "transactionStatus": [{"transactionId": "123321", "status":"7005"}]}
 
         mock_query.SymantecQueryServices.pollPushStatus.return_value = Mock()
-        mock_query.pollPushStatus.return_value.json.return_value = reply
+        mock_query.pollPushStatus.return_value.hash.return_value = reply
 
         response = symantec_package.lib.queryService.SymantecQueryServices.pollPushStatus("TEST_POLL", "123321")
 
-        self.assertTrue((response.json()) == reply)
-        self.assertTrue(response.json()["status"] == "0000")
-        self.assertTrue(response.json()['transactionStatus'][0]["transactionId"] == "123321")
-        self.assertTrue(response.json()['transactionStatus'][0]["status"] == "7005")
+        self.assertTrue((response.hash()) == reply)
+        self.assertTrue(response.hash()["status"] == "0000")
+        self.assertTrue(response.hash()['transactionStatus'][0]["transactionId"] == "123321")
+        self.assertTrue(response.hash()['transactionStatus'][0]["status"] == "7005")
 
         pass
 
@@ -139,7 +137,7 @@ class TestQuerying(unittest.TestCase):
         # test = [{"requestId":"getCredit123"}, {"credentialId":"VSTZ"}]
 
         # Configure the mock to return a response with an OK status code. Also, the mock should have
-        # a `json()` method that returns a list of todos.
+        # a `hash()` method that returns a list of todos.
 
         # mock_query.getCredentialInfo.return_value = Mock()
         # mock_query.getCredentialInfo.suds.return_value = reply
@@ -148,7 +146,7 @@ class TestQuerying(unittest.TestCase):
         # response = info.getCredentialInfo("getCredentialInfo123", "VSTZ00001337")
         # print (response.suds())
         mock_query.SymantecQueryServices.getCredentialInfo.return_value = Mock()
-        mock_query.getCredentialInfo.return_value.json.return_value = reply
+        mock_query.getCredentialInfo.return_value.hash.return_value = reply
 
         # Call the service, which will send a request to the server.
 
@@ -161,24 +159,24 @@ class TestQuerying(unittest.TestCase):
         # mock.assert_called_with(requestId="getCredentialInfo123", credentialId="VSTZ00001337")
 
         response = symantec_package.lib.queryService.SymantecQueryServices.getCredentialInfo()
-        # print(response.json())
+        # print(response.hash())
 
-        # print (response.json()[0]["requestId"])
+        # print (response.hash()[0]["requestId"])
         # print (test[0]["requestId"])
-        # self.assertTrue(test[0]["requestId"] is response.json()[0]["requestId"])
+        # self.assertTrue(test[0]["requestId"] is response.hash()[0]["requestId"])
         # res = self.test_query_services.getCredentialInfo("getCredentialInfo123", "VSTZ00001337")
         # print (res)
-        # for item in response.json():
+        # for item in response.hash():
         #     print(item)
 
         # self.assertTrue(mock_query.called)
         # If the request is sent successfully, then I expect a response to be returned.
-        self.assertTrue((response.json()) == reply)
+        self.assertTrue((response.hash()) == reply)
 
-        self.assertTrue(response.json()["status"] == "0000")
-        self.assertTrue(response.json()['credentialId'] == "VSTZ00001337")
-        self.assertTrue(response.json()['credentialType'] == "STANDARD_OTP")
-        self.assertTrue(response.json()['credentialStatus'] == "ENABLED")
+        self.assertTrue(response.hash()["status"] == "0000")
+        self.assertTrue(response.hash()['credentialId'] == "VSTZ00001337")
+        self.assertTrue(response.hash()['credentialType'] == "STANDARD_OTP")
+        self.assertTrue(response.hash()['credentialStatus'] == "ENABLED")
 
         # result = self.test_query_services.getCredentialInfo("cred123test", "VSTZ43724471")
         #

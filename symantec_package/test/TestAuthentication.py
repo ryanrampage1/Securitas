@@ -30,20 +30,20 @@ class TestAuthentication(unittest.TestCase):
                  "authContext": {"params": {"Key": "authLevel.level", "Value": 10}}}
 
         mock.SymantecUserServices.authenticateUser.return_value = Mock()
-        mock.authenticateUser.return_value.json.return_value = reply
+        mock.authenticateUser.return_value.hash.return_value = reply
 
         response = symantec_package.lib.userService.SymantecUserServices.authenticateNothing("testy", "Allen")
-        self.assertTrue(response.json() != reply)
+        self.assertTrue(response.hash() != reply)
 
         response = symantec_package.lib.userService.SymantecUserServices.authenticateUser("testy", "Allen")
 
-        self.assertTrue((response.json()) == reply)
+        self.assertTrue((response.hash()) == reply)
 
-        self.assertTrue(response.json()["status"] == "0000")
-        self.assertTrue(response.json()['requestId'] == "a123")
-        self.assertTrue(response.json()['statusMessage'] == "Success")
-        self.assertTrue(response.json()['authContext']['params']['Key'] == "authLevel.level")
-        self.assertTrue(response.json()['authContext']['params']['Value'] == 10)
+        self.assertTrue(response.hash()["status"] == "0000")
+        self.assertTrue(response.hash()['requestId'] == "a123")
+        self.assertTrue(response.hash()['statusMessage'] == "Success")
+        self.assertTrue(response.hash()['authContext']['params']['Key'] == "authLevel.level")
+        self.assertTrue(response.hash()['authContext']['params']['Value'] == 10)
 
         pass
 
@@ -59,23 +59,23 @@ class TestAuthentication(unittest.TestCase):
                  "authContext": {"params": {"Key": "authLevel.level", "Value": 10}}}
 
         mock.SymantecUserServices.authenticateCredentials.return_value = Mock()
-        mock.authenticateCredentials.return_value.json.return_value = reply
+        mock.authenticateCredentials.return_value.hash.return_value = reply
 
         response = symantec_package.lib.userService.SymantecUserServices.authenticateNothing("testy", "Allen")
-        self.assertTrue(response.json() != reply)
+        self.assertTrue(response.hash() != reply)
 
         response = symantec_package.lib.userService.SymantecUserServices.authenticateCredentials("testy", "Allen")
 
-        self.assertTrue((response.json()) == reply)
+        self.assertTrue((response.hash()) == reply)
 
-        self.assertTrue(response.json()["status"] == "0000")
-        self.assertTrue(response.json()['requestId'] == "ac123")
-        self.assertTrue(response.json()['statusMessage'] == "Success")
-        self.assertTrue(response.json()['credentialId'] == "18001337")
-        self.assertTrue(response.json()['credentialType'] == "SMS_OTP")
-        self.assertTrue(response.json()['transactionId'] == "RealTransactionId")
-        self.assertTrue(response.json()['authContext']['params']['Key'] == "authLevel.level")
-        self.assertTrue(response.json()['authContext']['params']['Value'] == 10)
+        self.assertTrue(response.hash()["status"] == "0000")
+        self.assertTrue(response.hash()['requestId'] == "ac123")
+        self.assertTrue(response.hash()['statusMessage'] == "Success")
+        self.assertTrue(response.hash()['credentialId'] == "18001337")
+        self.assertTrue(response.hash()['credentialType'] == "SMS_OTP")
+        self.assertTrue(response.hash()['transactionId'] == "RealTransactionId")
+        self.assertTrue(response.hash()['authContext']['params']['Key'] == "authLevel.level")
+        self.assertTrue(response.hash()['authContext']['params']['Value'] == 10)
 
         pass
 
@@ -86,23 +86,23 @@ class TestAuthentication(unittest.TestCase):
                  "authContext": {"params": {"Key": "authLevel.level", "Value": 10}}}
 
         mock.SymantecUserServices.authenticateCredentials.return_value = Mock()
-        mock.authenticateCredentials.return_value.json.return_value = reply
+        mock.authenticateCredentials.return_value.hash.return_value = reply
 
         response = symantec_package.lib.userService.SymantecUserServices.authenticateNothing()
-        self.assertTrue(response.json() != reply)
+        self.assertTrue(response.hash() != reply)
 
         response = symantec_package.lib.userService.SymantecUserServices.authenticateCredentials("Parameters Here!")
 
-        self.assertTrue((response.json()) == reply)
+        self.assertTrue((response.hash()) == reply)
 
-        self.assertTrue(response.json()["status"] == "6040")
-        self.assertTrue(response.json()['requestId'] == "ac123")
-        self.assertTrue(response.json()['statusMessage'] == "Mobile push request sent")
-        self.assertTrue(response.json()["pushDetail"]['pushCredentialId'] == "133709001")
-        self.assertTrue(response.json()["pushDetail"]['pushSent'] == True)
-        self.assertTrue(response.json()['transactionId'] == "RealTransactionId")
-        self.assertTrue(response.json()['authContext']['params']['Key'] == "authLevel.level")
-        self.assertTrue(response.json()['authContext']['params']['Value'] == 10)
+        self.assertTrue(response.hash()["status"] == "6040")
+        self.assertTrue(response.hash()['requestId'] == "ac123")
+        self.assertTrue(response.hash()['statusMessage'] == "Mobile push request sent")
+        self.assertTrue(response.hash()["pushDetail"]['pushCredentialId'] == "133709001")
+        self.assertTrue(response.hash()["pushDetail"]['pushSent'] == True)
+        self.assertTrue(response.hash()['transactionId'] == "RealTransactionId")
+        self.assertTrue(response.hash()['authContext']['params']['Key'] == "authLevel.level")
+        self.assertTrue(response.hash()['authContext']['params']['Value'] == 10)
 
 
         pass
@@ -119,23 +119,23 @@ class TestAuthentication(unittest.TestCase):
                  "authContext": {"params": {"Key": "authLevel.level", "Value": 10}}}
 
         mock.SymantecUserServices.authenticateUserWithPush.return_value = Mock()
-        mock.authenticateUserWithPush.return_value.json.return_value = reply
+        mock.authenticateUserWithPush.return_value.hash.return_value = reply
 
         response = symantec_package.lib.userService.SymantecUserServices.authenticateUserWithNothing()
-        self.assertTrue(response.json() != reply)
+        self.assertTrue(response.hash() != reply)
 
         response = symantec_package.lib.userService.SymantecUserServices.authenticateUserWithPush("Parameters Here!")
 
-        self.assertTrue((response.json()) == reply)
+        self.assertTrue((response.hash()) == reply)
 
-        self.assertTrue(response.json()["status"] == "6040")
-        self.assertTrue(response.json()['requestId'] == "ac123")
-        self.assertTrue(response.json()['statusMessage'] == "Mobile push request sent")
-        self.assertTrue(response.json()["pushDetail"]['pushCredentialId'] == "133709001")
-        self.assertTrue(response.json()["pushDetail"]['pushSent'] is True)
-        self.assertTrue(response.json()['transactionId'] == "RealTransactionId")
-        self.assertTrue(response.json()['authContext']['params']['Key'] == "authLevel.level")
-        self.assertTrue(response.json()['authContext']['params']['Value'] == 10)
+        self.assertTrue(response.hash()["status"] == "6040")
+        self.assertTrue(response.hash()['requestId'] == "ac123")
+        self.assertTrue(response.hash()['statusMessage'] == "Mobile push request sent")
+        self.assertTrue(response.hash()["pushDetail"]['pushCredentialId'] == "133709001")
+        self.assertTrue(response.hash()["pushDetail"]['pushSent'] is True)
+        self.assertTrue(response.hash()['transactionId'] == "RealTransactionId")
+        self.assertTrue(response.hash()['authContext']['params']['Key'] == "authLevel.level")
+        self.assertTrue(response.hash()['authContext']['params']['Value'] == 10)
 
         pass
 
@@ -145,22 +145,22 @@ class TestAuthentication(unittest.TestCase):
                  "credentialType": "STANDARD_OTP", "authContext": {"params": {"Key": "authLevel.level", "Value": 1}}}
 
         mock.SymantecUserServices.checkOtp.return_value = Mock()
-        mock.checkOtp.return_value.json.return_value = reply
+        mock.checkOtp.return_value.hash.return_value = reply
 
         response = symantec_package.lib.userService.SymantecUserServices.checkOut("checkOutyou")
-        self.assertTrue(response.json() != reply)
+        self.assertTrue(response.hash() != reply)
 
         response = symantec_package.lib.userService.SymantecUserServices.checkOtp("PARAMS")
 
-        self.assertTrue((response.json()) == reply)
+        self.assertTrue((response.hash()) == reply)
 
-        self.assertTrue(response.json()["status"] == "0000")
-        self.assertTrue(response.json()['requestId'] == "123")
-        self.assertTrue(response.json()['statusMessage'] == "Success")
-        self.assertTrue(response.json()['credentialId'] == "VSTZ1337")
-        self.assertTrue(response.json()['credentialType'] == "STANDARD_OTP")
-        self.assertTrue(response.json()['authContext']['params']['Key'] == "authLevel.level")
-        self.assertTrue(response.json()['authContext']['params']['Value'] == 1)
+        self.assertTrue(response.hash()["status"] == "0000")
+        self.assertTrue(response.hash()['requestId'] == "123")
+        self.assertTrue(response.hash()['statusMessage'] == "Success")
+        self.assertTrue(response.hash()['credentialId'] == "VSTZ1337")
+        self.assertTrue(response.hash()['credentialType'] == "STANDARD_OTP")
+        self.assertTrue(response.hash()['authContext']['params']['Key'] == "authLevel.level")
+        self.assertTrue(response.hash()['authContext']['params']['Value'] == 1)
 
         pass
 
@@ -170,20 +170,20 @@ class TestAuthentication(unittest.TestCase):
                  "KeyValuePairs": {"Key": "device.feedback", "Value": True}}
 
         mock.SymantecUserServices.confirmRisk.return_value = Mock()
-        mock.confirmRisk.return_value.json.return_value = reply
+        mock.confirmRisk.return_value.hash.return_value = reply
 
         response = symantec_package.lib.userService.SymantecUserServices.checkOutRisk("checkOutyou")
-        self.assertTrue(response.json() != reply)
+        self.assertTrue(response.hash() != reply)
 
         response = symantec_package.lib.userService.SymantecUserServices.confirmRisk("PARAMS")
 
-        self.assertTrue((response.json()) == reply)
+        self.assertTrue((response.hash()) == reply)
 
-        self.assertTrue(response.json()["status"] == "0000")
-        self.assertTrue(response.json()['requestId'] == "12345")
-        self.assertTrue(response.json()['statusMessage'] == "Success")
-        self.assertTrue(response.json()['KeyValuePairs']['Key'] == "device.feedback")
-        self.assertTrue(response.json()['KeyValuePairs']['Value'] is True)
+        self.assertTrue(response.hash()["status"] == "0000")
+        self.assertTrue(response.hash()['requestId'] == "12345")
+        self.assertTrue(response.hash()['statusMessage'] == "Success")
+        self.assertTrue(response.hash()['KeyValuePairs']['Key'] == "device.feedback")
+        self.assertTrue(response.hash()['KeyValuePairs']['Value'] is True)
 
 
         pass
@@ -199,34 +199,34 @@ class TestAuthentication(unittest.TestCase):
                                    {"KeyValuePair": {"Key": "device.friendly.name", "Value": "CoolDevice"}}]}
 
         mock.SymantecUserServices.denyRisk.return_value = Mock()
-        mock.denyRisk.return_value.json.return_value = reply
+        mock.denyRisk.return_value.hash.return_value = reply
 
         response = symantec_package.lib.userService.SymantecUserServices.checkOutRisk("checkOutyou")
-        self.assertTrue(response.json() != reply)
+        self.assertTrue(response.hash() != reply)
 
         response = symantec_package.lib.userService.SymantecUserServices.denyRisk("PARAMS")
 
-        self.assertTrue((response.json()) == reply)
+        self.assertTrue((response.hash()) == reply)
 
-        self.assertTrue(response.json()["status"] == "0000")
-        self.assertTrue(response.json()['requestId'] == "12345")
-        self.assertTrue(response.json()['statusMessage'] == "Success")
-        self.assertTrue(response.json()['Risky'] is False)
-        self.assertTrue(response.json()['RiskScore'] == 0)
-        self.assertTrue(response.json()['RiskThreshold'] == 9001)
-        self.assertTrue(response.json()['RiskReason'] == "Device reputation")
-        self.assertTrue(response.json()['PolicyVersion'] == 1.0)
-        self.assertTrue(response.json()['eventId'] == 1337)
-        self.assertTrue(response.json()['KeyValuePairs'][0]["KeyValuePair"]['Key'] == "device.expired")
-        self.assertTrue(response.json()['KeyValuePairs'][0]["KeyValuePair"]['Value'] is False)
-        self.assertTrue(response.json()['KeyValuePairs'][1]["KeyValuePair"]['Key'] == "device.registered")
-        self.assertTrue(response.json()['KeyValuePairs'][1]["KeyValuePair"]['Value'] is True)
-        self.assertTrue(response.json()['KeyValuePairs'][2]["KeyValuePair"]['Key'] == "device.shared")
-        self.assertTrue(response.json()['KeyValuePairs'][2]["KeyValuePair"]['Value'] is False)
-        self.assertTrue(response.json()['KeyValuePairs'][3]["KeyValuePair"]['Key'] == "device.tag.id")
-        self.assertTrue(response.json()['KeyValuePairs'][3]["KeyValuePair"]['Value'] == "abc123")
-        self.assertTrue(response.json()['KeyValuePairs'][4]["KeyValuePair"]['Key'] == "device.friendly.name")
-        self.assertTrue(response.json()['KeyValuePairs'][4]["KeyValuePair"]['Value'] == "CoolDevice")
+        self.assertTrue(response.hash()["status"] == "0000")
+        self.assertTrue(response.hash()['requestId'] == "12345")
+        self.assertTrue(response.hash()['statusMessage'] == "Success")
+        self.assertTrue(response.hash()['Risky'] is False)
+        self.assertTrue(response.hash()['RiskScore'] == 0)
+        self.assertTrue(response.hash()['RiskThreshold'] == 9001)
+        self.assertTrue(response.hash()['RiskReason'] == "Device reputation")
+        self.assertTrue(response.hash()['PolicyVersion'] == 1.0)
+        self.assertTrue(response.hash()['eventId'] == 1337)
+        self.assertTrue(response.hash()['KeyValuePairs'][0]["KeyValuePair"]['Key'] == "device.expired")
+        self.assertTrue(response.hash()['KeyValuePairs'][0]["KeyValuePair"]['Value'] is False)
+        self.assertTrue(response.hash()['KeyValuePairs'][1]["KeyValuePair"]['Key'] == "device.registered")
+        self.assertTrue(response.hash()['KeyValuePairs'][1]["KeyValuePair"]['Value'] is True)
+        self.assertTrue(response.hash()['KeyValuePairs'][2]["KeyValuePair"]['Key'] == "device.shared")
+        self.assertTrue(response.hash()['KeyValuePairs'][2]["KeyValuePair"]['Value'] is False)
+        self.assertTrue(response.hash()['KeyValuePairs'][3]["KeyValuePair"]['Key'] == "device.tag.id")
+        self.assertTrue(response.hash()['KeyValuePairs'][3]["KeyValuePair"]['Value'] == "abc123")
+        self.assertTrue(response.hash()['KeyValuePairs'][4]["KeyValuePair"]['Key'] == "device.friendly.name")
+        self.assertTrue(response.hash()['KeyValuePairs'][4]["KeyValuePair"]['Value'] == "CoolDevice")
 
         pass
 
@@ -238,24 +238,24 @@ class TestAuthentication(unittest.TestCase):
                                    {"KeyValuePair": {"Key": "device.friendly.name", "Value": "CoolDevice"}}]}
 
         mock.SymantecUserServices.denyRisk.return_value = Mock()
-        mock.denyRisk.return_value.json.return_value = reply
+        mock.denyRisk.return_value.hash.return_value = reply
 
         response = symantec_package.lib.userService.SymantecUserServices.checkOutRisk("checkOutyou")
-        self.assertTrue(response.json() != reply)
+        self.assertTrue(response.hash() != reply)
 
         response = symantec_package.lib.userService.SymantecUserServices.denyRisk("PARAMS")
 
-        self.assertTrue((response.json()) == reply)
+        self.assertTrue((response.hash()) == reply)
 
-        self.assertTrue(response.json()["status"] == "0000")
-        self.assertTrue(response.json()['requestId'] == "12345")
-        self.assertTrue(response.json()['statusMessage'] == "Success")
-        self.assertTrue(response.json()['KeyValuePairs'][0]["KeyValuePair"]['Key'] == "device.feedback")
-        self.assertTrue(response.json()['KeyValuePairs'][0]["KeyValuePair"]['Value'] is True)
-        self.assertTrue(response.json()['KeyValuePairs'][1]["KeyValuePair"]['Key'] == "device.tag.id")
-        self.assertTrue(response.json()['KeyValuePairs'][1]["KeyValuePair"]['Value'] == "abc123")
-        self.assertTrue(response.json()['KeyValuePairs'][2]["KeyValuePair"]['Key'] == "device.friendly.name")
-        self.assertTrue(response.json()['KeyValuePairs'][2]["KeyValuePair"]['Value'] == "CoolDevice")
+        self.assertTrue(response.hash()["status"] == "0000")
+        self.assertTrue(response.hash()['requestId'] == "12345")
+        self.assertTrue(response.hash()['statusMessage'] == "Success")
+        self.assertTrue(response.hash()['KeyValuePairs'][0]["KeyValuePair"]['Key'] == "device.feedback")
+        self.assertTrue(response.hash()['KeyValuePairs'][0]["KeyValuePair"]['Value'] is True)
+        self.assertTrue(response.hash()['KeyValuePairs'][1]["KeyValuePair"]['Key'] == "device.tag.id")
+        self.assertTrue(response.hash()['KeyValuePairs'][1]["KeyValuePair"]['Value'] == "abc123")
+        self.assertTrue(response.hash()['KeyValuePairs'][2]["KeyValuePair"]['Key'] == "device.friendly.name")
+        self.assertTrue(response.hash()['KeyValuePairs'][2]["KeyValuePair"]['Value'] == "CoolDevice")
 
         pass
 
