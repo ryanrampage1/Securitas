@@ -28,11 +28,26 @@ Extract the public certificate:
 
     $ openssl pkcs12 -in yourP12File.pfx -clcerts -nokeys -out publicCert.pem
 
+You may also want to remove the passphrase from the key:
+
+    $ openssl.exe rsa -in privateKey.pem -out privateKey_nopass.pem
+
 ## Usage
 
 Once the certificate is split, Securitas is simple to start using.
 
-< Insert Python instruction >
+'''Python
+  from suds.client import Client
+  from symantec_package.lib.userService.SymantecUserServices import SymantecUserServices
+
+  userservices_url = 'http://somelocation.io/vipuserservices-auth-1.7.wsdl'
+  user_services_client = Client(userservices_url,
+         transport = HTTPSClientCertTransport( '../privateKey_nopass.pem', '../publicCert.pem'))
+
+  test_user_services_object = SymantecUserServices(user_services_client)
+  send_push_to_phone_result = test_user_services_object.authenticateUserWithPush("push_123", "my_mobile_device")
+
+'''
 
 ## Documentation
 
