@@ -36,7 +36,7 @@ You may also want to remove the passphrase from the key:
 
 Once the certificate is split, Securitas is simple to start using.
 
-'''Python
+'''python
   from suds.client import Client
   from symantec_package.lib.userService.SymantecUserServices import SymantecUserServices
 
