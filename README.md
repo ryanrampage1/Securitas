@@ -46,6 +46,17 @@ user_services_client = Client(userservices_url,
 
 test_user_services_object = SymantecUserServices(user_services_client)
 send_push_to_phone_result = test_user_services_object.authenticateUserWithPush("push_123", "my_mobile_device")
+# (reply){
+#   requestId = "push_123"
+#   status = "6040"
+#   statusMessage = "Mobile push request sent"
+#   transactionId = "<some_id>"
+#   pushDetail =
+#      (PushDetailType){
+#         pushCredentialId = "<some_credential_id>"
+#         pushSent = True
+#      }
+# }
 
 ```
 
